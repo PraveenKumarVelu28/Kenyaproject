@@ -1,0 +1,63 @@
+<!-- <ngx-spinner bdColor="rgba(68,64,66,0.8)" size="large" color="#eb0000" type="ball-clip-rotate-multiple"
+    [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner> -->
+<div class="container-fluid bg">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-4" style="text-align: center;">
+            <br><br><br>
+            <div style="background-color: #322b6b;padding: 12%;border-radius: 20px;">
+                <form #loginForm="ngForm">
+                    <h3
+                        style="border-radius: 10px;padding-top: 3%;height:114px;width:100%;background-color: white;color: aliceblue;">
+                        <img src="assets/Images/logo.png" style="margin-top: -14px;width: 29%;">
+                        <h6 style="color: #322b6b;margin-top: -9px;
+              font-size: 10px;"></h6>
+                    </h3>
+                    <br>
+                    <!-- <select class="form-control" style="hei  ght:40px;" (change)="GetCountryID($event)">
+              <option value="0" selected>Select Country</option>
+              <option *ngFor="let cou of countrylist" value={{cou.countryID}}>{{cou.countryName}}</option>
+            </select><br> -->
+                    <!-- *ngIf="countryid!=null" -->
+                    <div>
+                        <select class="form-control" style="height:40px;" (change)="GetLanguageID($event)">
+                            <option value="" selected>Select Language</option>
+                            <option *ngFor="let lang of languagelist" value={{lang.id}}>{{lang.languageName}}</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div *ngIf="LanguageID!=null">
+                        <select class="form-control" style="height:40px;" (change)="onchangeFunction($event)">
+                            <option value="" selected>{{labels[0].selectRole}}</option>
+                            <option value="1" selected>Admin</option>
+                            <option value="2" selected>Diagnostic centre</option>
+                            <!-- <option *ngFor="let role of rolelist" value={{role.id}}>{{role.short}}</option> -->
+                        </select>
+                        <br>
+                        <!-- <input type="text" [(ngModel)]="pinno" style="height:40px;" name="pinno" required
+                            placeholder="{{labels[0].pinno}}" class="form-control"
+                            onkeypress='return(event.charCode>=48&&event.charCode<=57)'> -->
+                        <br>
+                        <input type="text" id="uname" [(ngModel)]="uname" style="height:40px;" name="uname" required
+                            placeholder="d" class="form-control">
+                        <br>
+
+                        <input type="password" [(ngModel)]="pwd" style="height:40px;" id="pwd" name="pwd" required
+                            placeholder="f" class="form-control">
+                        <!-- <input type="text"   [(ngModel)]="otp" style="height:40px;" name="otp" required placeholder="Password"
+              class="form-control"> -->
+                        <label
+                            style="color:#f18235;float: right;cursor: pointer;">{{labels[0].forgotpassword}}</label><br>
+
+                        <button type="submit" class="form-control login" (click)="login()"
+                            [disabled]="loginForm.form.invalid">{{labels[0].login}}</button>
+                    </div>
+                </form>
+            </div>
+        </div><br>
+        <div class="col-lg-1">
+        </div>
+    </div>
+</div>

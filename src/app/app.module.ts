@@ -18,6 +18,11 @@ import { StaffmasterComponent } from '../app/staff/staffmaster/staffmaster.compo
 import { StaffdashboardComponent } from '../app/staff/staffdashboard/staffdashboard.component';
 import { ApplicationmasterComponent } from '../app/Application/applicationmaster/applicationmaster.component';
 import { ApplicationdashboardComponent } from '../app/Application/applicationdashboard/applicationdashboard.component';
+import { LoginComponent } from './Pages/Login/login/login.component';
+import { SidebarComponent } from './Pages/Login/sidebar/sidebar.component';
+import { DignosticregComponent } from './Pages/Dignostic/dignosticreg/dignosticreg.component';
+import { DignosticdashboardComponent } from './Pages/Dignostic/dignosticdashboard/dignosticdashboard.component';
+import { HeaderComponent } from './Pages/Login/header/header.component';
 
 
 const ngWizardConfig: NgWizardConfig = {
@@ -41,7 +46,12 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     StaffmasterComponent,
     StaffdashboardComponent,
     ApplicationmasterComponent,
-    ApplicationdashboardComponent
+    ApplicationdashboardComponent,
+    LoginComponent,
+    SidebarComponent,
+    DignosticregComponent,
+    DignosticdashboardComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
