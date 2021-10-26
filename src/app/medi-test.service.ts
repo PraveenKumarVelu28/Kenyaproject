@@ -9,7 +9,6 @@ export class MediTestService {
 
   constructor(private http: HttpClient) { }
 
-
   public host = "https://23.101.22.93/MediTestApi";
   private url: string = '';
 
@@ -39,22 +38,13 @@ export class MediTestService {
       "&EDate=" + edate + "&LanguageID=" + lid);
     return this.http.get(this.url);
   }
-  public GetAdmin_Masters_labels(lid: any) {
 
-    return this.http.get<any[]>(this.host + '/Master/GetAdmin_Masters_labels?LanguageID=' + lid);
-  }
   public GetAdmin_DiagnosticRegistration_LabelBYLanguageID(lid: any) {
 
     return this.http.get<any[]>(this.host + '/Master/GetAdmin_DiagnosticRegistration_LabelBYLanguageID?LanguageID=' + lid);
   }
-  public GetCountryMasterByLanguageID(lid: any) {
 
-    return this.http.get<any[]>(this.host + '/Master/GetCountryMasterByLanguageID?LanguageID=' + lid);
-  }
-  public GetCityMasterBYIDandLanguageID(did: any, lid: any) {
 
-    return this.http.get<any[]>(this.host + '/Master/GetCityMasterBYIDandLanguageID?CountryID=' + did + '&LanguageID=' + lid);
-  }
   public GetAreaMasterByCityIDAndLanguageID(did: any, lid: any) {
 
     return this.http.get<any[]>(this.host + '/Master/GetAreaMasterByCityIDAndLanguageID?CityID=' + did + '&LanguageID=' + lid);
@@ -86,5 +76,44 @@ export class MediTestService {
     }
     return this.http.post(this.host + '/Master/UploadAttachment/', formdata);
   }
+
+  public GetCountryMasterByLanguageID(lid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetCountryMasterByLanguageID?LanguageID=' + lid);
+  }
+
+  public GetCityMasterBYIDandLanguageID(did: any, lid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetCityMasterBYIDandLanguageID?CountryID=' + did + '&LanguageID=' + lid);
+  }
+
+
+  public GetAdmin_Masters_labels(lid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetAdmin_Masters_labels?LanguageID=' + lid);
+  }
+
+  public GetAreaMasterByLangID(lid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetAreaMasterByLangID?LanguageID=' + lid);
+  }
+
+  public GetCityMasterByLangID(lid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetCityMasterByLangID?LanguageID=' + lid);
+  }
+
+  public InsertCountryMaster(data: any) {
+    this.url = this.host + '/Master/InsertCountryMaster';
+    return this.http.post(this.url, data)
+  }
+
+
+  public UpdateCountryMaster_Web(data: any) {
+    this.url = this.host + '/Master/UpdateCountryMaster_Web';
+    return this.http.post(this.url, data)
+  }
+
+
 
 }

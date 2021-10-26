@@ -25,6 +25,12 @@ import { DignosticdashboardComponent } from './Pages/Dignostic/dignosticdashboar
 import { HeaderComponent } from './Pages/Login/header/header.component';
 import { ArchwizardModule } from 'angular-archwizard';
 
+import { CountryMasterComponent } from './Pages/Masters/country-master/country-master.component';
+import { CountryMasterDashComponent } from './Pages/Masters/country-master-dash/country-master-dash.component';
+import { CityMasterComponent } from './Pages/Masters/city-master/city-master.component';
+import { CityMasterDashComponent } from './Pages/Masters/city-master-dash/city-master-dash.component';
+import { ProvinceMasterComponent } from './Pages/Masters/province-master/province-master.component';
+import { ProvinceMasterDashComponent } from './Pages/Masters/province-master-dash/province-master-dash.component';
 
 const ngWizardConfig: NgWizardConfig = {
   theme: THEME.circles
@@ -52,7 +58,13 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     SidebarComponent,
     DignosticregComponent,
     DignosticdashboardComponent,
-    HeaderComponent
+    HeaderComponent,
+    CountryMasterComponent,
+    CountryMasterDashComponent,
+    ProvinceMasterComponent,
+    ProvinceMasterDashComponent,
+    CityMasterComponent,
+    CityMasterDashComponent
   ],
   imports: [
     BrowserModule,
