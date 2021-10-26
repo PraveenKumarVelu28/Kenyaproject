@@ -6,7 +6,10 @@ import { ApplicationmasterComponent } from '../app/Application/applicationmaster
 import { ApplicationdashboardComponent } from '../app/Application/applicationdashboard/applicationdashboard.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', redirectTo: '/Staffmaster', pathMatch: 'full' },
+  { path: 'Staffmaster', component: StaffmasterComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
