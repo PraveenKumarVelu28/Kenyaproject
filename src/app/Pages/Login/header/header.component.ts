@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router,) { }
 
   ngOnInit(): void {
   }
@@ -15,8 +16,11 @@ export class HeaderComponent implements OnInit {
   public clear() {
     sessionStorage.clear();
     localStorage.clear();
-    location.href = "#/login";
-    location.reload();
+    // location.href = "#/login";
+    this.router.navigate(["/login"])
+      .then(() => {
+        window.location.reload();
+      });
 
   }
 

@@ -12,7 +12,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgWizardModule, NgWizardConfig, THEME } from 'ng-wizard';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';;
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { StaffmasterComponent } from '../app/staff/staffmaster/staffmaster.component';
 import { StaffdashboardComponent } from '../app/staff/staffdashboard/staffdashboard.component';
@@ -23,6 +23,7 @@ import { SidebarComponent } from './Pages/Login/sidebar/sidebar.component';
 import { DignosticregComponent } from './Pages/Dignostic/dignosticreg/dignosticreg.component';
 import { DignosticdashboardComponent } from './Pages/Dignostic/dignosticdashboard/dignosticdashboard.component';
 import { HeaderComponent } from './Pages/Login/header/header.component';
+import { ArchwizardModule } from 'angular-archwizard';
 
 
 const ngWizardConfig: NgWizardConfig = {
@@ -54,6 +55,17 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     HeaderComponent
   ],
   imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    DropzoneModule,
+    FormsModule,
+    NgxDropzoneModule,
+    Ng2SearchPipeModule,
+    NgxSpinnerModule,
+    ArchwizardModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    [BrowserModule, NgxPaginationModule],
     BrowserModule,
     AppRoutingModule,
     FormsModule,
