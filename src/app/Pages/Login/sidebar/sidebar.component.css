@@ -11,6 +11,10 @@
     padding-top: 10px;
     
   }
+
+  .sidebaritems{
+    color:white;
+  }
   
   .sidenav a {
     padding: 3px 0px 9px 0px;
@@ -28,9 +32,9 @@
   
 
   .togglebtn{
-   background-color: #322b6b;;
+   background-color: #cecdd3;;
    border: none;
-   color: aliceblue;
+   color: white;
    font-size: 15px;
    padding-left: 7%;
    width: 100%;
@@ -71,11 +75,7 @@ padding: 20px;
 .sidenav a {font-size: 18px;}
 }
 
-.tab {
-overflow: hidden;
-border: 1px solid #ccc;
-background-color: #f1f1f1;
-}
+
 
 .tab a {
 background-color: inherit;
