@@ -11,6 +11,7 @@ import { ProvinceMasterDashComponent } from './Pages/Masters/province-master-das
 import { ProvinceMasterComponent } from './Pages/Masters/province-master/province-master.component';
 import { CityMasterComponent } from './Pages/Masters/city-master/city-master.component';
 import { EditDiagnosticRegistrationComponent } from './Pages/Dignostic/edit-diagnostic-registration/edit-diagnostic-registration.component';
+import { OrdersComponent } from './orders/orders.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'ProvinceMaster', component: ProvinceMasterComponent },
   { path: 'CityMaster', component: CityMasterComponent },
   { path: 'EditDiagnosticRegistration/:id', component: EditDiagnosticRegistrationComponent },
+  { path: 'Orders', component: OrdersComponent },
 
 
 
