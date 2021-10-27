@@ -34,6 +34,7 @@ import { ProvinceMasterDashComponent } from './Pages/Masters/province-master-das
 import { EditDiagnosticRegistrationComponent } from './Pages/Dignostic/edit-diagnostic-registration/edit-diagnostic-registration.component';
 import { OrdersComponent } from './orders/orders.component';
 
+
 const ngWizardConfig: NgWizardConfig = {
   theme: THEME.circles
 };
@@ -67,7 +68,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ProvinceMasterDashComponent,
     CityMasterComponent,
     CityMasterDashComponent,
-    EditDiagnosticRegistrationComponent
+    EditDiagnosticRegistrationComponent,
     OrdersComponent
   ],
   imports: [
