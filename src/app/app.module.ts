@@ -31,6 +31,7 @@ import { CityMasterComponent } from './Pages/Masters/city-master/city-master.com
 import { CityMasterDashComponent } from './Pages/Masters/city-master-dash/city-master-dash.component';
 import { ProvinceMasterComponent } from './Pages/Masters/province-master/province-master.component';
 import { ProvinceMasterDashComponent } from './Pages/Masters/province-master-dash/province-master-dash.component';
+import { OrdersComponent } from './orders/orders.component';
 
 const ngWizardConfig: NgWizardConfig = {
   theme: THEME.circles
@@ -64,7 +65,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ProvinceMasterComponent,
     ProvinceMasterDashComponent,
     CityMasterComponent,
-    CityMasterDashComponent
+    CityMasterDashComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,

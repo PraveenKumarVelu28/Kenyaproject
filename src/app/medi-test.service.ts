@@ -115,5 +115,19 @@ export class MediTestService {
   }
 
 
+  public GetAdmin_DiagnosticLoginOrdersAndOrderReport_Label(lid:any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetAdmin_DiagnosticLoginOrdersAndOrderReport_Label?LanguageID=' + lid);
+  }
+
+  public GetDiagnosticAppointmentsByDiagnosticID(id:any, sdate:any, edate:any, lid:any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetDiagnosticAppointmentsByDiagnosticID?DiagnosticCenterID=' + id + '&SDate=' + sdate + '&EDate=' + edate + '&LanguageID=' + lid);
+  }
+
+  public GetAdmin_DoctorMyAppointments_Label(lid:any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetAdmin_DoctorMyAppointments_Label?LanguageID=' + lid);
+  }
 
 }
