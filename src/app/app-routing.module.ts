@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'CityMasterDash', component: CityMasterDashComponent },
   { path: 'CountryMasterDash', component: CountryMasterDashComponent },
   { path: 'CountryMaster', component: CountryMasterComponent },
+  { path: 'CountryMaster/:id', component: CountryMasterComponent },
   { path: 'ProvinceMasterDash', component: ProvinceMasterDashComponent },
   { path: 'ProvinceMaster', component: ProvinceMasterComponent },
   { path: 'CityMaster', component: CityMasterComponent },
