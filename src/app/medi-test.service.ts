@@ -114,6 +114,33 @@ export class MediTestService {
     return this.http.post(this.url, data)
   }
 
+  public DeleteDiagnosticCenter(id: any) {
 
+    return this.http.get<any[]>(this.host + '/Master/DeleteDiagnosticCenter?ID=' + id);
+  }
+  public GetDiagnosticDetailsForAdminByLanguageID(did: any, lid: any) {
 
+    return this.http.get<any[]>(this.host + '/Master/GetDiagnosticDetailsForAdminByLanguageID?DiagnosticID=' + did + '&LanguageID=' + lid);
+  }
+  public UpdateDiagnosticCenterProfile(data: any) {
+    this.url = this.host + '/Master/UpdateDiagnosticCenterProfile';
+    return this.http.post(this.url, data)
+  }
+  public GetDiagnosticCenterPhotosByID(diaid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetDiagnosticCenterPhotosByID?ID=' + diaid);
+  }
+  public UpdateDiagnosticCenterPhotos(data: any) {
+
+    this.url = this.host + '/Master/UpdateDiagnosticCenterPhotos';
+    return this.http.post(this.url, data)
+  }
+  public GetDiagnosticCentersSubscriptions_Revenue(diagnosticid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetDiagnosticCentersSubscriptions_Revenue?DiagnosticID=' + diagnosticid);
+  }
+  public UpdateDiagnosticCentersSubscriptions_Revenue(data: any) {
+    this.url = this.host + '/Master/UpdateDiagnosticCentersSubscriptions_Revenue';
+    return this.http.post(this.url, data)
+  }
 }

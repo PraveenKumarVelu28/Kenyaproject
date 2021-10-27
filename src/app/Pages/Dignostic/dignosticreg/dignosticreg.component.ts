@@ -172,7 +172,7 @@ export class DignosticregComponent implements OnInit {
 
   public GetCityID(item1: any) {
 
-    this.cityid = item1.id;
+    this.cityid = item1.target.value;
     this.getareamasterbyid();
   }
   onItemDeSelect3(item1: any) {
@@ -181,10 +181,10 @@ export class DignosticregComponent implements OnInit {
     this.getareamasterbyid()
   }
 
-
+  role: any
   public GetInuranceID(item: any) {
-
-    this.insuranceid.push(item);
+    debugger
+    this.insuranceid.push(item.target.value);
 
   }
 
@@ -199,6 +199,8 @@ export class DignosticregComponent implements OnInit {
   evngtime1: any;
   evngtime2: any;
   evngtimings: any;
+  Username: any;
+  Password: any;
   public insertdetails() {
 
     // if (this.attachmentsurl.length == 0) {
@@ -258,7 +260,9 @@ export class DignosticregComponent implements OnInit {
         'ContractEndDate': this.contractenddate,
         'DiagnosticAppointmentPerSlot': 1,
         'HomeSampleOrdersPerSlot': 1,
-        'EveningTimings': this.evngtimings
+        'EveningTimings': this.evngtimings,
+        'Username': this.Username,
+        'Password': this.Password,
       }
       this.docservice.InsertDiagnosticCenterRegistration(entity).subscribe(data => {
         debugger
@@ -314,10 +318,11 @@ export class DignosticregComponent implements OnInit {
 
 
   public insertinsurance() {
+    debugger
     for (let i = 0; i < this.insuranceid.length; i++) {
       var entity = {
         'DiagnosticCenterID': this.diagnosticid,
-        'InsuranceID': this.insuranceid[i].id
+        'InsuranceID': this.insuranceid[i]
       }
       this.docservice.InsertDiagnosticCenterInsurances(entity).subscribe(data => {
 
@@ -329,6 +334,7 @@ export class DignosticregComponent implements OnInit {
 
 
   public insertDiagnosticRevenue() {
+    debugger
     var entity = {
       'DiagnosticID': this.diagnosticid,
       'MonthlySubscription': this.monthlysubription,
@@ -346,6 +352,7 @@ export class DignosticregComponent implements OnInit {
 
 
   public inserthspphotos() {
+    debugger
     if (this.attachmentsurl.length == 0) {
       this.attachmentsurl[0] = 'C:\\MarocAPI\\Images\\DiagnosticCenterPhotos\\Diagnostics.jpg'
     }
@@ -388,7 +395,7 @@ export class DignosticregComponent implements OnInit {
       this.dummshowsignatureurl.push(res);
       let a = this.dummshowsignatureurl[0].slice(2);
 
-      let b = 'https://maroc.voiladoc.org' + a;
+      let b = 'https://23.101.22.93' + a;
 
       this.showphoto.push(b)
       this.attachments.length = 0;
@@ -437,7 +444,7 @@ export class DignosticregComponent implements OnInit {
   }
   public GetAreaID(item3: any) {
 
-    this.areaid = item3.id;
+    this.areaid = item3.target.value;
     for (let i = 0; i < this.arealist.length; i++) {
 
       if (this.arealist[i].id == this.areaid) {

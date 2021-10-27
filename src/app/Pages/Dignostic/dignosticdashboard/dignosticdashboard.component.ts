@@ -63,7 +63,7 @@ export class DignosticdashboardComponent implements OnInit {
       error => { }
     );
     this.GetCountryMaster()
-  
+
     this.countryid = 0;
     this.cityid = 0;
 
@@ -175,63 +175,65 @@ export class DignosticdashboardComponent implements OnInit {
     }
   }
 
-  // public deletediagnosticcenter(id) {
+  public deletediagnosticcenter(id: any) {
 
-  //   if (this.languageid == 1) {
-  //     Swal.fire({
-  //       title: 'Are you sure?',
-  //       text: "You Want to Delete This Diagnostic Center!",
-  //       type: 'warning',
-  //       showCancelButton: true,
-  //       confirmButtonColor: '#3085d6',
-  //       cancelButtonColor: '#d33',
-  //       confirmButtonText: 'Yes, delete it!'
-  //     }).then((result) => {
-  //       if (result.value) {
-  //         this.MediTestService.DeleteDiagnosticCenter(id).subscribe(res => {
-  //           let test = res;
-  //           this.getdiagnosticforadmin();
-  //         })
-  //         Swal.fire(
-  //           'Deleted!',
-  //           'Diagnostic Center has been deleted.',
-  //           'success'
-  //         )
-  //       }
-  //       else {
-  //         this.getdiagnosticforadmin();
-  //       }
-  //     })
-  //   }
-  //   else if (this.languageid == 6) {
-  //     Swal.fire({
-  //       title: 'Êtes-vous sûr ?',
-  //       // text: "You Want to Delete This Doctor!",
-  //       type: 'warning',
-  //       showCancelButton: true,
-  //       confirmButtonColor: '#3085d6',
-  //       cancelButtonColor: '#d33',
-  //       confirmButtonText: 'Oui, supprimer !',
-  //       cancelButtonText: 'Annuler'
-  //     }).then((result) => {
-  //       if (result.value) {
-  //         this.MediTestService.DeleteDiagnosticCenter(id).subscribe(res => {
-  //           let test = res;
-  //           this.getdiagnosticforadmin();
-  //         })
-  //         Swal.fire(
-  //           'Supprimé!'
-  //           // 'Le médecin a été supprimé.',
-  //           // 'success'
-  //         )
-  //       }
-  //       else {
-  //         this.getdiagnosticforadmin();
-  //       }
-  //     })
-  //   }
+    if (this.languageid == 1) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You Want to Delete This Diagnostic Center!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.value) {
+          this.MediTestService.DeleteDiagnosticCenter(id).subscribe(res => {
+            let test = res;
+            this.getdiagnosticforadmin();
+          })
+          Swal.fire(
+            'Deleted!',
+            'Diagnostic Center has been deleted.',
+            'success'
+          )
+        }
+        else {
+          this.getdiagnosticforadmin();
+        }
+      })
 
-  // }
+
+    }
+    else if (this.languageid == 6) {
+      Swal.fire({
+        title: 'Êtes-vous sûr ?',
+        // text: "You Want to Delete This Doctor!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Oui, supprimer !',
+        cancelButtonText: 'Annuler'
+      }).then((result) => {
+        if (result.value) {
+          this.MediTestService.DeleteDiagnosticCenter(id).subscribe(res => {
+            let test = res;
+            this.getdiagnosticforadmin();
+          })
+          Swal.fire(
+            'Supprimé!'
+            // 'Le médecin a été supprimé.',
+            // 'success'
+          )
+        }
+        else {
+          this.getdiagnosticforadmin();
+        }
+      })
+    }
+
+  }
 
   // public getglmasterexcel() {
   //   let hhh = this.tableToJson(document.getElementById('Doc'));

@@ -20,7 +20,7 @@
     <form #diagnosticForm="ngForm">
         <aw-wizard>
             <hr>
-            <aw-wizard-step stepTitle="{{labels[0].basicInfo}}">
+            <aw-wizard-step>
                 <div class="row" style="margin-top:20px;">
                     <div class="col-lg-3">
                         <label>{{labels[0].diacenter}} : </label>
@@ -84,19 +84,18 @@
                     </div>
                 </div>
                 <br>
-                <!-- <div class="row">
-          <div class="col-lg-3">
-            <label>{{labels[0].licenceValidTill}} : </label>
-            <span class="requird">*</span>
-          </div>
-          <div class="col-lg-4">
-            <input type="text" placeholder="{{labels[0].licenceValidTill}}" class="form-control"
-              [bsConfig]="{ showWeekNumbers:false }" name="licensevalidtill"
-              [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }" [(ngModel)]="licensevalidtill" bsDatepicker>
-            
-          </div>
-        </div>
-        <br> -->
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label>{{labels[0].licenceValidTill}} : </label>
+                        <span class="requird">*</span>
+                    </div>
+                    <div class="col-lg-4">
+                        <input type="date" placeholder="{{labels[0].licenceValidTill}}" class="form-control"
+                            name="licensevalidtill" [(ngModel)]="licensevalidtill">
+
+                    </div>
+                </div>
+                <br>
                 <div class="row">
                     <div class="col-lg-3">
                         <label>{{labels[0].email}} : </label>
@@ -144,9 +143,15 @@
                         <span class="requird">*</span>
                     </div>
                     <div class="col-lg-4">
-                        <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="citylist" [settings]="citydd"
+                        <select class="form-control" (change)="GetCityID($event)">
+                            <option value="0">Select Country</option>
+                            <option *ngFor="let role of citylist" value="{{role.id}}">
+                                {{role.short}}
+                            </option>
+                        </select><br>
+                        <!-- <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="citylist" [settings]="citydd"
                             (onSelect)="GetCityID($event)" (onDeSelect)="onItemDeSelect3($event)">
-                        </ng-multiselect-dropdown>
+                        </ng-multiselect-dropdown> -->
                     </div>
                 </div>
                 <br>
@@ -156,13 +161,13 @@
                         <span class="required">*</span>
                     </div>
                     <div class="col-lg-4">
-                        <!-- <select class="form-control" (change)="GetAreaID($event)">
-                <option value="" selected="selected">Select</option>
-                <option *ngFor="let area of arealist" value={{area.id}}>{{area.areaName}}</option>
-              </select> -->
-                        <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="arealist" [settings]="areadd"
+                        <select class="form-control" (change)="GetAreaID($event)">
+                            <option value="" selected="selected">Select</option>
+                            <option *ngFor="let area of arealist" value={{area.id}}>{{area.areaName}}</option>
+                        </select>
+                        <!-- <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="arealist" [settings]="areadd"
                             (onSelect)="GetAreaID($event)">
-                        </ng-multiselect-dropdown>
+                        </ng-multiselect-dropdown> -->
                     </div>
                 </div>
                 <br>
@@ -341,7 +346,7 @@
                 </div>
             </aw-wizard-step>
             <br>
-            <aw-wizard-step stepTitle="{{labels[0].facilities}}">
+            <aw-wizard-step>
                 <div class="container-fluid" style="height:100%">
                     <div class="row">
                         <div class="col-lg-3">
@@ -369,9 +374,15 @@
 
                         </div>
                         <div class="col-lg-4">
-                            <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="insurancelist"
+                            <select class="form-control" (change)="GetInuranceID($event)">
+                                <option value="0">Select Insurance</option>
+                                <option *ngFor="let role of insurancelist" value="{{role.id}}">
+                                    {{role.short}}
+                                </option>
+                            </select><br>
+                            <!-- <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="insurancelist"
                                 [settings]="insurancedd" (onSelect)="GetInuranceID($event)">
-                            </ng-multiselect-dropdown>
+                            </ng-multiselect-dropdown> -->
                         </div>
                     </div>
                     <br>
@@ -386,6 +397,28 @@
                         </div>
                     </div>
                     <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <label>Username: </label>
+                            <span class="requird">*</span>
+                        </div>
+                        <div class="col-lg-4">
+                            <input class="form-control" required type="text" name="Username" [(ngModel)]="Username"
+                                oncopy="return false" onpaste="return false" placeholder="Username">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <label>Password : </label>
+                            <span class="requird">*</span>
+                        </div>
+                        <div class="col-lg-4">
+                            <input class="form-control" required type="text" name="Password" [(ngModel)]="Password"
+                                oncopy="return false" onpaste="return false" placeholder="Password">
+                        </div>
+                    </div>
                     <br>
                     <div class="row">
                         <div class="col-lg-5">

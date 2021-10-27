@@ -10,6 +10,7 @@ import { CountryMasterComponent } from './Pages/Masters/country-master/country-m
 import { ProvinceMasterDashComponent } from './Pages/Masters/province-master-dash/province-master-dash.component';
 import { ProvinceMasterComponent } from './Pages/Masters/province-master/province-master.component';
 import { CityMasterComponent } from './Pages/Masters/city-master/city-master.component';
+import { EditDiagnosticRegistrationComponent } from './Pages/Dignostic/edit-diagnostic-registration/edit-diagnostic-registration.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
   { path: 'ProvinceMasterDash', component: ProvinceMasterDashComponent },
   { path: 'ProvinceMaster', component: ProvinceMasterComponent },
   { path: 'CityMaster', component: CityMasterComponent },
-  
+  { path: 'EditDiagnosticRegistration/:id', component: EditDiagnosticRegistrationComponent },
+
 
 
 ];
