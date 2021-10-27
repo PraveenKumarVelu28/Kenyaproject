@@ -13,24 +13,22 @@ import { ActivatedRoute } from '@angular/router';
 export class CountryMasterComponent implements OnInit {
 
   constructor(public MediTestService: MediTestService, private router: Router, private spinner: NgxSpinnerService, private activatedroute: ActivatedRoute) { }
-  public labels:any;
-  public languageid:any;
-  public countryname:any;
-  public countryid:any;
-  public countrylist:any;
-  public showbit:any;
+  public labels: any;
+  public languageid: any;
+  public countryname: any;
+  public countryid: any;
+  public countrylist: any;
+  public showbit: any;
 
   ngOnInit() {
     this.activatedroute.params.subscribe(params => {
-     
+
       this.countryid = params['id'];
-      if(this.countryid==undefined)
-      {
-        this.showbit=0;
+      if (this.countryid == undefined) {
+        this.showbit = 0;
       }
-      else if(this.countryid!=undefined)
-      {
-        this.showbit=1;
+      else if (this.countryid != undefined) {
+        this.showbit = 1;
       }
     }
     )
@@ -41,7 +39,7 @@ export class CountryMasterComponent implements OnInit {
   public getlanguage() {
     this.MediTestService.GetAdmin_Masters_labels(this.languageid).subscribe(
       data => {
-       
+
         this.labels = data;
       }, error => {
       }
@@ -51,11 +49,11 @@ export class CountryMasterComponent implements OnInit {
   public GetCountryMaster() {
     this.MediTestService.GetCountryMasterByLanguageID(this.languageid).subscribe(
       data => {
-       
+
         this.countrylist = data;
 
-       var list=this.countrylist.filter((x: { id: any; })=>x.id==this.countryid)
-       this.countryname=list[0].short
+        var list = this.countrylist.filter((x: { id: any; }) => x.id == this.countryid)
+        this.countryname = list[0].short
       }, error => {
       }
     )
@@ -66,33 +64,38 @@ export class CountryMasterComponent implements OnInit {
 
 
 
-  public insertdetails()
-  {
-    var entity={
-      'Short':this.countryname,
-      'LanguageID':1
+  public insertdetails() {
+    var entity = {
+      'Short': this.countryname,
+      'LanguageID': 1
     }
-    this.MediTestService.InsertCountryMaster(entity).subscribe(data=>{
-      if(data!=0)
-      {
-        Swal.fire('Success','Details Saved Successfully');
-        location.href="#/CountryDash"
+    this.MediTestService.InsertCountryMaster(entity).subscribe(data => {
+      if (data != 0) {
+        Swal.fire('Success', 'Details Saved Successfully');
+        location.href = "#/CountryMasterDash"
       }
     })
   }
 
-  public updatedetails()
-  {
-    var entity={
-      'ID':this.countryid,
-      'Short':this.countryname,
-      'LanguageID':this.languageid
+  public updatedetails() {
+    var entity = {
+      'ID': this.countryid,
+      'Short': this.countryname,
+      'LanguageID': this.languageid
     }
-    this.MediTestService.UpdateCountryMaster_Web(entity).subscribe(data=>{
-     let res=data;
-     Swal.fire('Success','Details Updated Successfully');
-     location.href="#/CountryDash"
-    })
-  }
+    this.MediTestService.UpdateCountryMaster_Web(entity).subscribe(data => {
+      let res = data;
+      Swal.fire('Success', 'Details Updated Successfully');
 
+      this.router.navigate(["/CountryMasterDash"])
+        .then(() => {
+
+        });
+
+    });
+
+
+
+
+  }
 }
