@@ -161,4 +161,38 @@ export class MediTestService {
     this.url = this.host + '/Master/UpdateDiagnosticCentersSubscriptions_Revenue';
     return this.http.post(this.url, data)
   }
+
+  public InsertCityMaster(data:any) {
+    this.url = this.host + '/Master/InsertCityMaster';
+    return this.http.post(this.url, data)
+  }
+
+  public UpdateCityMaster_Web(data:any) {
+    this.url = this.host + '/Master/UpdateCityMaster_Web';
+    return this.http.post(this.url, data)
+  }
+  public InsertAreaMaster(data:any) {
+    this.url = this.host + '/Master/InsertAreaMaster';
+    return this.http.post(this.url, data)
+  }
+
+  public UpdateAreaMaster_Web(data:any) {
+    this.url = this.host + '/Master/UpdateAreaMaster_Web';
+    return this.http.post(this.url, data)
+  }
+
+  public DeleteAreaMaster(lid:any) {
+
+    return this.http.get<any[]>(this.host + '/Master/DeleteAreaMaster?ID=' + lid);
+  }
+
+  public DeleteCountryMaster(lid:any) {
+
+    return this.http.get<any[]>(this.host + '/Master/DeleteCountryMaster?ID=' + lid);
+  }
+
+  public DeleteCityMaster(lid:any) {
+
+    return this.http.get<any[]>(this.host + '/Master/DeleteCityMaster?ID=' + lid);
+  }
 }

@@ -30,7 +30,7 @@
                     <br>
                     <div *ngIf="LanguageID!=null">
                         <select class="form-control" style="height:40px;" (change)="onchangeFunction($event)">
-                            <option value="" selected>{{labels[0].selectRole}}</option>
+                            <option value="" selected>selectRole</option>
                             <option value="1" selected>Admin</option>
                             <option value="2" selected>Diagnostic centre</option>
                             <!-- <option *ngFor="let role of rolelist" value={{role.id}}>{{role.short}}</option> -->
@@ -49,10 +49,10 @@
                         <!-- <input type="text"   [(ngModel)]="otp" style="height:40px;" name="otp" required placeholder="Password"
               class="form-control"> -->
                         <label
-                            style="color:#f18235;float: right;cursor: pointer;">{{labels[0].forgotpassword}}</label><br>
+                            style="color:#f18235;float: right;cursor: pointer;">forgotpassword</label><br>
 
                         <button type="submit" class="form-control login" (click)="login()"
-                            [disabled]="loginForm.form.invalid">{{labels[0].login}}</button>
+                            [disabled]="loginForm.form.invalid">Login</button>
                     </div>
                 </form>
             </div>

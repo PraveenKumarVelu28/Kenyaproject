@@ -72,7 +72,7 @@ export class CountryMasterComponent implements OnInit {
     this.MediTestService.InsertCountryMaster(entity).subscribe(data => {
       if (data != 0) {
         Swal.fire('Success', 'Details Saved Successfully');
-        location.href = "#/CountryMasterDash"
+        location.href = "/CountryMasterDash"
       }
     })
   }
