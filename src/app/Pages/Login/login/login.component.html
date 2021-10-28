@@ -29,13 +29,13 @@
                     </div>
                     <br>
                     <div *ngIf="LanguageID!=null">
-                        <select class="form-control" style="height:40px;" (change)="onchangeFunction($event)">
-                            <option value="" selected>selectRole</option>
-                            <option value="1" selected>Admin</option>
-                            <option value="2" selected>Diagnostic centre</option>
+                        <select class="form-control" style="height:40px;"  (change)="onchangeFunction($event)">
+                            <option value="" selected>Select Role</option>
+                            <option value="1" >Admin</option>
+                            <option value="2" >Diagnostic centre</option>
                             <!-- <option *ngFor="let role of rolelist" value={{role.id}}>{{role.short}}</option> -->
                         </select>
-                        <br>
+
                         <!-- <input type="text" [(ngModel)]="pinno" style="height:40px;" name="pinno" required
                             placeholder="{{labels[0].pinno}}" class="form-control"
                             onkeypress='return(event.charCode>=48&&event.charCode<=57)'> -->
@@ -49,7 +49,7 @@
                         <!-- <input type="text"   [(ngModel)]="otp" style="height:40px;" name="otp" required placeholder="Password"
               class="form-control"> -->
                         <label
-                            style="color:#f18235;float: right;cursor: pointer;">forgotpassword</label><br>
+                            style="color:#f18235;float: right;cursor: pointer;">forgot password</label><br>
 
                         <button type="submit" class="form-control login" (click)="login()"
                             [disabled]="loginForm.form.invalid">Login</button>

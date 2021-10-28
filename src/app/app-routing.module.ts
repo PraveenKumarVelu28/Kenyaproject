@@ -11,8 +11,9 @@ import { ProvinceMasterDashComponent } from './Pages/Masters/province-master-das
 import { ProvinceMasterComponent } from './Pages/Masters/province-master/province-master.component';
 import { CityMasterComponent } from './Pages/Masters/city-master/city-master.component';
 import { EditDiagnosticRegistrationComponent } from './Pages/Dignostic/edit-diagnostic-registration/edit-diagnostic-registration.component';
-import { OrdersComponent } from './orders/orders.component';
-
+import { OrdersComponent } from './Pages/DiagnosticCentre/orders/orders.component';
+import { AppointmentsDashboardComponent } from './Pages/DiagnosticCentre/appointments-dashboard/appointments-dashboard.component';
+import { PatientDashboardComponent } from './Pages/DiagnosticCentre/patient-dashboard/patient-dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -29,6 +30,8 @@ const routes: Routes = [
   { path: 'CityMaster', component: CityMasterComponent },
   { path: 'EditDiagnosticRegistration/:id', component: EditDiagnosticRegistrationComponent },
   { path: 'Orders', component: OrdersComponent },
+  { path: 'AppointmentsDashboard', component: AppointmentsDashboardComponent },
+  { path: 'PatientDashboard', component: PatientDashboardComponent },
 
 
 

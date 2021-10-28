@@ -32,7 +32,9 @@ import { CityMasterDashComponent } from './Pages/Masters/city-master-dash/city-m
 import { ProvinceMasterComponent } from './Pages/Masters/province-master/province-master.component';
 import { ProvinceMasterDashComponent } from './Pages/Masters/province-master-dash/province-master-dash.component';
 import { EditDiagnosticRegistrationComponent } from './Pages/Dignostic/edit-diagnostic-registration/edit-diagnostic-registration.component';
-import { OrdersComponent } from './orders/orders.component';
+import { OrdersComponent } from './Pages/DiagnosticCentre/orders/orders.component';
+import { AppointmentsDashboardComponent } from './Pages/DiagnosticCentre/appointments-dashboard/appointments-dashboard.component';
+import { PatientDashboardComponent } from './Pages/DiagnosticCentre/patient-dashboard/patient-dashboard.component';
 
 
 const ngWizardConfig: NgWizardConfig = {
@@ -69,7 +71,9 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     CityMasterComponent,
     CityMasterDashComponent,
     EditDiagnosticRegistrationComponent,
-    OrdersComponent
+    OrdersComponent,
+    AppointmentsDashboardComponent,
+    PatientDashboardComponent
   ],
   imports: [
     BrowserModule,

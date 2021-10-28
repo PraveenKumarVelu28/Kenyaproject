@@ -2,7 +2,7 @@
     <br/>
     <div class="row tab" style="margin-left:10px">
        
-        <a data-toggle="collapse" class="button" data-target="#AdminReports">
+        <a data-toggle="collapse" *ngIf="roleid=='1'"  class="button" data-target="#AdminReports">
             <img src="assets/Images/docreg.png" style="width: 20px;">&nbsp;<label class="sidebaritems">
                 Diagnostic</label>
         </a><br/>
@@ -17,7 +17,7 @@
        
   
     
-        <a data-toggle="collapse" class="button" data-target="#Master">
+        <a data-toggle="collapse" class="button" data-target="#Master" *ngIf="roleid=='1'">
             <img src="assets/Images/docreg.png" style="width: 20px;">&nbsp;<label class="sidebaritems">
                 Masters</label>
         </a><br/>
@@ -40,12 +40,22 @@
                     Master</label>
             </a>
           
-            <a class="tablinks" (click)="highlight($event)" routerLink="/Orders">
-                <img src="assets/Images/hos.png" style="width:8%" >&nbsp;  <label class="sidebaritems">Orders
-                    </label>
-            </a>
+          
           
            
         </div>
+        <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/Orders">
+            <img src="assets/Images/hos.png" style="width:8%" >&nbsp;  <label class="sidebaritems">Orders
+                </label>
+        </a>
+        <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/PatientDashboard">
+            <img src="assets/Images/hos.png" style="width:8%" >&nbsp;  <label class="sidebaritems">Patients Dashboard
+                </label>
+        </a>
+        <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/AppointmentsDashboard">
+            <img src="assets/Images/hos.png" style="width:8%" >&nbsp;  <label class="sidebaritems">Appointments Dashboard
+                </label>
+        </a>
     </div>
 </div>
+

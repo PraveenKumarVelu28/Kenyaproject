@@ -84,7 +84,8 @@ export class LoginComponent implements OnInit {
     // if (this.uname == null || this.pwd == undefined) {
     //   Swal.fire('Error', 'Please Enter UserName and Password!');
     // }
-    else {
+    else 
+    {
       if (this.roleid == "1") {
         if (this.uname === 'admin' || this.pwd === "welcome") {
           localStorage.setItem('UserName', 'Admin');
@@ -100,8 +101,35 @@ export class LoginComponent implements OnInit {
         }
       }
 
+    
+    else 
+     { 
+       if (this.roleid == "2") {
+         this.MediTestService.GetDiagnosticForAdminByLanguageID(1).subscribe(
+           data => {
+             this.result = data.filter(x=>x.username==this.uname && x.password==this.pwd);
+             if (this.result.length != '0') {
+               localStorage.setItem('user', this.result[0].contactPerson)
+              
+               localStorage.setItem('DiagnosticId', this.result[0].id);
+               localStorage.setItem('temp', '1');
+               this.router.navigate(["/Orders"])
+               .then(() => {
+                 window.location.reload();
+               });
+             }
+             else {
+               Swal.fire('Error', 'Username or Password is not valid!');
+               this.uname = "";
+               this.pwd = "";
+             }
+           }, error => {
+           }
+         )
+       }
+
+      }
     }
-  }
 
 
   // if (this.roleid == "21") {
@@ -126,10 +154,10 @@ export class LoginComponent implements OnInit {
   //   )
   // }
 
-
+  }
 
   public onchangeFunction(even: any) {
-
+debugger
     this.roleid = even.target.value;
     localStorage.setItem('roleid', this.roleid);
   }

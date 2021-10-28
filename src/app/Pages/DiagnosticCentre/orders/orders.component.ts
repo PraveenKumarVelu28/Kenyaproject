@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MediTestService } from '../medi-test.service';
+import { MediTestService } from '../../../medi-test.service';
 import Swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
 import { formatDate } from "@angular/common";
