@@ -146,6 +146,10 @@ export class MediTestService {
 
     return this.http.get<any[]>(this.host + '/Master/GetDiagnosticAppointmentsByDiagnosticID?DiagnosticCenterID=' + id + '&SDate=' + sdate + '&EDate=' + edate + '&LanguageID=' + lid);
   }
+  public GetDiagnosticAppointmentsByDiagnosticIDMediTest(id: any, sdate: any, edate: any, lid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetDiagnosticAppointmentsByDiagnosticIDMediTest?DiagnosticCenterID=' + id + '&SDate=' + sdate + '&EDate=' + edate + '&LanguageID=' + lid);
+  }
 
   public GetAdmin_DoctorMyAppointments_Label(lid: any) {
 
@@ -162,36 +166,36 @@ export class MediTestService {
     return this.http.post(this.url, data)
   }
 
-  public InsertCityMaster(data:any) {
+  public InsertCityMaster(data: any) {
     this.url = this.host + '/Master/InsertCityMaster';
     return this.http.post(this.url, data)
   }
 
-  public UpdateCityMaster_Web(data:any) {
+  public UpdateCityMaster_Web(data: any) {
     this.url = this.host + '/Master/UpdateCityMaster_Web';
     return this.http.post(this.url, data)
   }
-  public InsertAreaMaster(data:any) {
+  public InsertAreaMaster(data: any) {
     this.url = this.host + '/Master/InsertAreaMaster';
     return this.http.post(this.url, data)
   }
 
-  public UpdateAreaMaster_Web(data:any) {
+  public UpdateAreaMaster_Web(data: any) {
     this.url = this.host + '/Master/UpdateAreaMaster_Web';
     return this.http.post(this.url, data)
   }
 
-  public DeleteAreaMaster(lid:any) {
+  public DeleteAreaMaster(lid: any) {
 
     return this.http.get<any[]>(this.host + '/Master/DeleteAreaMaster?ID=' + lid);
   }
 
-  public DeleteCountryMaster(lid:any) {
+  public DeleteCountryMaster(lid: any) {
 
     return this.http.get<any[]>(this.host + '/Master/DeleteCountryMaster?ID=' + lid);
   }
 
-  public DeleteCityMaster(lid:any) {
+  public DeleteCityMaster(lid: any) {
 
     return this.http.get<any[]>(this.host + '/Master/DeleteCityMaster?ID=' + lid);
   }

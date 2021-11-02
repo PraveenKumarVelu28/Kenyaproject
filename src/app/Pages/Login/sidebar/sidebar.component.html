@@ -1,61 +1,59 @@
 <div class="container-fluid sidenav" id="mySidenav">
-    <br/>
+    <br />
     <div class="row tab" style="margin-left:10px">
-       
-        <a data-toggle="collapse" *ngIf="roleid=='1'"  class="button" data-target="#AdminReports">
+
+        <a data-toggle="collapse" *ngIf="roleid=='1'" class="button" data-target="#AdminReports">
             <img src="assets/Images/docreg.png" style="width: 20px;">&nbsp;<label class="sidebaritems">
                 Diagnostic</label>
-        </a><br/>
-        
+        </a><br />
+
         <div id="AdminReports" class="collapse">
-            
+
             <a class="tablinks" (click)="highlight($event)" routerLink="/Dignosticdashboard">
-                <img src="assets/Images/hos.png" style="width:8%" >&nbsp;  <label class="sidebaritems">Registered
+                <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Registered
                     Diagnostic</label>
             </a>
         </div>
-       
-  
-    
+
+
         <a data-toggle="collapse" class="button" data-target="#Master" *ngIf="roleid=='1'">
             <img src="assets/Images/docreg.png" style="width: 20px;">&nbsp;<label class="sidebaritems">
                 Masters</label>
-        </a><br/>
-         
-       
+        </a><br />
+
+
         <div id="Master" class="collapse">
             <a class="tablinks" (click)="highlight($event)" routerLink="/CountryMasterDash">
-                <img src="assets/Images/hos.png" style="width:8%" >&nbsp;  <label class="sidebaritems">Country
+                <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Country
                     Master</label>
             </a>
 
             <a class="tablinks" (click)="highlight($event)" routerLink="/ProvinceMasterDash">
-                <img src="assets/Images/hos.png" style="width:8%" >&nbsp;  <label class="sidebaritems">Province
+                <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Province
                     Master</label>
             </a>
 
 
             <a class="tablinks" (click)="highlight($event)" routerLink="/CityMasterDash">
-                <img src="assets/Images/hos.png" style="width:8%" >&nbsp;  <label class="sidebaritems">City
+                <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">City
                     Master</label>
             </a>
-          
-          
-          
-           
+
+
+
+
         </div>
-        <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/Orders">
-            <img src="assets/Images/hos.png" style="width:8%" >&nbsp;  <label class="sidebaritems">Orders
-                </label>
+        <a class="tablinks" (click)="highlight($event)" routerLink="/Orders">
+            <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Orders
+            </label>
         </a>
-        <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/PatientDashboard">
-            <img src="assets/Images/hos.png" style="width:8%" >&nbsp;  <label class="sidebaritems">Patients Dashboard
-                </label>
+        <a class="tablinks" (click)="highlight($event)" routerLink="/PatientDashboard">
+            <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Patients Dashboard
+            </label>
         </a>
         <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/AppointmentsDashboard">
-            <img src="assets/Images/hos.png" style="width:8%" >&nbsp;  <label class="sidebaritems">Appointments Dashboard
-                </label>
+            <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Appointments Dashboard
+            </label>
         </a>
     </div>
 </div>
-

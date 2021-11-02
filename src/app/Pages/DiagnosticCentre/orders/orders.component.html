@@ -1,20 +1,20 @@
 <div class="container-fluid card card:hover headerrspace">
-    <div class="row headerspace" style="margin-top: 10px;">
-      <div class="col-lg-3">
-        <h5>Orders</h5>
-      </div>
-      <div class="col-lg-7">
-      </div>
-  
-      <div class="col-lg-2">
-        <!-- <button type="button" routerLink="/NewAppointment" style="float: right;background-color:  #f18235;color: white;"
-          *ngIf="recpid!=undefined" class="btn btncolor">{{labels[0].newAppointment}}</button> -->
-      </div>
-  
+  <div class="row headerspace" style="margin-top: 10px;">
+    <div class="col-lg-3">
+      <h5>Orders</h5>
     </div>
-  </div><br>
-  <div class="container-fluid card card:hover">
-    <!-- <div class="row" style="margin-top: 20px;">
+    <div class="col-lg-7">
+    </div>
+
+    <div class="col-lg-2">
+      <!-- <button type="button" routerLink="/NewAppointment" style="float: right;background-color:  #f18235;color: white;"
+          *ngIf="recpid!=undefined" class="btn btncolor">{{labels[0].newAppointment}}</button> -->
+    </div>
+
+  </div>
+</div><br>
+<div class="container-fluid card card:hover">
+  <!-- <div class="row" style="margin-top: 20px;">
       <div class="col-lg-3">
        
         <input *ngIf="languageid==1" type="text" placeholder="Select Date" [bsConfig]="{ showWeekNumbers:false }"
@@ -29,65 +29,61 @@
         <input type="text" class="form-control" placeholder="{{labels[0].search}}" [(ngModel)]="term">
       </div>
     </div><br> -->
-    <div class="row">
-      <div class="col-lg-12" style="overflow-y: auto;height:200vh">
-        <table>
-          <thead>
-            <tr>
-              <th id="imp">{{labels[0].ordedate}}</th>
-              <th id="imp">{{labels[0].diaAppointmentType}}</th>
-              <th id="imp">{{labels[0].slot}}</th>
-              <th id="imp">{{labels[0].orderNumber}}</th>
-              <th>{{labels4[0].primarypatientname}}</th>
-              <th>{{labels4[0].phoneNoo}}</th>
-              <th>{{labels4[0].bookedPatientname}}</th>
-              <!-- <th>{{labels[0].patientname}}</th>
+  <div class="row">
+    <div class="col-lg-12" style="overflow-y: auto;height:200vh">
+      <table>
+        <thead>
+          <tr>
+            <th id="imp">Order Date</th>
+            <!-- <th id="imp">{{labels[0].diaAppointmentType}}</th> -->
+            <th id="imp">Slot</th>
+            <th id="imp">Order Number</th>
+            <th>Patient Name</th>
+            <th>Phone No</th>
+
+            <th>Email</th>
+            <th>Address</th>
+            <th>Action</th>
+            <!-- <th>{{labels[0].patientname}}</th>
               <th>{{labels[0].phoneNo}}</th> -->
-              <!-- <th>{{labels[0].emailId}}</th> -->
-              <th>{{labels4[0].bookedpatientphno}}</th>
-              <th>{{labels[0].address}}</th>
-              <th>{{labels[0].homeSample}}</th>
-              <th>{{labels[0].assignedname}}</th>
-              <th>{{labels[0].paymentType}}</th>
-              <th>{{labels[0].paidAmount}}</th>
-              <th>{{labels[0].details}}</th>
-              <th>{{labels[0].status}}</th>
-              <th>{{labels[0].actions}}</th>
-            </tr>
-            <tr *ngFor="let details of diagnosticlist
-            ">
-              <td>{{details.appdate}}</td>
-              <td>{{details.appointmentTypeText}}</td>
-              <td>{{details.slotTime}}</td>
-              <td>{{details.id}}</td>
-              <td>{{details.patientName}}</td>
-              <td>{{details.mobileNumber}}</td>
-              <td>{{details.relatinpatientnme}}</td>
-              <td>{{details.relationmobileno}}</td>
-              <!-- <td>{{details.emailID}}</td> -->
-              <td>{{details.relationaddress}}</td>
-              <td>
-                <!-- <label *ngIf="details.homeSampleBit=='1'&&details.diagnosticSlotID!='0'">{{labels[0].yes}}</label>
+            <!-- <th>{{labels[0].emailId}}</th> -->
+            <!-- <th>{{labels4[0].bookedpatientphno}}</th>
+            <th>{{labels[0].address}}</th>
+            <th>{{labels[0].homeSample}}</th>
+            <th>{{labels[0].assignedname}}</th>
+            <th>{{labels[0].paymentType}}</th>
+            <th>{{labels[0].paidAmount}}</th>
+            <th>{{labels[0].details}}</th>
+            <th>{{labels[0].status}}</th>
+            <th>{{labels[0].actions}}</th> -->
+          </tr>
+          <tr *ngFor="let details of diagnosticlist">
+            <td>{{details.modifiedDate}}</td>
+            <!-- <td>{{details.appointmentTypeText}}</td> -->
+            <td>{{details.slotTime}}</td>
+            <td>{{details.id}}</td>
+            <td>{{details.patientName}}</td>
+            <td>{{details.mobileNumber}}</td>
+            <td>{{details.emailID}}</td>
+            <td>{{details.relationaddress}}</td>
+            <!-- <td>
+              <label *ngIf="details.homeSampleBit=='1'&&details.diagnosticSlotID!='0'">{{labels[0].yes}}</label>
                 <label *ngIf="details.homeSampleBit=='0'&&details.diagnosticSlotID!='0'">{{labels[0].no}}</label>
-  
-  
                 <label *ngIf="details.homeSampleBit=='1'&&details.appointmentType=='2'">{{labels[0].yes}}</label>
-                <label *ngIf="details.homeSampleBit=='0'&&details.appointmentType=='2'">{{labels[0].no}}</label> -->
-  
-  
-              </td>
-              <td>
-                {{details.assinedname}}
-              </td>
-  
-  
-              <td>
-                {{details.paymentName}}
-              </td>
-  
-              <td>
-                {{details.paidAmount}}
-              </td>
+                <label *ngIf="details.homeSampleBit=='0'&&details.appointmentType=='2'">{{labels[0].no}}</label>
+            </td> -->
+            
+              <!-- {{details.assinedname}}
+            </td>
+
+
+            <td>
+              {{details.paymentName}}
+            </td>
+
+            <td>
+              {{details.paidAmount}}
+            </td> -->
               <!-- <td>
                 <ng-template #tipcontent18>{{labels[0].tests}}</ng-template>
                 <a [ngbTooltip]="tipcontent18">
@@ -152,45 +148,45 @@
                   style="color: green;">{{labels[0].assigned}}</label>
               </td> -->
               <td>
-                <table style="box-shadow:none">
-                  <tr>
-                    <td style="border:none">
-                      
-                     
-                    </td>
-                    <td style="border:none">
-                     
-                    
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="border:none">
-                     
-                    </td>
-                    <td style="border:none">
-                     
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="border:none">
-                     
-                    </td>
-                    <td style="border:none">
-                     
-                    </td>
-                    
-                    <td style="border:none">
-                      
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </thead>
-        </table><br>
-      </div><br><br>
-    </div><br><br><br>
-    <div class="col-lg-12" style="text-align: center">
-      <br>
-      
-    </div><br>
+              <table style="box-shadow:none">
+                <tr>
+                  <td style="border:none">
+
+
+                  </td>
+                  <td style="border:none">
+
+
+                  </td>
+                </tr>
+                <tr>
+                  <td style="border:none">
+
+                  </td>
+                  <td style="border:none">
+
+                  </td>
+                </tr>
+                <tr>
+                  <td style="border:none">
+
+                  </td>
+                  <td style="border:none">
+
+                  </td>
+
+                  <td style="border:none">
+
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </thead>
+      </table><br>
+    </div><br><br>
+  </div><br><br><br>
+  <div class="col-lg-12" style="text-align: center">
+    <br>
+
+  </div><br>

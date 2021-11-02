@@ -39,10 +39,10 @@ export class OrdersComponent implements OnInit {
 
     // this.startdate = formatDate(kkk, format, locale);
     // this.enddate = formatDate(lll, format, locale);
-    
+
     this.getlanguage();
 
-    this.MediTestService.GetAdmin_DiagnosticLoginOrdersAndOrderReport_Label(this.languageid).subscribe(
+    this.MediTestService.GetAdmin_DiagnosticLoginOrdersAndOrderReport_Label(1).subscribe(
 
       data => {
 
@@ -52,7 +52,7 @@ export class OrdersComponent implements OnInit {
     )
 
 
-    this.diagnosticid = 258;
+    this.diagnosticid = 251;
 
     this.MediTestService.GetAdmin_DoctorMyAppointments_Label(1).subscribe(
       data => {
@@ -70,7 +70,7 @@ export class OrdersComponent implements OnInit {
 
   public getlanguage() {
     debugger;
-    this.MediTestService.GetDiagnosticAppointmentsByDiagnosticID(258, '2021-10-01', '2021-12-01', 1).subscribe(
+    this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(251, '2021-10-01', '2022-12-01', 1).subscribe(
       data => {
         debugger
         this.diagnosticlist = data;
