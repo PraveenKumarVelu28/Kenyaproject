@@ -14,6 +14,8 @@ import { EditDiagnosticRegistrationComponent } from './Pages/Dignostic/edit-diag
 import { OrdersComponent } from './Pages/DiagnosticCentre/orders/orders.component';
 import { AppointmentsDashboardComponent } from './Pages/DiagnosticCentre/appointments-dashboard/appointments-dashboard.component';
 import { PatientDashboardComponent } from './Pages/DiagnosticCentre/patient-dashboard/patient-dashboard.component';
+import { StaffdashboardComponent } from './Pages/staff/staffdashboard/staffdashboard.component';
+import { StaffmasterComponent } from './Pages/staff/staffmaster/staffmaster.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -32,6 +34,9 @@ const routes: Routes = [
   { path: 'Orders', component: OrdersComponent },
   { path: 'AppointmentsDashboard', component: AppointmentsDashboardComponent },
   { path: 'PatientDashboard', component: PatientDashboardComponent },
+  { path: 'Staffdashboard', component: StaffdashboardComponent },
+  { path: 'Staffmaster', component: StaffmasterComponent },
+  { path: 'Staffmaster/:id', component: StaffmasterComponent },
 
 
 
