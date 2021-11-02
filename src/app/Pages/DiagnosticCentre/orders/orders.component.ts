@@ -70,7 +70,7 @@ export class OrdersComponent implements OnInit {
 
   public getlanguage() {
     debugger;
-    this.MediTestService.GetDiagnosticAppointmentsByDiagnosticID(258, '2021-10-01', '2021-12-01', 1).subscribe(
+    this.MediTestService.GetDiagnosticAppointmentsByDiagnosticID(258, '2021-10-01', '2022-12-01', 1).subscribe(
       data => {
         debugger
         this.diagnosticlist = data;
