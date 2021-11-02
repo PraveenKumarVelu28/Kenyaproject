@@ -358,4 +358,13 @@ export class MediTestService {
     return this.http.post(this.url, data)
   }
 
+  public DisableStaff(data: any) {
+    debugger;
+    this.url = this.host + "/Master/DisableStaff";
+    return this.http.post(this.url, data);
+  }
+
+
+  
+
 }
