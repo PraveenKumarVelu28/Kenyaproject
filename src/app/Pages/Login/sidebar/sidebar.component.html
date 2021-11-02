@@ -13,7 +13,21 @@
                 <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Registered
                     Diagnostic</label>
             </a>
+            <a class="tablinks" (click)="highlight($event)" routerLink="/DiagnosticSlotsDash">
+                <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Diagnostic
+                    Slots</label>
+            </a>
+            <a class="tablinks" (click)="highlight($event)" routerLink="/DiagnosticTestDash">
+                <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Diagnostic
+                    Test</label>
+            </a>
+
+            <a class="tablinks" (click)="highlight($event)" routerLink="/DiagnosticPackageDash">
+                <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Diagnostic
+                    Packages</label>
+            </a>
         </div>
+
 
 
         <a data-toggle="collapse" class="button" data-target="#Master" *ngIf="roleid=='1'">
@@ -48,12 +62,18 @@
             </label>
         </a>
         <a class="tablinks" (click)="highlight($event)" routerLink="/PatientDashboard">
-            <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Patients Dashboard
-            </label>
-        </a>
-        <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/AppointmentsDashboard">
-            <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Appointments Dashboard
-            </label>
-        </a>
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/Orders">
+                <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Orders
+                </label>
+            </a>
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/PatientDashboard">
+                <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Patients Dashboard
+                </label>
+            </a>
+            <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/AppointmentsDashboard">
+                <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Appointments
+                    Dashboard
+                </label>
+            </a>
     </div>
 </div>

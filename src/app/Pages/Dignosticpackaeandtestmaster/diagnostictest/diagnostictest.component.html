@@ -1,0 +1,125 @@
+<ngx-spinner bdColor="rgba(68,64,66,0.8)" size="large" color="#fff" type="ball-clip-rotate-multiple"
+  [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<div class="container-fluid card card:hover headerspace">
+  <div class="row headerspace">
+    <div class="col-lg-3">
+      <h5>Add Test</h5>
+    </div>
+  </div>
+</div>
+<br>
+<div class="container-fluid card card:hover divspacee">
+  <form #testForm="ngForm">
+    <div>
+      <div class="row" style="margin-top:20px;">
+        <div class="col-lg-3">
+          <label>Diagnostic Center : </label>
+        </div>
+        <div class="col-lg-4">
+          <select class="form-control" (change)="GetDiagnosticID($event)" [disabled]="tablecount=='1'">
+            <option valu="" selected>Select</option>
+            <option *ngFor="let diagnostic of diagnosticlist" value={{diagnostic.id}}>
+              {{diagnostic.diagnosticCenterName}}</option>
+          </select>
+          <!-- <ng-multiselect-dropdown [placeholder]="SelectLabel" [disabled]="tablecount=='1'" [data]="diagnosticlist"
+            [settings]="diadd" (onSelect)="GetDiagnosticID($event)">
+          </ng-multiselect-dropdown> -->
+        </div>
+      </div><br>
+    </div>
+    <!-- <div *ngIf="dummdiagnosticid!='undefined'">
+      <div class="row" style="margin-top:20px;">
+        <div class="col-lg-3">
+          <label>Diagnostic Center : </label>
+        </div>
+        <div class="col-lg-4">
+          <input type="text" class="form-control" disabled [(ngModel)]="diagnosticname" name="diagnosticname">
+        </div>
+      </div><br>
+    </div> -->
+
+    <div class="row">
+      <div class="col-lg-3">
+        <label>Test :</label>
+      </div>
+      <div class="col-lg-4">
+        <select class="form-control" (change)="GetTestID($event)">
+          <option value="" selected>Select </option>
+          <option *ngFor="let test of testlist" value={{test.id}}>{{test.short}}</option>
+        </select>
+        <!-- <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="testlist" [settings]="diatestdd"
+          (onSelect)="GetTestID($event)">
+        </ng-multiselect-dropdown> -->
+
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>Test Price : </label>
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" name="price" required [(ngModel)]="price" placeholder="Test Price"
+          onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>Test Description : </label>
+      </div>
+      <div class="col-lg-4">
+        <textarea rows="4" placeholder="Test Description" name="description" required [(ngModel)]="description"
+          class="form-control"></textarea>
+      </div>
+    </div><br><br>
+    <div class="row">
+      <div class="col-lg-5">
+      </div>
+      <div class="col-lg-2">
+        <button type="button" text_align="center" [disabled]="testForm.form.invalid"
+          class="btn btn-block btn-md allbtns btncolor" (click)="adddetails()">Add</button>
+      </div>
+      <div class="col-lg-5">
+      </div>
+    </div><br>
+    <div class="row" *ngIf="tablecount=='1'">
+      <div class="col-lg-12">
+        <table>
+          <thead>
+            <tr>
+              <th>Diagnostic Center</th>
+              <th>Test</th>
+              <th>Test Price</th>
+              <th>Test Description</th>
+              <th>Actions</th>
+            </tr>
+            <tr *ngFor="let details of qwerty">
+              <td>{{details.DiagnosticName}}</td>
+              <td>{{details.DiagnotiocTestName}}</td>
+              <td>{{details.Price}}</td>
+              <td>{{details.Description}}</td>
+              <td>
+                <a>
+                  <img src="assets/Images/dell.png" style="width: 20px;margin-left: 10px;"
+                    (click)="delete(details.Sno)">
+                </a>
+              </td>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div><br>
+    <div class="row" *ngIf="tablecount=='1'">
+      <div class="col-lg-5">
+      </div>
+      <div class="col-lg-2">
+        <button type="button" text_align="center" class="btn btn-block btn-md allbtns btncolor"
+          (click)="insertdetails()">{{labels[0].save}}</button>
+      </div>
+      <div class="col-lg-5">
+      </div>
+    </div><br>
+
+  </form>
+</div><br><br>

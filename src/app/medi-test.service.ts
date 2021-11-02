@@ -199,4 +199,138 @@ export class MediTestService {
 
     return this.http.get<any[]>(this.host + '/Master/DeleteCityMaster?ID=' + lid);
   }
+  public GetUserRegistration() {
+    return this.http.get<any[]>(
+      this.host + "/Master/GetUserRegistration"
+    );
+  }
+  public sendemailattachements(data: any) {
+    debugger
+    this.url = this.host + '/Master/sendemailattachements';
+    return this.http.post(this.url, data)
+
+  }
+  public Updateotp(data: any) {
+    debugger;
+    this.url = this.host + "/Master/Updateotp";
+    return this.http.post(this.url, data);
+  }
+  public Verifyotp(data: any) {
+    debugger;
+    this.url = this.host + "/Master/Verifyotp";
+    return this.http.post(this.url, data);
+  }
+  public Updatepassword(data: any) {
+    debugger;
+    this.url = this.host + "/Master/Updatepassword";
+    return this.http.post(this.url, data);
+  }
+
+  //slots
+
+  public GetAdmin_WorkingDetails_label(lid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetAdmin_WorkingDetails_label?LanguageID=' + lid);
+  }
+  public GetAdmin_DoctorLoginFeedbackWorkingDetails_Label(lid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetAdmin_DoctorLoginFeedbackWorkingDetails_Label?LanguageID=' + lid);
+  }
+  public GetDiagnosticSlotsWeb(did: any, date: any, timeid: any, dayid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetDiagnosticSlotsWeb?DiagnosticCenterID=' + did + '&Date=' + date + '&TimeID=' + timeid + '&DayID=' + dayid);
+  }
+  public GetDiagnosticSlots(did: any, lid: any, typeid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetDiagnosticSlots?DiagnosticCenterID=' + did + '&LanguageID=' + lid + '&TypeIDs=' + typeid);
+  }
+  public InsertDiagnosticRelatedSlotsWeb(data: any) {
+    this.url = this.host + '/Master/InsertDiagnosticRelatedSlotsWeb';
+    return this.http.post(this.url, data)
+  }
+  public DeleteDiagnosticRelatedSlotsStartTimeEndTime(diaid: any, dayid: any, timeid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/DeleteDiagnosticRelatedSlotsStartTimeEndTime?DiagnosticCenterID=' + diaid + '&DayID=' + dayid + '&TimeID=' + timeid);
+  }
+  public DeleteDiagnosticRelatedSlots(id: any) {
+    return this.http.get<any[]>(this.host + '/Master/DeleteDiagnosticRelatedSlots?ID=' + id);
+  }
+  public UpdateDiagnosticRelatedSlotsWeb(data: any) {
+    this.url = this.host + '/Master/UpdateDiagnosticRelatedSlotsWeb';
+    return this.http.post(this.url, data)
+  }
+  public GetDaysMasterByLanguageID(lid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetDaysMasterByLanguageID?LanguageID=' + lid);
+  }
+
+  public GetDiagnosticCenterListByLanguageID(lid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetDiagnosticCenterListByLanguageID?LanguageID=' + lid);
+  }
+  public GetDiagnosticSlotMasterByTimeID(timeid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetDiagnosticSlotMasterByTimeID?TimeID=' + timeid);
+  }
+
+  public InsertDiagnosticRelatedSlots(data: any) {
+
+    this.url = this.host + '/Master/InsertDiagnosticRelatedSlots';
+    return this.http.post(this.url, data)
+  }
+
+
+  //30-10-2022 Package and Test API
+
+  public GetAdmin_MapServiceDiagnostic_Label(lid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetAdmin_MapServiceDiagnostic_Label?LanguageID=' + lid);
+  }
+
+
+  public GetDiagnosticCenterPackages(lid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetDiagnosticCenterPackages?LanguageID=' + lid);
+  }
+  public DeleteDiagnosticCenterPackages(id: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/DeleteDiagnosticCenterPackages?ID=' + id);
+  }
+  public GetDiagnosticTestMasterByLanguageID(lid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetDiagnosticTestMasterByLanguageID?LanguageID=' + lid);
+  }
+  public GetDiagnosticCenterDetailsByID(id: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetDiagnosticCenterDetailsByID?ID=' + id);
+  }
+  public InsertDiagnosticCenterPackages(data: any) {
+    this.url = this.host + '/Master/InsertDiagnosticCenterPackages';
+    return this.http.post(this.url, data)
+  }
+  public InsertDiagnosticPackageRelatedTests(data: any) {
+    this.url = this.host + '/Master/InsertDiagnosticPackageRelatedTests';
+    return this.http.post(this.url, data)
+  }
+  public UpdateDiagnosticCenterPackages(data: any) {
+    this.url = this.host + '/Master/UpdateDiagnosticCenterPackages';
+    return this.http.post(this.url, data)
+  }
+
+  // test Api
+
+  public GetDiagnosticCenterTestsForDash(lid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetDiagnosticCenterTestsForDash?LanguageID=' + lid);
+  }
+
+  public DeleteDiagnosticCenterTestsForDash(id: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/DeleteDiagnosticCenterTestsForDash?ID=' + id);
+  }
+  public InsertDiagnosticCenterTests(data: any) {
+    this.url = this.host + '/Master/InsertDiagnosticCenterTests';
+    return this.http.post(this.url, data)
+  }
+
 }
