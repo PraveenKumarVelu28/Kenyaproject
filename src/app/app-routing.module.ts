@@ -16,6 +16,12 @@ import { AppointmentsDashboardComponent } from './Pages/DiagnosticCentre/appoint
 import { PatientDashboardComponent } from './Pages/DiagnosticCentre/patient-dashboard/patient-dashboard.component';
 import { StaffdashboardComponent } from './Pages/staff/staffdashboard/staffdashboard.component';
 import { StaffmasterComponent } from './Pages/staff/staffmaster/staffmaster.component';
+import { DiagnosticcenterslotsComponent } from './Pages/Dignostic/diagnosticcenterslots/diagnosticcenterslots.component';
+import { DiagnosticSlotsDashComponent } from './Pages/Dignostic/diagnostic-slots-dash/diagnostic-slots-dash.component';
+import { DiagnosticPackageDashComponent } from './Pages/Dignosticpackaeandtestmaster/diagnostic-package-dash/diagnostic-package-dash.component';
+import { DiagnosticpackageComponent } from './Pages/Dignosticpackaeandtestmaster/diagnosticpackage/diagnosticpackage.component';
+import { DiagnosticTestDashComponent } from './Pages/Dignosticpackaeandtestmaster/diagnostic-test-dash/diagnostic-test-dash.component';
+import { DiagnostictestComponent } from './Pages/Dignosticpackaeandtestmaster/diagnostictest/diagnostictest.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -37,6 +43,14 @@ const routes: Routes = [
   { path: 'Staffdashboard', component: StaffdashboardComponent },
   { path: 'Staffmaster', component: StaffmasterComponent },
   { path: 'Staffmaster/:id', component: StaffmasterComponent },
+  { path: 'Diagnosticcenterslots', component: DiagnosticcenterslotsComponent },
+  { path: 'DiagnosticSlotsDash', component: DiagnosticSlotsDashComponent },
+  { path: 'DiagnosticPackageDash', component: DiagnosticPackageDashComponent },
+  { path: 'Diagnosticpackage', component: DiagnosticpackageComponent },
+
+  { path: 'DiagnosticTestDash', component: DiagnosticTestDashComponent },
+  { path: 'Diagnostictest', component: DiagnostictestComponent },
+
 
 
 

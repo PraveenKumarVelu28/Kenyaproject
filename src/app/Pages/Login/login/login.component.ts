@@ -84,8 +84,7 @@ export class LoginComponent implements OnInit {
     // if (this.uname == null || this.pwd == undefined) {
     //   Swal.fire('Error', 'Please Enter UserName and Password!');
     // }
-    else 
-    {
+    else {
       if (this.roleid == "1") {
         if (this.uname === 'admin' || this.pwd === "welcome") {
           localStorage.setItem('UserName', 'Admin');
@@ -101,63 +100,62 @@ export class LoginComponent implements OnInit {
         }
       }
 
-    
-    else 
-     { 
-       if (this.roleid == "2") {
-         this.MediTestService.GetDiagnosticForAdminByLanguageID(1).subscribe(
-           data => {
-             this.result = data.filter(x=>x.username==this.uname && x.password==this.pwd);
-             if (this.result.length != '0') {
-               localStorage.setItem('user', this.result[0].contactPerson)
-              
-               localStorage.setItem('DiagnosticId', this.result[0].id);
-               localStorage.setItem('temp', '1');
-               this.router.navigate(["/Orders"])
-               .then(() => {
-                 window.location.reload();
-               });
-             }
-             else {
-               Swal.fire('Error', 'Username or Password is not valid!');
-               this.uname = "";
-               this.pwd = "";
-             }
-           }, error => {
-           }
-         )
-       }
+
+      else {
+        if (this.roleid == "2") {
+          this.MediTestService.GetDiagnosticForAdminByLanguageID(1).subscribe(
+            data => {
+              this.result = data.filter(x => x.username == this.uname && x.password == this.pwd);
+              if (this.result.length != '0') {
+                localStorage.setItem('user', this.result[0].contactPerson)
+
+                localStorage.setItem('DiagnosticId', this.result[0].id);
+                localStorage.setItem('temp', '1');
+                this.router.navigate(["/Orders"])
+                  .then(() => {
+                    window.location.reload();
+                  });
+              }
+              else {
+                Swal.fire('Error', 'Username or Password is not valid!');
+                this.uname = "";
+                this.pwd = "";
+              }
+            }, error => {
+            }
+          )
+        }
 
       }
     }
 
 
-  // if (this.roleid == "21") {
-  //   this.docservice.GetUsers_RoleMappingByUnameAndPwd(this.uname, this.pwd, localStorage.getItem('WebUrl'),this.roleid).subscribe(
-  //     data => {
-  //       this.result = data;
-  //       if (this.result.length != '0') {
-  //         localStorage.setItem('user', this.result[0].firstName)
-  //         localStorage.setItem('roleid', '21');
-  //         localStorage.setItem('supportid', this.result[0].id);
-  //         sessionStorage.setItem('temp', '1');
-  //          location.href = '#/AdminDash';
-  //         location.reload();
-  //       }
-  //       else {
-  //         Swal.fire('Error', 'Username or Password is not valid!');
-  //         this.uname = "";
-  //         this.pwd = "";
-  //       }
-  //     }, error => {
-  //     }
-  //   )
-  // }
+    // if (this.roleid == "21") {
+    //   this.docservice.GetUsers_RoleMappingByUnameAndPwd(this.uname, this.pwd, localStorage.getItem('WebUrl'),this.roleid).subscribe(
+    //     data => {
+    //       this.result = data;
+    //       if (this.result.length != '0') {
+    //         localStorage.setItem('user', this.result[0].firstName)
+    //         localStorage.setItem('roleid', '21');
+    //         localStorage.setItem('supportid', this.result[0].id);
+    //         sessionStorage.setItem('temp', '1');
+    //          location.href = '#/AdminDash';
+    //         location.reload();
+    //       }
+    //       else {
+    //         Swal.fire('Error', 'Username or Password is not valid!');
+    //         this.uname = "";
+    //         this.pwd = "";
+    //       }
+    //     }, error => {
+    //     }
+    //   )
+    // }
 
   }
 
   public onchangeFunction(even: any) {
-debugger
+    debugger
     this.roleid = even.target.value;
     localStorage.setItem('roleid', this.roleid);
   }
@@ -168,6 +166,82 @@ debugger
 
   public showpassword() {
     this.Showpass = 1;
+  }
+
+  email: any;
+  Otp: any;
+  newpassword: any;
+  showotp: any;
+  otp: any;
+  public Attactments = [];
+
+  public SendOTP() {
+    debugger
+
+
+    this.MediTestService.GetUserRegistration().subscribe(data => {
+      let temp: any = data.filter(x => (x.emailAddress == this.email));
+      if (temp.length != 0) {
+        this.otp = Math.floor(100000 + Math.random() * 900000);
+        this.showotp = 1;
+        var entity1 = {
+          'emailto': this.email,
+          'emailsubject': 'OTP for Resetting your password',
+          'emailbody': this.otp + ' is your verification code for HPM.',
+          'attachmenturl': this.Attactments,
+          'cclist': this.email,
+          'bcclist': this.email,
+        }
+        var entity2 = {
+          'EmailAddress': this.email,
+          'OTP': this.otp
+        }
+        this.MediTestService.sendemailattachements(entity1).subscribe(res => {
+          debugger;
+          this.Attactments = [];
+        })
+        this.MediTestService.Updateotp(entity2).subscribe(res => {
+          debugger;
+
+        })
+      }
+      else {
+        Swal.fire('This Email Address is Not Registered with HPM')
+      }
+    })
+
+
+
+  }
+
+
+  public VerifyOTP() {
+    debugger
+    var entity2 = {
+      'EmailAddress': this.email,
+      'OTP': this.Otp
+    }
+    this.MediTestService.Verifyotp(entity2).subscribe(res => {
+      debugger;
+      if (res == 1) {
+        this.showotp = 2;
+      }
+      else {
+        Swal.fire('OTP Mismatch');
+      }
+    })
+  }
+  public Save() {
+    var entity2 = {
+      'EmailAddress': this.email,
+      'newpassword': this.newpassword
+    }
+    this.MediTestService.Updatepassword(entity2).subscribe(res => {
+      debugger;
+      Swal.fire('Password Changed Successfully');
+      this.ngOnInit();
+    })
+
   }
 
 }

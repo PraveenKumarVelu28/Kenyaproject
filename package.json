@@ -20,6 +20,7 @@
     "@angular/router": "~12.2.0",
     "angular-archwizard": "^7.0.0",
     "bootstrap": "^5.1.3",
+    "ng-daterangepicker": "^1.1.0",
     "cors": "^2.8.5",
     "file-saver": "^2.0.5",
     "html-to-pdf": "^0.1.11",

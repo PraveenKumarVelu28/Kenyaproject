@@ -35,6 +35,12 @@ import { EditDiagnosticRegistrationComponent } from './Pages/Dignostic/edit-diag
 import { OrdersComponent } from './Pages/DiagnosticCentre/orders/orders.component';
 import { AppointmentsDashboardComponent } from './Pages/DiagnosticCentre/appointments-dashboard/appointments-dashboard.component';
 import { PatientDashboardComponent } from './Pages/DiagnosticCentre/patient-dashboard/patient-dashboard.component';
+import { DiagnosticcenterslotsComponent } from './Pages/Dignostic/diagnosticcenterslots/diagnosticcenterslots.component';
+import { DiagnosticSlotsDashComponent } from './Pages/Dignostic/diagnostic-slots-dash/diagnostic-slots-dash.component';
+import { DiagnosticpackageComponent } from './Pages/Dignosticpackaeandtestmaster/diagnosticpackage/diagnosticpackage.component';
+import { DiagnosticPackageDashComponent } from './Pages/Dignosticpackaeandtestmaster/diagnostic-package-dash/diagnostic-package-dash.component';
+import { DiagnostictestComponent } from './Pages/Dignosticpackaeandtestmaster/diagnostictest/diagnostictest.component';
+import { DiagnosticTestDashComponent } from './Pages/Dignosticpackaeandtestmaster/diagnostic-test-dash/diagnostic-test-dash.component';
 
 
 
@@ -76,6 +82,12 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     AppointmentsDashboardComponent,
     PatientDashboardComponent,
     
+    DiagnosticcenterslotsComponent,
+    DiagnosticSlotsDashComponent,
+    DiagnosticpackageComponent,
+    DiagnosticPackageDashComponent,
+    DiagnostictestComponent,
+    DiagnosticTestDashComponent
   ],
   imports: [
     BrowserModule,
