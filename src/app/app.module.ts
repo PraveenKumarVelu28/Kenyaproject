@@ -14,8 +14,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';;
 import { NgxPaginationModule } from 'ngx-pagination';
 
-import { StaffmasterComponent } from '../app/staff/staffmaster/staffmaster.component';
-import { StaffdashboardComponent } from '../app/staff/staffdashboard/staffdashboard.component';
+import { StaffmasterComponent } from '../app/Pages/staff/staffmaster/staffmaster.component';
+import { StaffdashboardComponent } from '../app/Pages/staff/staffdashboard/staffdashboard.component';
 import { ApplicationmasterComponent } from '../app/Application/applicationmaster/applicationmaster.component';
 import { ApplicationdashboardComponent } from '../app/Application/applicationdashboard/applicationdashboard.component';
 import { LoginComponent } from './Pages/Login/login/login.component';
@@ -41,6 +41,7 @@ import { DiagnosticpackageComponent } from './Pages/Dignosticpackaeandtestmaster
 import { DiagnosticPackageDashComponent } from './Pages/Dignosticpackaeandtestmaster/diagnostic-package-dash/diagnostic-package-dash.component';
 import { DiagnostictestComponent } from './Pages/Dignosticpackaeandtestmaster/diagnostictest/diagnostictest.component';
 import { DiagnosticTestDashComponent } from './Pages/Dignosticpackaeandtestmaster/diagnostic-test-dash/diagnostic-test-dash.component';
+
 
 
 const ngWizardConfig: NgWizardConfig = {
@@ -80,6 +81,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     OrdersComponent,
     AppointmentsDashboardComponent,
     PatientDashboardComponent,
+    
     DiagnosticcenterslotsComponent,
     DiagnosticSlotsDashComponent,
     DiagnosticpackageComponent,

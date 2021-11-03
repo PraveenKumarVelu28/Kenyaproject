@@ -199,6 +199,35 @@ export class MediTestService {
 
     return this.http.get<any[]>(this.host + '/Master/DeleteCityMaster?ID=' + lid);
   }
+
+  public GetAdmin_RegisterLogins_Label(lid: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetAdmin_RegisterLogins_Label?LanguageID=' + lid);
+  }
+
+  public GetAdmin_Doctorregistration_LabelsByLanguageID(lid:any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetAdmin_Doctorregistration_LabelsByLanguageID?LanguageID=' + lid);
+  }
+  public InsertMyTeam(data:any) {
+    this.url = this.host + '/Master/InsertMyTeam';
+    return this.http.post(this.url, data)
+  }
+  public UpdateMyTeam(data:any) {
+    this.url = this.host + '/Master/UpdateMyTeam';
+    return this.http.post(this.url, data)
+  }
+  public GetMyTeam(did:any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetMyTeam?DiagnosticID=' + did);
+  }
+
+  public DeleteMyTeam(id:any) {
+
+    return this.http.get<any[]>(this.host + '/Master/DeleteMyTeam?ID=' + id);
+  }
+
+
   public GetUserRegistration() {
     return this.http.get<any[]>(
       this.host + "/Master/GetUserRegistration"
@@ -332,5 +361,14 @@ export class MediTestService {
     this.url = this.host + '/Master/InsertDiagnosticCenterTests';
     return this.http.post(this.url, data)
   }
+
+  public DisableStaff(data: any) {
+    debugger;
+    this.url = this.host + "/Master/DisableStaff";
+    return this.http.post(this.url, data);
+  }
+
+
+  
 
 }
