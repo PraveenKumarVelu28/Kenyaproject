@@ -74,7 +74,7 @@ export class OrdersComponent implements OnInit {
       data => {
         debugger
         this.diagnosticlist = data;
-      }, error => {
+      }, _error => {
       }
     )
     this.MediTestService.GetAdmin_DiagnosticLoginOrdersAndOrderReport_Label(1).subscribe(
@@ -82,7 +82,7 @@ export class OrdersComponent implements OnInit {
       data => {
 
         this.labels = data;
-      }, error => {
+      }, _error => {
       }
     )
     this.MediTestService.GetAdmin_DoctorMyAppointments_Label(1).subscribe(
@@ -90,7 +90,7 @@ export class OrdersComponent implements OnInit {
 
         this.labels4 = data;
 
-      }, error => {
+      }, _error => {
       }
     )
     this.MediTestService.GetAdmin_LoginPage_Labels(1).subscribe(
