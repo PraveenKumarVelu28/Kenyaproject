@@ -375,6 +375,17 @@ export class MediTestService {
     debugger
     return this.http.get<any[]>(this.host + '/Master/GetPatientRegistrationWeb');
   }
+  public UpdateDiagnosticCenterTests(data: any) {
+    this.url = this.host + '/Master/UpdateDiagnosticCenterTests';
+    return this.http.post(this.url, data)
+  }
+
+  public UpdateOrders(data: any) {
+    this.url = this.host + '/Master/UpdateOrders';
+    return this.http.post(this.url, data)
+  }
+
+
 
 
 }

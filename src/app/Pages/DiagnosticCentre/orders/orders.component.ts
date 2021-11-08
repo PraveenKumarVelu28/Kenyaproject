@@ -28,6 +28,7 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit() {
     debugger
+    this.diagnosticid = localStorage.getItem('DiagnosticId');
     // var kkk = this.SDate.setDate(this.SDate.getDate() - 0);
     // var lll = this.EDate.setDate(this.EDate.getDate() + 7);
 
@@ -39,7 +40,8 @@ export class OrdersComponent implements OnInit {
 
     // this.startdate = formatDate(kkk, format, locale);
     // this.enddate = formatDate(lll, format, locale);
-
+    this.staffid=0;
+    this.GetMyTeam();
     this.getlanguage();
 
     this.MediTestService.GetAdmin_DiagnosticLoginOrdersAndOrderReport_Label(1).subscribe(
@@ -52,7 +54,7 @@ export class OrdersComponent implements OnInit {
     )
 
 
-    this.diagnosticid = 251;
+   
 
     this.MediTestService.GetAdmin_DoctorMyAppointments_Label(1).subscribe(
       data => {
@@ -70,7 +72,7 @@ export class OrdersComponent implements OnInit {
 
   public getlanguage() {
     debugger;
-    this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(251, '2021-10-01', '2022-12-01', 1).subscribe(
+    this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(this.diagnosticid, '2021-10-01', '2022-12-01', 1).subscribe(
       data => {
         debugger
         this.diagnosticlist = data;
@@ -101,10 +103,49 @@ export class OrdersComponent implements OnInit {
       }
     )
   }
-  public getdiagnosticAppointmentsbyid() {
+  orderid:any;
+  public getdiagnosticAppointmentsbyid(id:any) {
     debugger;
+    this.orderid=id
+  }
 
+  staffid:any;
+  Comments:any;
+
+  public UpdateOrders() {
+ debugger;
+    var entity = {
+      'ID': this.orderid,
+      'DeliverPatnerAssigned' : 1,
+      'Comments': this.Comments,
+      'staffid': this.staffid
+
+
+      
+    }
+    this.MediTestService.UpdateOrders(entity).subscribe(res => {
+      let test = res;
+     
+      
+        Swal.fire(' Updated Successfully');
+        this.ngOnInit();
+        
+    
+    
+    })
 
   }
+
+  myteamlist:any;
+  public GetMyTeam() {
+    debugger;
+    this.MediTestService.GetMyTeam(280).subscribe(data => {
+      this.myteamlist = data;
+      
+    })
+  }
+
+
+
 
 }

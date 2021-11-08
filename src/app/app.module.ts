@@ -41,6 +41,7 @@ import { DiagnosticpackageComponent } from './Pages/Dignosticpackaeandtestmaster
 import { DiagnosticPackageDashComponent } from './Pages/Dignosticpackaeandtestmaster/diagnostic-package-dash/diagnostic-package-dash.component';
 import { DiagnostictestComponent } from './Pages/Dignosticpackaeandtestmaster/diagnostictest/diagnostictest.component';
 import { DiagnosticTestDashComponent } from './Pages/Dignosticpackaeandtestmaster/diagnostic-test-dash/diagnostic-test-dash.component';
+import { EditDiagnosticTestComponent } from './Pages/Dignosticpackaeandtestmaster/edit-diagnostic-test/edit-diagnostic-test.component';
 
 
 
@@ -87,7 +88,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     DiagnosticpackageComponent,
     DiagnosticPackageDashComponent,
     DiagnostictestComponent,
-    DiagnosticTestDashComponent
+    DiagnosticTestDashComponent,
+    EditDiagnosticTestComponent
   ],
   imports: [
     BrowserModule,

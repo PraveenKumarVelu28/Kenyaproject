@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MediTestService } from '../../../medi-test.service';
 import Swal from 'sweetalert2';
 import { NgxSpinnerService } from "ngx-spinner";
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-diagnostictest',
   templateUrl: './diagnostictest.component.html',
@@ -9,7 +10,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class DiagnostictestComponent implements OnInit {
 
-  constructor(public docservice: MediTestService, private spinner: NgxSpinnerService) { }
+  constructor(public docservice: MediTestService, private spinner: NgxSpinnerService,private activatedroute: ActivatedRoute) { }
 
   public diagnosticlist: any;
   public testlist: any;
@@ -33,9 +34,17 @@ export class DiagnostictestComponent implements OnInit {
   public languageid: any;
   dummdiagnosticid: any;
   public searchlable: any;
+  id:any;
   diatestdd = {};
 
   ngOnInit() {
+
+    this.activatedroute.params.subscribe(params => {
+
+      this.id = params['id'];
+
+    }
+    )
     this.languageid = localStorage.getItem('LanguageID');
     this.diagnosticid = localStorage.getItem('diagnosticid')
     this.dummdiagnosticid = localStorage.getItem('diagnosticid')
@@ -44,6 +53,7 @@ export class DiagnostictestComponent implements OnInit {
     this.getdiagnosticforadmin();
     this.getdiagnostictestmaster();
     this.idcount = 1;
+   
   }
   public getlanguage() {
 

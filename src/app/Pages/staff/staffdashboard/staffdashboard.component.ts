@@ -181,6 +181,7 @@ export class StaffdashboardComponent implements OnInit {
 
 
   public Delete(id:any) {
+    debugger;
     if (this.languageid == 1) {
       Swal.fire({
         title: 'Are you sure?',

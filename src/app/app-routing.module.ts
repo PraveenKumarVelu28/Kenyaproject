@@ -22,6 +22,7 @@ import { DiagnosticPackageDashComponent } from './Pages/Dignosticpackaeandtestma
 import { DiagnosticpackageComponent } from './Pages/Dignosticpackaeandtestmaster/diagnosticpackage/diagnosticpackage.component';
 import { DiagnosticTestDashComponent } from './Pages/Dignosticpackaeandtestmaster/diagnostic-test-dash/diagnostic-test-dash.component';
 import { DiagnostictestComponent } from './Pages/Dignosticpackaeandtestmaster/diagnostictest/diagnostictest.component';
+import { EditDiagnosticTestComponent } from './Pages/Dignosticpackaeandtestmaster/edit-diagnostic-test/edit-diagnostic-test.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -50,6 +51,8 @@ const routes: Routes = [
 
   { path: 'DiagnosticTestDash', component: DiagnosticTestDashComponent },
   { path: 'Diagnostictest', component: DiagnostictestComponent },
+  { path: 'EditDiagnosticTest/:id', component: EditDiagnosticTestComponent },
+
 
 
 
