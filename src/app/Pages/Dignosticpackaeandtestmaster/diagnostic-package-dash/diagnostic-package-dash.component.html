@@ -51,13 +51,15 @@
             <!-- <th>{{labels2[0].country}}</th>
             <th>{{labels2[0].province}}</th>
             <th>{{labels2[0].city}}</th> -->
+            <th>Diagnostic Centre</th>
             <th>Package Name </th>
             <th>Test</th>
             <th>Price</th>
             <th>Action</th>
+           
           </tr>
           <tr *ngFor="let details of packagelist| paginate: { id: 'foo', itemsPerPage: 10, currentPage: p}|filter:term">
-            <!-- <td>{{details.diagnosticCenterName}}</td> -->
+          <td>{{details.diagnosticCenterName}}</td>
             <!-- <td>{{details.country}}</td>
             <td>{{details.city}}</td>
             <td>{{details.areaName}}</td> -->
@@ -65,13 +67,15 @@
             <td>{{details.testName}}</td>
             <td>{{details.price}}</td>
             <td>
-              <a>
-                <img src="assets/Images/dell.png" style="width: 20px;margin-left: 10px;"
-                  (click)="DeleteDiagnostocServces(details.id)">
-              </a>&nbsp;
+             
               <a style="color:black">
                 <img src="assets/Images/edit.png" (click)=GetPackages(details) data-toggle="modal"
                   data-target="#exampleModalLong78" style="width: 18px"></a>
+                  &nbsp;
+                  <a>
+                    <img src="assets/Images/dell.png" style="width: 20px;margin-left: 10px;"
+                      (click)="DeleteDiagnostocServces(details.id)">
+                  </a>
             </td>
           </tr>
         </thead>

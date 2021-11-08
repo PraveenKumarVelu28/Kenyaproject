@@ -43,7 +43,10 @@
 
             <th>Email</th>
             <th>Address</th>
+            <th>Assigned To</th>
+            <th>Status</th>
             <th>Action</th>
+          
             <!-- <th>{{labels[0].patientname}}</th>
               <th>{{labels[0].phoneNo}}</th> -->
             <!-- <th>{{labels[0].emailId}}</th> -->
@@ -58,7 +61,7 @@
             <th>{{labels[0].actions}}</th> -->
           </tr>
           <tr *ngFor="let details of diagnosticlist">
-            <td>{{details.modifiedDate}}</td>
+            <td>{{details.date| date :'short' }}</td>
             <!-- <td>{{details.appointmentTypeText}}</td> -->
             <td>{{details.slotTime}}</td>
             <td>{{details.id}}</td>
@@ -66,13 +69,19 @@
             <td>{{details.mobileNumber}}</td>
             <td>{{details.emailID}}</td>
             <td>{{details.relationaddress}}</td>
-            <!-- <td>
-              <label *ngIf="details.homeSampleBit=='1'&&details.diagnosticSlotID!='0'">{{labels[0].yes}}</label>
-                <label *ngIf="details.homeSampleBit=='0'&&details.diagnosticSlotID!='0'">{{labels[0].no}}</label>
-                <label *ngIf="details.homeSampleBit=='1'&&details.appointmentType=='2'">{{labels[0].yes}}</label>
-                <label *ngIf="details.homeSampleBit=='0'&&details.appointmentType=='2'">{{labels[0].no}}</label>
-            </td> -->
             
+            <td><label *ngIf="details.name==null" >Not Yet Assigned</label>
+              <label *ngIf="details.name!=null" >{{details.name}}</label>
+            </td>
+            <td><label *ngIf="details.deliverPatnerAssigned!='1'" >Not Yet Assigned</label>
+              <label *ngIf="details.deliverPatnerAssigned=='1'">Assigned</label>
+            </td>
+            <td><button *ngIf="details.deliverPatnerAssigned!='1'" class="addbtns" data-toggle="modal"
+              data-target="#Order" (click)="getdiagnosticAppointmentsbyid(details.id)"  type="button" >Assign</button>&nbsp;
+              <button  *ngIf="details.deliverPatnerAssigned=='1'"  class="addbtns" data-toggle="modal"
+               (click)="getdiagnosticAppointmentsbyid(details.id)"  style="margin-left: -15px;" type="button" >&#10003; Assigned </button>
+            </td>
+           
               <!-- {{details.assinedname}}
             </td>
 
@@ -147,40 +156,7 @@
                   *ngIf="details.acceptedBit=='1'&&details.cancelled=='0'&&details.diagnosticCancelled=='0'&&details.approved=='0'&&details.notVisited=='0'&&details.deliverPatnerAssigned=='1'&&details.rejected=='0'&&details.accepted=='0'"
                   style="color: green;">{{labels[0].assigned}}</label>
               </td> -->
-              <td>
-              <table style="box-shadow:none">
-                <tr>
-                  <td style="border:none">
-
-
-                  </td>
-                  <td style="border:none">
-
-
-                  </td>
-                </tr>
-                <tr>
-                  <td style="border:none">
-
-                  </td>
-                  <td style="border:none">
-
-                  </td>
-                </tr>
-                <tr>
-                  <td style="border:none">
-
-                  </td>
-                  <td style="border:none">
-
-                  </td>
-
-                  <td style="border:none">
-
-                  </td>
-                </tr>
-              </table>
-            </td>
+            
           </tr>
         </thead>
       </table><br>
@@ -190,3 +166,57 @@
     <br>
 
   </div><br>
+
+
+  <div id="Order" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Assign phemonatinist</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-3">
+                        <label style="font-size: 16px;"> phemonatinist</label>
+                    </div>
+                    <div class="col-lg-6">
+                        <select class="form-control" id="staffid" name="staffid"
+                            [(ngModel)]="staffid" required>
+                            <option value="0">Select phemonatinist</option>
+                            <option *ngFor="let Sites of myteamlist" value="{{Sites.id}}">{{Sites.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-3">
+                        <label style="font-size: 16px;">Comments</label>
+                    </div>
+                    <div class="col-lg-6">
+                        <textarea rows="3" [(ngModel)]="Comments" id="Comments" name="Comments"
+                            class="form-control" placeholder="Comments"></textarea>
+                    </div>
+                </div>
+
+                <br>
+                <div class="row">
+                    <div class="col-lg-5"></div>
+                    <div class="col-lg-3">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"
+                            (click)="UpdateOrders()">Assign</button>
+                    </div>
+                    <div class="col-lg-3"></div>
+
+                </div>
+                <br>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-secondary" data-dixsiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

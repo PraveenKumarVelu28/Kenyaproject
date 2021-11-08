@@ -368,6 +368,17 @@ export class MediTestService {
     return this.http.post(this.url, data);
   }
 
+  public UpdateDiagnosticCenterTests(data: any) {
+    this.url = this.host + '/Master/UpdateDiagnosticCenterTests';
+    return this.http.post(this.url, data)
+  }
+
+  public UpdateOrders(data: any) {
+    this.url = this.host + '/Master/UpdateOrders';
+    return this.http.post(this.url, data)
+  }
+
+
 
   
 

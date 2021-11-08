@@ -86,14 +86,15 @@
                         <td>{{details.address}}</td>
                         <td>{{details.pincode}}</td>
                         <td>
+                          
+                            <ng-template>{{labels[0].edit}}</ng-template>
+                            <a [routerLink]="['/EditDiagnosticRegistration',details.id]" style="color:black">
+                                <img src="assets/Images/edit.png" style="width: 20px; margin-left: 12px;">
+                            </a>&nbsp;
                             <ng-template>{{labels[0].delete}}</ng-template>
                             <a>
                                 <img src="assets/Images/dell.png" style="width: 20px;margin-left: 10px;"
                                     (click)="deletediagnosticcenter(details.id)">
-                            </a>&nbsp;
-                            <ng-template>{{labels[0].edit}}</ng-template>
-                            <a [routerLink]="['/EditDiagnosticRegistration',details.id]" style="color:black">
-                                <img src="assets/Images/edit.png" style="width: 20px; margin-left: 12px;">
                             </a>
                         </td>
                     </tr>

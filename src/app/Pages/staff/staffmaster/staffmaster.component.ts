@@ -92,11 +92,11 @@ export class StaffmasterComponent implements OnInit {
     this.MediTestService.InsertMyTeam(entity).subscribe(res => {
         if (this.languageid == 1) {
             Swal.fire('Success', 'Added successfully')
-            location.href = "/Staffdashboard"
+            location.href = "/#/Staffdashboard"
         }
         else if (this.languageid == 6) {
             Swal.fire('Mis à jour avec Succés');
-            location.href = "/Staffdashboard"
+            location.href = "/#/Staffdashboard"
         }
     })
 }
@@ -114,11 +114,11 @@ public UpdateDetailes() {
     this.MediTestService.UpdateMyTeam(entity).subscribe(res => {
         if (this.languageid == 1) {
             Swal.fire('Success', 'Updated Successfully')
-            location.href = "/Staffdashboard"
+            location.href = "/#/Staffdashboard"
         }
         else if (this.languageid == 6) {
             Swal.fire('Mis à jour avec Succés')
-            location.href = "/Staffdashboard"
+            location.href = "/#/Staffdashboard"
         }
     })
 }
