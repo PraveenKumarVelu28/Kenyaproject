@@ -24,9 +24,11 @@ export class StaffdashboardComponent implements OnInit {
   email: any;
   username: any;
   password: any;
+  diagnosticid:any;
   constructor(public MediTestService: MediTestService, private activatedroute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.diagnosticid = localStorage.getItem('DiagnosticId');
     this.languageid = localStorage.getItem('LanguageID');
     this.currentpwd = localStorage.getItem('Password');
     this.pinno = localStorage.getItem('Pinno');
@@ -58,7 +60,7 @@ export class StaffdashboardComponent implements OnInit {
 
   public GetMyTeam() {
     debugger;
-    this.MediTestService.GetMyTeam(280).subscribe(data => {
+    this.MediTestService.GetMyTeam(this.diagnosticid).subscribe(data => {
       this.myteamlist = data;
       this.count = this.myteamlist.length
     })

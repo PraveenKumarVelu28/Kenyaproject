@@ -75,7 +75,7 @@
                 <label *ngIf="details.homeSampleBit=='1'&&details.appointmentType=='2'">{{labels[0].yes}}</label>
                 <label *ngIf="details.homeSampleBit=='0'&&details.appointmentType=='2'">{{labels[0].no}}</label>
             </td> -->
-            <td>{{details.relationaddress}}</td>
+           
             
             <td><label *ngIf="details.name==null" >Not Yet Assigned</label>
               <label *ngIf="details.name!=null" >{{details.name}}</label>
@@ -86,7 +86,7 @@
             <td><button *ngIf="details.deliverPatnerAssigned!='1'" class="addbtns" data-toggle="modal"
               data-target="#Order" (click)="getdiagnosticAppointmentsbyid(details.id)"  type="button" >Assign</button>&nbsp;
               <button  *ngIf="details.deliverPatnerAssigned=='1'"  class="addbtns" data-toggle="modal"
-               (click)="getdiagnosticAppointmentsbyid(details.id)"  style="margin-left: -15px;" type="button" >&#10003; Assigned </button>
+               (click)="getdiagnosticAppointmentsbyid(details.id)"  style="margin-left: 6px;margin-top:-3px" type="button" >&#10003; Assigned </button>
             </td>
            
               <!-- {{details.assinedname}}

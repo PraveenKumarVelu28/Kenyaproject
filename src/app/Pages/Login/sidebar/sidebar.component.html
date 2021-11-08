@@ -54,10 +54,7 @@
             </a>
 
 
-            <a class="tablinks" (click)="highlight($event)" routerLink="/Staffdashboard">
-                <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Staff
-                    Master</label>
-            </a>
+           
 
 
 
@@ -79,6 +76,11 @@
         <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/PatientDashboard">
             <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Patients Dashboard
             </label>
+        </a>
+
+        <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/Staffdashboard">
+            <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Staff
+                Master</label>
         </a>
         <!-- <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/Orders">
             <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Appointments
