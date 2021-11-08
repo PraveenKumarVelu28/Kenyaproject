@@ -26,7 +26,7 @@
   
   .sidenav a:hover {
     color: 
-    #f18235;
+    #fa0300;
     cursor: pointer;
   }
   
@@ -93,7 +93,7 @@ background-color: #322b6b;
 }
 
 .tab a.active {
-/* background-color: #f18235; */
-color: #f18235;
+/* background-color: #fa0300; */
+color: #fa0300;
 width: 100%;
 }

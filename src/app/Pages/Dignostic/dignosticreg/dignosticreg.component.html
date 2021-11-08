@@ -144,7 +144,7 @@
                     </div>
                     <div class="col-lg-4">
                         <select class="form-control" (change)="GetCityID($event)">
-                            <option value="0">Select Country</option>
+                            <option value="0">Select Province</option>
                             <option *ngFor="let role of citylist" value="{{role.id}}">
                                 {{role.short}}
                             </option>
@@ -162,7 +162,7 @@
                     </div>
                     <div class="col-lg-4">
                         <select class="form-control" (change)="GetAreaID($event)">
-                            <option value="" selected="selected">Select</option>
+                            <option value="" selected="selected">Select City</option>
                             <option *ngFor="let area of arealist" value={{area.id}}>{{area.areaName}}</option>
                         </select>
                         <!-- <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="arealist" [settings]="areadd"
@@ -181,7 +181,7 @@
                             onkeypress='return(event.charCode>=47&&event.charCode<=58)'>
                     </div>
                 </div>
-                <br>
+                <!-- <br>
                 <div class="row">
                     <div class="col-lg-3">
                         <label>{{labels[0].monthlysubscription}} :</label>
@@ -194,7 +194,7 @@
                             onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
                     </div>
 
-                </div>
+                </div> -->
                 <br />
                 <div class="row">
                     <div class="col-lg-3">
@@ -288,7 +288,7 @@
 
                 <div class="row">
                     <div class="col-lg-3">
-                        <label>{{labels[0].evngTimings}} : </label>
+                        <label>Evening hours  : </label>
                         <span class="requird">*</span>
                     </div>
                     <div class="col-lg-2">
@@ -340,7 +340,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <button type="button" style="background-color: #f18235;color: white;float: right;" awNextStep
+                        <button type="button" style="background-color: #fa0300;color: white;float: right;" awNextStep
                             class="btn dashbtn nextbtncolor">{{labels[0].next}}</button>
                     </div>
                 </div>
@@ -432,7 +432,7 @@
                         <div class="col-lg-5">
                         </div>
                     </div>
-                    <button type="button" style="background-color: #f18235;color: white;" class="btn nextbtncolor"
+                    <button type="button" style="background-color: #fa0300;color: white;" class="btn nextbtncolor"
                         awPreviousStep>{{labels[0].previous}}</button>
                 </div>
                 <br>

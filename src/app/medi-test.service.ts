@@ -205,24 +205,24 @@ export class MediTestService {
     return this.http.get<any[]>(this.host + '/Master/GetAdmin_RegisterLogins_Label?LanguageID=' + lid);
   }
 
-  public GetAdmin_Doctorregistration_LabelsByLanguageID(lid:any) {
+  public GetAdmin_Doctorregistration_LabelsByLanguageID(lid: any) {
 
     return this.http.get<any[]>(this.host + '/Master/GetAdmin_Doctorregistration_LabelsByLanguageID?LanguageID=' + lid);
   }
-  public InsertMyTeam(data:any) {
+  public InsertMyTeam(data: any) {
     this.url = this.host + '/Master/InsertMyTeam';
     return this.http.post(this.url, data)
   }
-  public UpdateMyTeam(data:any) {
+  public UpdateMyTeam(data: any) {
     this.url = this.host + '/Master/UpdateMyTeam';
     return this.http.post(this.url, data)
   }
-  public GetMyTeam(did:any) {
+  public GetMyTeam(did: any) {
 
     return this.http.get<any[]>(this.host + '/Master/GetMyTeam?DiagnosticID=' + did);
   }
 
-  public DeleteMyTeam(id:any) {
+  public DeleteMyTeam(id: any) {
 
     return this.http.get<any[]>(this.host + '/Master/DeleteMyTeam?ID=' + id);
   }
@@ -368,7 +368,13 @@ export class MediTestService {
     return this.http.post(this.url, data);
   }
 
+  //08-11-2021
 
-  
+
+  public GetPatientRegistrationWeb() {
+    debugger
+    return this.http.get<any[]>(this.host + '/Master/GetPatientRegistrationWeb');
+  }
+
 
 }

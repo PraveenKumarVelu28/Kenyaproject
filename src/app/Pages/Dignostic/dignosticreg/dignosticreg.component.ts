@@ -253,7 +253,7 @@ export class DignosticregComponent implements OnInit {
         'AreaID': this.areaid,
         'Pincode': this.pincode,
         'CountryID': this.countryid,
-        'MonthlySubscription': this.monthlysubription,
+        'MonthlySubscription': 1,
         'HospitalClinicID': this.hospitalclinicid,
         'Hospitalfulltimebit': 0,
         'ContractStartDate': this.contractstartdate,

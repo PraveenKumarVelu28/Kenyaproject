@@ -23,9 +23,24 @@
             <th>Patient Phone</th>
             <th>Patient Email</th>
             <th>Patient Address</th>
+            <th>Actions</th>
           </tr>
-          <tr>
+          <tr *ngFor="let details of registeredpatients">
+            <td>{{details.patientName}}</td>
+            <td>{{details.mobileNumber}}</td>
+            <td>{{details.emailID}}</td>
+            <td>{{details.address}}</td>
+            <td>
+              <ng-template>enable</ng-template>
+              <a>
+                <img src="assets/Images/dactive.png" style="width: 46px;margin-left: 10px;">
+              </a>&nbsp;
 
+              <!-- <ng-template>disable</ng-template>
+              <a style="color:black">
+                <img src="assets/Images/active.png" style="width: 46px;margin-left: 10px;"></a> -->
+
+            </td>
           </tr>
         </thead>
       </table><br>

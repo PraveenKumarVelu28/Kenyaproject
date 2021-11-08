@@ -11,7 +11,7 @@
                 <form #loginForm="ngForm">
                     <h3
                         style="border-radius: 10px;padding-top: 3%;height:114px;width:100%;background-color: white;color: aliceblue;">
-                        <img src="assets/Images/logo.png" style="margin-top: -14px;width: 29%;">
+                        <img src="assets/Images/meditest_logo.png" style="margin-top: -14px;width: 80%;">
                         <h6 style="color: #322b6b;margin-top: -9px;
               font-size: 10px;"></h6>
                     </h3>
@@ -22,17 +22,18 @@
             </select><br> -->
                     <!-- *ngIf="countryid!=null" -->
                     <div>
-                        <select class="form-control" style="height:40px;" (change)="GetLanguageID($event)">
+                        <select class="form-control" style="height:40px;" id="LanguageID" name="LanguageID"
+                            [(ngModel)]="LanguageID" (change)="GetLanguageID($event)">
                             <option value="" selected>Select Language</option>
                             <option *ngFor="let lang of languagelist" value={{lang.id}}>{{lang.languageName}}</option>
                         </select>
                     </div>
                     <br>
-                    <div *ngIf="LanguageID!=null">
-                        <select class="form-control" style="height:40px;"  (change)="onchangeFunction($event)">
+                    <div>
+                        <select class="form-control" style="height:40px;" (change)="onchangeFunction($event)">
                             <option value="" selected>Select Role</option>
-                            <option value="1" >Admin</option>
-                            <option value="2" >Diagnostic centre</option>
+                            <option value="1">Admin</option>
+                            <option value="2">Diagnostic centre</option>
                             <!-- <option *ngFor="let role of rolelist" value={{role.id}}>{{role.short}}</option> -->
                         </select>
 
@@ -48,8 +49,8 @@
                             placeholder="password" class="form-control">
                         <!-- <input type="text"   [(ngModel)]="otp" style="height:40px;" name="otp" required placeholder="Password"
               class="form-control"> -->
-                        <label
-                            style="color:#f18235;float: right;cursor: pointer;" data-toggle="modal" data-target="#changepassword">Forgot Password</label><br>
+                        <label style="color:#fa0300;float: right;cursor: pointer;" data-toggle="modal"
+                            data-target="#changepassword">Forgot Password</label><br>
 
                         <button type="submit" class="form-control login" (click)="login()"
                             [disabled]="loginForm.form.invalid">Login</button>

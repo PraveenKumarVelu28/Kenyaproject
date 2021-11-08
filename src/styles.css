@@ -42,7 +42,7 @@
       }
       
       th {
-        background-color: #f18235;
+        background-color: #fa0300;
         color:white;
         text-align: center;
         padding: 4px;
@@ -184,7 +184,7 @@ label{
       }
       .btncolor
       {
-          background-color: #f18235;
+          background-color: #fa0300;
           color:white;
           
       }
@@ -195,12 +195,12 @@ label{
        width:100%;
      }
      .nextbtncolor{
-      background: #f18235;
+      background: #fa0300;
       color:white;
      }
      .btncolor
      {
-         background-color: #f18235;
+         background-color: #fa0300;
          color:white;
      }
      ::-webkit-scrollbar {
@@ -262,7 +262,7 @@ label{
 }
 
 button:disabled {
-  background-color: #f18235;
+  background-color: #fa0300;
   cursor: no-drop;
 }
 

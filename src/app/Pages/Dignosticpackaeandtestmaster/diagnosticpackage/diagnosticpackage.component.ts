@@ -41,6 +41,28 @@ export class DiagnosticpackageComponent implements OnInit {
   public showdropdown: any;
 
   ngOnInit() {
+    this.diadd = {
+      singleSelection: true,
+      idField: 'id',
+      textField: 'diagnosticCenterName',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      //  itemsShowLimit: 3,
+      allowSearchFilter: true,
+      searchPlaceholderText: this.searchlable,
+    };
+
+    this.testdd = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'short',
+      // selectAllText: 'Select All',
+      // unSelectAllText: 'UnSelect All',
+      //  itemsShowLimit: 3,
+      allowSearchFilter: true,
+      enableCheckAll: false,
+      searchPlaceholderText: 'Search'
+    };
     this.languageid = localStorage.getItem('LanguageID');
 
     this.diagnosticid = localStorage.getItem('diagnosticid')
@@ -76,16 +98,7 @@ export class DiagnosticpackageComponent implements OnInit {
     this.docservice.GetDiagnosticCenterListByLanguageID(this.languageid).subscribe(
       data => {
         this.diagnosticlist = data;
-        this.diadd = {
-          singleSelection: true,
-          idField: 'id',
-          textField: 'diagnosticCenterName',
-          selectAllText: 'Select All',
-          unSelectAllText: 'UnSelect All',
-          //  itemsShowLimit: 3,
-          allowSearchFilter: true,
-          searchPlaceholderText: this.searchlable,
-        };
+
 
       }, error => {
       }
@@ -98,17 +111,7 @@ export class DiagnosticpackageComponent implements OnInit {
       data => {
 
         this.testlist = data;
-        this.testdd = {
-          singleSelection: false,
-          idField: 'id',
-          textField: 'short',
-          // selectAllText: 'Select All',
-          // unSelectAllText: 'UnSelect All',
-          //  itemsShowLimit: 3,
-          allowSearchFilter: true,
-          enableCheckAll: false,
-          searchPlaceholderText: this.searchlable,
-        };
+
       }, error => {
       }
     )
@@ -133,6 +136,7 @@ export class DiagnosticpackageComponent implements OnInit {
   }
 
   public adddetails() {
+    debugger
     if (this.diagnosticid == undefined || this.testid.length == 0) {
       Swal.fire("please fill all manadatory fields");
     }

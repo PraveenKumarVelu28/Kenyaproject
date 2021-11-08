@@ -35,6 +35,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.Showpass = 1;
+
+    this.LanguageID = 1;
+    localStorage.setItem('LanguageID', '1');
     this.spinner.show();
     setTimeout(() => {
       /** spinner ends after 5 seconds */

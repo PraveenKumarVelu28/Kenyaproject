@@ -17,7 +17,7 @@
     }
     .btncolor
     {
-        background-color: #f18235;
+        background-color: #fa0300;
         color:white;
     }
     .headerspace{
@@ -65,14 +65,14 @@
 /* Change background color of buttons on hover */
 
 .tab button:hover {
-    background-color: #f18235;
+    background-color: #fa0300;
 }
 
 
 /* Create an active/current tablink class */
 
 .tab button.active {
-    background-color: #f18235;
+    background-color: #fa0300;
     color:white;
 }
 
@@ -91,7 +91,7 @@
   }
   
   .tab a.active {
-    /* background-color: #f18235; */
-    color: #f18235;
+    /* background-color: #fa0300; */
+    color: #fa0300;
     width: 100%;
   }

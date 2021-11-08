@@ -23,14 +23,14 @@
           <label>Diagnostic Center: </label>
         </div>
         <div class="col-lg-4">
-          <select class="form-control" [disabled]="tablecount=='1'" (change)="GetDiagnosticID($event)">
+          <!-- <select class="form-control" [disabled]="tablecount=='1'" (change)="GetDiagnosticID($event)">
             <option valu="" selected>Select</option>
             <option *ngFor="let diagnostic of diagnosticlist" value={{diagnostic.id}}>
               {{diagnostic.diagnosticCenterName}}</option>
-          </select>
-          <!-- <ng-multiselect-dropdown [disabled]="tablecount=='1'" [placeholder]="SelectLabel" [data]="diagnosticlist"
+          </select> -->
+          <ng-multiselect-dropdown [disabled]="tablecount=='1'" [placeholder]="SelectLabel" [data]="diagnosticlist"
             [settings]="diadd" (onSelect)="GetDiagnosticID($event)">
-          </ng-multiselect-dropdown> -->
+          </ng-multiselect-dropdown>
         </div>
       </div><br>
     </div>

@@ -1,5 +1,5 @@
 .chatnow {
-    background-color: #f18235;
+    background-color: #fa0300;
     border: none;
     color: white;
     font-size: 17px;
@@ -13,7 +13,7 @@
   }
   
   .chatnow1 {
-    background-color: #f18235;
+    background-color: #fa0300;
     border: none;
     color: white;
     font-size: 13px;
@@ -41,7 +41,7 @@
   }
   
   .sidenav a:hover {
-    color: #f18235;
+    color: #fa0300;
     cursor: pointer;
   }
   
@@ -187,7 +187,7 @@
   }
   .chat
   {
-  background-color: #f18235;
+  background-color: #fa0300;
   color:white;
   }
   
