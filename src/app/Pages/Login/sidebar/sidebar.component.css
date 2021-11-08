@@ -63,8 +63,7 @@
    background: #2aaadf; 
  }
 
- side navigation */
-#main {
+ .side-navigation {
 transition: margin-left .5s;
 padding: 20px;
 }

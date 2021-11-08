@@ -16,14 +16,18 @@ export class StaffmasterComponent implements OnInit {
   showbit: any;
   name: any;
   phoneno: any;
+  
   email: any;
   address: any;
   username: any;
   password: any;
   myteamlist: any;
+  Diagnosticid:any;
   constructor(public MediTestService: MediTestService, private activatedroute: ActivatedRoute) { }
   ngOnInit() {
     this.languageid = localStorage.getItem('LanguageID');
+    this.Diagnosticid = 0
+    this.getdiagnosticforadmin();
     this.activatedroute.params.subscribe(params => {
 
         this.id = params['id'];
@@ -53,13 +57,30 @@ export class StaffmasterComponent implements OnInit {
         error => { }
     );
   }
+  diagnosticlist:any
+
+  public getdiagnosticforadmin() {
+   debugger;
+    this.MediTestService.GetDiagnosticForAdminByLanguageID(this.languageid).subscribe(
+      data => {
+
+        this.diagnosticlist = data;
+
+       
+      }, error => {
+      }
+    )
+  }
+
+
+  
 
 
 
   public InsertDetailes() {
     debugger;
     var entity = {
-        DiagnosticID: 280,
+        DiagnosticID: this.Diagnosticid,
         Name: this.name,
         PhoneNo: this.phoneno,
         EmailID: this.email,
@@ -82,7 +103,7 @@ export class StaffmasterComponent implements OnInit {
 public UpdateDetailes() {
     var entity = {
         ID: this.id,
-        DiagnosticID: 280,
+        DiagnosticID: this.Diagnosticid,
         Name: this.name,
         PhoneNo: this.phoneno,
         EmailID: this.email,
