@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
 import { formatDate } from "@angular/common";
 import * as XLSX from 'xlsx';
+import swal from 'sweetalert2';
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
 
@@ -40,7 +41,7 @@ export class OrdersComponent implements OnInit {
 
     // this.startdate = formatDate(kkk, format, locale);
     // this.enddate = formatDate(lll, format, locale);
-    this.staffid=0;
+    this.staffid = 0;
     this.GetMyTeam();
     this.getlanguage();
 
@@ -54,7 +55,7 @@ export class OrdersComponent implements OnInit {
     )
 
 
-   
+
 
     this.MediTestService.GetAdmin_DoctorMyAppointments_Label(1).subscribe(
       data => {
@@ -103,49 +104,66 @@ export class OrdersComponent implements OnInit {
       }
     )
   }
-  orderid:any;
-  public getdiagnosticAppointmentsbyid(id:any) {
+  orderid: any;
+  public getdiagnosticAppointmentsbyid(id: any) {
     debugger;
-    this.orderid=id
+    this.orderid = id
   }
 
-  staffid:any;
-  Comments:any;
+  staffid: any;
+  Comments: any;
 
   public UpdateOrders() {
- debugger;
+    debugger;
     var entity = {
       'ID': this.orderid,
-      'DeliverPatnerAssigned' : 1,
+      'DeliverPatnerAssigned': 1,
       'Comments': this.Comments,
       'staffid': this.staffid
-
-
-      
     }
     this.MediTestService.UpdateOrders(entity).subscribe(res => {
       let test = res;
-     
-      
-        Swal.fire(' Updated Successfully');
-        this.ngOnInit();
-        
-    
-    
+      Swal.fire(' Updated Successfully');
+      this.ngOnInit();
     })
 
   }
 
-  myteamlist:any;
+  myteamlist: any;
   public GetMyTeam() {
     debugger;
     this.MediTestService.GetMyTeam(280).subscribe(data => {
       this.myteamlist = data;
-      
+
     })
   }
 
+  public AcceptOrder(id: any) {
+    debugger
+    var entity = {
+      'ID': id,
+    }
+    this.MediTestService.AcceptOrder(entity).subscribe(res => {
+      let test = res;
+      swal.fire('Order Accepted Successfully')
+      this.ngOnInit();
+    })
+
+  }
 
 
+  public RejecttOrder(id: any) {
+    debugger
+    debugger
+    var entity = {
+      'ID': id,
+    }
+    this.MediTestService.RejectOrder(entity).subscribe(res => {
+      let test = res;
+      swal.fire('Order Accepted Successfully')
+      this.ngOnInit();
+    })
+
+  }
 
 }

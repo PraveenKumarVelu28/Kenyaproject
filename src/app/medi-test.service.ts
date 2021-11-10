@@ -384,6 +384,14 @@ export class MediTestService {
     this.url = this.host + '/Master/UpdateOrders';
     return this.http.post(this.url, data)
   }
+  public AcceptOrder(data: any) {
+    this.url = this.host + '/Master/AcceptOrder';
+    return this.http.post(this.url, data)
+  }
+  public RejectOrder(data: any) {
+    this.url = this.host + '/Master/RejectOrder';
+    return this.http.post(this.url, data)
+  }
 
 
 
