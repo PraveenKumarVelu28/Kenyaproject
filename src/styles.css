@@ -3,7 +3,7 @@
 .form-control {
     /* border-color: black; */
     font-size: 12px;
-    font-family: Helvetica Neue, Helvetica,Arial,sans-serif;
+    font-family: 'Montserrat classic';
     }
     
     .required {
@@ -223,31 +223,31 @@ label{
     }
 
      p{
-      font-family: Helvetica Neue, Helvetica,Arial,sans-serif;
+      font-family: 'Montserrat classic';
      }
      label{
-      font-family: Helvetica Neue, Helvetica,Arial,sans-serif;
+      font-family: 'Montserrat classic';
       /* font-weight: 600;
       color: #828282; */
       font-size: 13px;
       
      }
      h1,h2,h3,h4,h5,h6{
-      font-family: Helvetica Neue, Helvetica,Arial,sans-serif;
+      font-family: 'Montserrat classic';
     }
     a{
-      font-family: Helvetica Neue, Helvetica,Arial,sans-serif;
+      font-family: 'Montserrat classic';
       font-weight: 600;
     }
     th{
-      font-family: Helvetica Neue, Helvetica,Arial,sans-serif;
+      font-family: 'Montserrat classic';
       font-weight: 600;
     }
     td{
-      font-family: Helvetica Neue, Helvetica,Arial,sans-serif;
+      font-family: 'Montserrat classic';
     }
     button{
-      font-family: Helvetica Neue, Helvetica,Arial,sans-serif;
+      font-family: 'Montserrat classic';
     }
 
     .bs-datepicker-body table th {
