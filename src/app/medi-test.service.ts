@@ -393,6 +393,13 @@ export class MediTestService {
     return this.http.post(this.url, data)
   }
 
+  public UploadReport(data: any) {
+    this.url = this.host + '/Master/UploadReport';
+    return this.http.post(this.url, data)
+  }
+
+
+
 
 
 

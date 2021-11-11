@@ -1,7 +1,7 @@
 <div class="container-fluid sidenav" id="mySidenav">
     <br />
     <div class="row tab" style="margin-left:10px">
-        <a data-toggle="collapse" class="button" routerLink="/Dignosticprofile">
+        <a data-toggle="collapse" class="button" routerLink="/Dignosticprofile" *ngIf="roleid!='1'">
             <img src="assets/Images/docreg.png" style="width: 20px;">&nbsp;<label class="sidebaritems">
                 Profile </label>
         </a><br />
@@ -100,6 +100,9 @@
         <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/Staffdashboard">
             <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Staff
                 Master</label>
+        </a>
+        <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/Revenue">
+            <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Revenue</label>
         </a>
         <!-- <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/Orders">
             <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Appointments

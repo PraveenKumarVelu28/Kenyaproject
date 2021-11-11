@@ -76,7 +76,7 @@ export class OrdersComponent implements OnInit {
     this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(this.diagnosticid, '2021-10-01', '2022-12-01', 1).subscribe(
       data => {
         debugger
-        this.diagnosticlist = data;
+        this.diagnosticlist = data.filter(x => x.deliverPatnerAssigned == null);
       }, _error => {
       }
     )
@@ -132,7 +132,7 @@ export class OrdersComponent implements OnInit {
   myteamlist: any;
   public GetMyTeam() {
     debugger;
-    this.MediTestService.GetMyTeam(280).subscribe(data => {
+    this.MediTestService.GetMyTeam(this.diagnosticid).subscribe(data => {
       this.myteamlist = data;
 
     })
@@ -145,7 +145,7 @@ export class OrdersComponent implements OnInit {
     }
     this.MediTestService.AcceptOrder(entity).subscribe(res => {
       let test = res;
-      swal.fire('Order Accepted Successfully')
+      swal.fire('Appointment Accepted Successfully')
       this.ngOnInit();
     })
 
@@ -160,10 +160,58 @@ export class OrdersComponent implements OnInit {
     }
     this.MediTestService.RejectOrder(entity).subscribe(res => {
       let test = res;
-      swal.fire('Order Accepted Successfully')
+      swal.fire('Appointment Rejected Successfully')
       this.ngOnInit();
     })
 
   }
+  public dummshowsignatureurl: any = []
+  public onattachmentUpload(abcd: any) {
+    this.dummshowsignatureurl = []
+    // for (let i = 0; i < abcd.length; i++) {
+    this.attachments.push(abcd.addedFiles[0]);
+    this.uploadattachments();
+    // }
+    Swal.fire('Added Successfully');
+    abcd.length = 0;
 
+  }
+  photo: any
+
+  public attachments: any = [];
+  public attachmentsurl: any = [];
+  public uploadattachments() {
+    debugger
+    this.MediTestService.DiagnosticPhotos(this.attachments).subscribe(res => {
+
+      this.attachmentsurl.push(res);
+      this.dummshowsignatureurl.push(res);
+      let a = this.dummshowsignatureurl[0].slice(2);
+      let b = 'https://23.101.22.93' + a;
+
+      this.photo = b;
+      this.attachments.length = 0;
+
+      console.log(b);
+
+
+
+
+    })
+    // this.sendattachment();
+  }
+
+  public UploadReport() {
+    debugger
+
+    var entity = {
+      'ID': this.orderid,
+      'File': this.attachmentsurl[0]
+    }
+    this.MediTestService.UploadReport(entity).subscribe(res => {
+      let test = res;
+      swal.fire('Report Uploded Successfully')
+      this.ngOnInit();
+    })
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import Swal from 'sweetalert2';
+
+import Swal1 from 'sweetalert2';
 import { MediTestService } from '../../../medi-test.service';
 
 
@@ -44,6 +45,8 @@ export class DignosticprofileComponent implements OnInit {
   Password: any
   public Update() {
     debugger
+
+    Swal1.fire('Profile Updated Successfully');
     // var entity = {
     //   'ID': Number(sessionStorage.getItem('userid')),
     //   'Name': this.Name,
