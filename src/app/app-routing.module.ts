@@ -23,6 +23,10 @@ import { DiagnosticpackageComponent } from './Pages/Dignosticpackaeandtestmaster
 import { DiagnosticTestDashComponent } from './Pages/Dignosticpackaeandtestmaster/diagnostic-test-dash/diagnostic-test-dash.component';
 import { DiagnostictestComponent } from './Pages/Dignosticpackaeandtestmaster/diagnostictest/diagnostictest.component';
 import { EditDiagnosticTestComponent } from './Pages/Dignosticpackaeandtestmaster/edit-diagnostic-test/edit-diagnostic-test.component';
+import { DignosticprofileComponent } from './Pages/DiagnosticCentre/dignosticprofile/dignosticprofile.component';
+import { AssignedappoitmentsComponent } from './Pages/DiagnosticCentre/assignedappoitments/assignedappoitments.component';
+import { VisitedappoitmentsComponent } from './Pages/DiagnosticCentre/visitedappoitments/visitedappoitments.component';
+import { CancelledappoitmentsComponent } from './Pages/DiagnosticCentre/cancelledappoitments/cancelledappoitments.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -52,7 +56,10 @@ const routes: Routes = [
   { path: 'DiagnosticTestDash', component: DiagnosticTestDashComponent },
   { path: 'Diagnostictest', component: DiagnostictestComponent },
   { path: 'EditDiagnosticTest/:id', component: EditDiagnosticTestComponent },
-
+  { path: 'Dignosticprofile', component: DignosticprofileComponent },
+  { path: 'Assignedappoitments', component: AssignedappoitmentsComponent },
+  { path: 'Visitedappoitments', component: VisitedappoitmentsComponent },
+  { path: 'Cancelledappoitments', component: CancelledappoitmentsComponent },
 
 
 

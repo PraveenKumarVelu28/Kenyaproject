@@ -42,6 +42,10 @@ import { DiagnosticPackageDashComponent } from './Pages/Dignosticpackaeandtestma
 import { DiagnostictestComponent } from './Pages/Dignosticpackaeandtestmaster/diagnostictest/diagnostictest.component';
 import { DiagnosticTestDashComponent } from './Pages/Dignosticpackaeandtestmaster/diagnostic-test-dash/diagnostic-test-dash.component';
 import { EditDiagnosticTestComponent } from './Pages/Dignosticpackaeandtestmaster/edit-diagnostic-test/edit-diagnostic-test.component';
+import { DignosticprofileComponent } from './Pages/DiagnosticCentre/dignosticprofile/dignosticprofile.component';
+import { AssignedappoitmentsComponent } from './Pages/DiagnosticCentre/assignedappoitments/assignedappoitments.component';
+import { VisitedappoitmentsComponent } from './Pages/DiagnosticCentre/visitedappoitments/visitedappoitments.component';
+import { CancelledappoitmentsComponent } from './Pages/DiagnosticCentre/cancelledappoitments/cancelledappoitments.component';
 
 
 
@@ -89,7 +93,11 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     DiagnosticPackageDashComponent,
     DiagnostictestComponent,
     DiagnosticTestDashComponent,
-    EditDiagnosticTestComponent
+    EditDiagnosticTestComponent,
+    DignosticprofileComponent,
+    AssignedappoitmentsComponent,
+    VisitedappoitmentsComponent,
+    CancelledappoitmentsComponent
   ],
   imports: [
     BrowserModule,

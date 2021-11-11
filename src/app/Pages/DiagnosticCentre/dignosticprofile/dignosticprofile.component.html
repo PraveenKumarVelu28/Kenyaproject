@@ -1,0 +1,116 @@
+
+<div class="container-fluid card">
+
+    <div class="row headdiv">
+        <div class="col-lg-12">
+            <h4 style="float: left;">My Profile</h4>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-lg-2">
+            <label>Diagnostic Center Name :</label>
+        </div>
+        <div class="col-lg-4">
+            <input type="text" onkeypress="return /[a-z]/i.test(event.key)" id="diagnosticCenterName"
+                name="NadiagnosticCenterNameme" [(ngModel)]="diagnosticCenterName" class="form-control"
+                placeholder="diagnosticCenterName" required>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-2">
+            <label>Phone No. :</label>
+        </div>
+        <div class="col-lg-4">
+            <input type="text" onkeypress="return /[0-9]/i.test(event.key)" id="phoneNo" name="phoneNo"
+                [(ngModel)]="phoneNo" class="form-control" placeholder="phoneNo" required>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-2">
+            <label>EmailID : </label>
+        </div>
+        <div class="col-lg-4">
+            <input type="email" id="EmailID" name="EmailID" [(ngModel)]="EmailID" class="form-control"
+                placeholder="EmailID">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-2">
+            <label>Address : </label>
+        </div>
+        <div class="col-lg-4">
+            <textarea type="text" id="address" name="address" [(ngModel)]="address" class="form-control" rows="3"
+                placeholder="address"></textarea>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-2">
+            <label>Contact Person: </label>
+        </div>
+        <div class="col-lg-4">
+            <input type="text" id="contactPerson" name="contactPerson" [(ngModel)]="contactPerson" class="form-control"
+                placeholder="contactPerson">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-2">
+            <label>Contact Person Phone No: </label>
+        </div>
+        <div class="col-lg-4">
+            <input type="text" id="ContactPersonPhNo" name="ContactPersonPhNo" [(ngModel)]="ContactPersonPhNo"
+                class="form-control" placeholder="ContactPersonPhNo">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-2">
+            <label>LicenseNo: </label>
+        </div>
+        <div class="col-lg-4">
+            <input type="text" id="licenseNo" name="licenseNo" [(ngModel)]="licenseNo" class="form-control"
+                placeholder="licenseNo">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-2">
+            <label>Username: </label>
+        </div>
+        <div class="col-lg-4">
+            <input type="text" id="username" name="username" [(ngModel)]="username" class="form-control"
+                placeholder="username">
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-lg-2">
+            <label>Password : </label>
+        </div>
+        <div class="col-lg-4">
+            <input type="email" id="Password" name="Password" [(ngModel)]="Password" class="form-control"
+                placeholder="Password">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-2">
+            <button type="submit" text_align="center" class="btn btn-block btn-md allbtns btncolor"
+                (click)="Update()">Update</button>
+
+
+        </div>
+        <div class="col-lg-5"></div>
+    </div>
+    <br>
+
+</div>
+<br>

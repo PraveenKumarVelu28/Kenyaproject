@@ -1,7 +1,7 @@
 <div class="container-fluid card card:hover headerrspace">
   <div class="row headerspace" style="margin-top: 10px;">
     <div class="col-lg-3">
-      <h5>Orders</h5>
+      <h5>New Appointments</h5>
     </div>
     <div class="col-lg-7">
     </div>
@@ -30,41 +30,34 @@
       </div>
     </div><br> -->
   <div class="row">
+    
     <div class="col-lg-12" style="overflow-y: auto;height:200vh">
+      <br>
       <table>
         <thead>
           <tr>
-            <th id="imp">Order Date</th>
+            <th id="imp">Appointment Date</th>
             <!-- <th id="imp">{{labels[0].diaAppointmentType}}</th> -->
-            <th id="imp">Slot</th>
-            <th id="imp">Order Number</th>
+            <th id="imp">Appointment Time</th>
+            <th id="imp">Appointment ID</th>
+            <th>Appointment Type</th>
             <th>Patient Name</th>
             <th>Phone No</th>
-
             <th>Email</th>
             <th>Address</th>
             <th>Assigned To</th>
             <th>Status</th>
             <th>Action</th>
-
-            <!-- <th>{{labels[0].patientname}}</th>
-              <th>{{labels[0].phoneNo}}</th> -->
-            <!-- <th>{{labels[0].emailId}}</th> -->
-            <!-- <th>{{labels4[0].bookedpatientphno}}</th>
-            <th>{{labels[0].address}}</th>
-            <th>{{labels[0].homeSample}}</th>
-            <th>{{labels[0].assignedname}}</th>
-            <th>{{labels[0].paymentType}}</th>
-            <th>{{labels[0].paidAmount}}</th>
-            <th>{{labels[0].details}}</th>
-            <th>{{labels[0].status}}</th>
-            <th>{{labels[0].actions}}</th> -->
           </tr>
           <tr *ngFor="let details of diagnosticlist">
-            <td>{{details.date| date :'short' }}</td>
+            <td>{{details.date| date }}</td>
             <!-- <td>{{details.appointmentTypeText}}</td> -->
             <td>{{details.slotTime}}</td>
-            <td>{{details.id}}</td>
+            <td>0000{{details.id}}</td>
+            <td>
+              <label *ngIf="details.homeSampleBit!=0">Visiting Center</label>
+              <label *ngIf="details.homeSampleBit==1">Home Sample Collection</label>
+            </td>
             <td>{{details.patientName}}</td>
             <td>{{details.mobileNumber}}</td>
             <td>{{details.emailID}}</td>
@@ -82,8 +75,8 @@
             </td>
             <td>
               <label *ngIf="details.deliverPatnerAssigned!='1' && details.acceptedBit==null">Not Yet Assigned</label>
-              <label *ngIf="details.deliverPatnerAssigned=='1'">Assigned</label>
-              <label *ngIf="details.acceptedBit=='1'">Accepted</label>
+              <label *ngIf="details.deliverPatnerAssigned=='1' && details.acceptedBit=='1'">Assigned To Phlebotomist</label>
+              <label *ngIf="details.acceptedBit=='1' && details.deliverPatnerAssigned==null">Accepted</label>
               <label *ngIf="details.diagnosticCancelled=='1' && details.diagnosticCancelled==null">Rejected</label>
             </td>
             <td>
@@ -104,82 +97,6 @@
                 style="margin-left: 6px;margin-top:-4px" type="button"><a
                   href="http://www.africau.edu/images/default/sample.pdf">Report</a></button>
             </td>
-
-            <!-- {{details.assinedname}}
-            </td>
-
-
-            <td>
-              {{details.paymentName}}
-            </td>
-
-            <td>
-              {{details.paidAmount}}
-            </td> -->
-            <!-- <td>
-                <ng-template #tipcontent18>{{labels[0].tests}}</ng-template>
-                <a [ngbTooltip]="tipcontent18">
-                  <img src="assets/Images/test1.png" *ngIf="details.testsCount!=0" data-toggle="modal"
-                    data-target="#exampleModal2" style="height:20px;"
-                    (click)="GetTestsID(details.id,details.hideupdate,details)">
-                </a>&nbsp;
-                <ng-template #tipcontent20>{{labels[0].packages}}</ng-template>
-                <a [ngbTooltip]="tipcontent20" *ngIf="details.packageCount!=0">
-                  <img src="assets/Images/pack1.png" data-toggle="modal" data-target="#exampleModal3" style="height:20px;"
-                    (click)="GetPackageID(details.id)">&nbsp;
-                </a>
-                <ng-template #tipcontent2045>Photo</ng-template>
-                <a [ngbTooltip]="tipcontent2045">
-                  <img src="assets/Images/phaprescripton.png"
-                    *ngIf="details.appointmentType=='2'&&details.photoexist=='1'" data-toggle="modal"
-                    data-target="#exampleModal6" style="height:20px;" (click)="GetAttachments(details.id)"></a>
-  
-                <ng-template #tipcontent2094>Pdf</ng-template>
-                <a [ngbTooltip]="tipcontent2094" *ngIf="details.appointmentType=='2'&&details.fileAvailableBit=='1'">
-                  <img src="assets/Images/pdf.png" style="height:20px;" (click)="GetPdf(details.fileUrl)"></a>
-  
-              </td>
-   -->
-            <!-- <td>
-                <label
-                  *ngIf="details.acceptedBit=='1'&&details.cancelled=='0'&&details.diagnosticCancelled=='0'&&details.approved=='0'&&details.notVisited=='0'&&details.deliverPatnerAssigned=='0'&&details.paymentType=='0'&&details.hideupdate=='0'&&details.rejected=='0'"
-                  style="color: green;">{{labels[0].accepted}}</label>
-                <label
-                  *ngIf="details.diagnosticCancelled=='1'||details.rejected=='1'&&details.approved=='0'&&details.acceptedBit=='0'&&details.notVisited=='0'"
-                  style="color: red;">{{labels[0].cancelled}}</label>
-                <label
-                  *ngIf="details.cancelled=='1'||details.rejected=='1'&&details.approved=='0'&&details.acceptedBit=='0'&&details.notVisited=='0'"
-                  style="color: red;">{{labels[0].patientCancelled}}</label>
-                <label *ngIf="details.rejected=='1'&&details.samplesCollected=='0'" style="color: red;">{{labels[0].labtechrejected}}</label>
-  
-                <label *ngIf="details.accepted=='1'&&details.approved=='0'&&details.samplesCollected=='0'&&details.uploadedBit=='0'" style="color: green;">{{labels[0].technitianAccepted}}</label>
-  
-  
-                <label *ngIf="details.accepted=='1'&&details.approved=='0'&&details.samplesCollected=='1'&&details.uploadedBit=='0'" style="color: green;">{{labels[0].samplesCollected}}</label>
-                <label *ngIf="details.approved=='1'&&details.uploadedBit=='0'&&details.rejected=='0'"
-                  style="color: yellowgreen;">{{labels[0].visited}}</label>
-                <label *ngIf="details.approved=='1'&&details.uploadedBit=='1'&&details.rejected=='0'"
-                  style="color: yellowgreen;">{{labels[0].reportdelivered}}</label>
-  
-                <label *ngIf="details.notVisited=='1'" style="color: rgba(153, 205, 50, 0);">{{labels[0].notVisited}}</label>
-  
-                <label
-                  *ngIf="details.acceptedBit=='1'&&details.cancelled=='0'&&details.diagnosticCancelled=='0'&&details.approved=='0'&&details.notVisited=='0'&&details.paymentType=='0'&&details.deliverPatnerAssigned=='0'&&details.hideupdate=='1'&&details.rejected=='0'"
-                  style="color: green;">{{labels[0].pricesenttopatient}}</label>
-  
-                <label
-                  *ngIf="details.acceptedBit=='1'&&details.cancelled=='0'&&details.diagnosticCancelled=='0'&&details.approved=='0'&&details.notVisited=='0'&&details.paymentType!='0'&&details.deliverPatnerAssigned=='0'&&details.paymentType=='3'&&details.rejected=='0'"
-                  style="color: green;">{{labels[0].codPayment}}</label>
-  
-                <label
-                  *ngIf="details.acceptedBit=='1'&&details.cancelled=='0'&&details.diagnosticCancelled=='0'&&details.approved=='0'&&details.notVisited=='0'&&details.paymentType!='0'&&details.deliverPatnerAssigned=='0'&&details.paymentType!='3'&&details.rejected=='0'"
-                  style="color: green;">{{labels[0].readyfordelivery}}</label>
-  
-                <label
-                  *ngIf="details.acceptedBit=='1'&&details.cancelled=='0'&&details.diagnosticCancelled=='0'&&details.approved=='0'&&details.notVisited=='0'&&details.deliverPatnerAssigned=='1'&&details.rejected=='0'&&details.accepted=='0'"
-                  style="color: green;">{{labels[0].assigned}}</label>
-              </td> -->
-
           </tr>
         </thead>
       </table><br>
