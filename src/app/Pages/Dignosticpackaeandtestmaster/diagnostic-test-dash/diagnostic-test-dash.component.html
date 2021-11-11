@@ -47,22 +47,22 @@
       <table>
         <thead>
           <tr>
-            <th>Diagnostic Center</th>
+            <th *ngIf="roleid=='1'">Diagnostic Center</th>
             <!-- <th>{{labels2[0].country}}</th>
             <th>{{labels2[0].province}}</th>
             <th>{{labels2[0].city}}</th> -->
-            <th>DiagnosticCenterName</th>
+           
             <th>Test</th>
             <th>Description</th>
             <th>Test Price</th>
             <th>Action</th>
           </tr>
           <tr *ngFor="let details of servicelist| paginate: { id: 'foo', itemsPerPage: 10, currentPage: p}|filter:term">
-            <td>{{details.diagnosticCenterName}}</td>
+            
             <!-- <td>{{details.country}}</td>
             <td>{{details.city}}</td>
             <td>{{details.areaName}}</td> -->
-            <td>{{details.diagnosticCenterName}}</td>
+            <td *ngIf="roleid=='1'">{{details.diagnosticCenterName}}</td>
             <td>{{details.short}}</td>
             <td>{{details.description}}</td>
             <td>{{details.price}}</td>

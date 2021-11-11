@@ -393,6 +393,11 @@ export class MediTestService {
     return this.http.post(this.url, data)
   }
 
+  public DisablePatient(data: any) {
+    debugger;
+    this.url = this.host + "/Master/DisablePatient";
+    return this.http.post(this.url, data);
+  }
 
 
 

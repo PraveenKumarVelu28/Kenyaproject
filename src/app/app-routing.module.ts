@@ -27,6 +27,7 @@ import { DignosticprofileComponent } from './Pages/DiagnosticCentre/dignosticpro
 import { AssignedappoitmentsComponent } from './Pages/DiagnosticCentre/assignedappoitments/assignedappoitments.component';
 import { VisitedappoitmentsComponent } from './Pages/DiagnosticCentre/visitedappoitments/visitedappoitments.component';
 import { CancelledappoitmentsComponent } from './Pages/DiagnosticCentre/cancelledappoitments/cancelledappoitments.component';
+import { TestOffersComponent } from './Pages/Dignosticpackaeandtestmaster/test-offers/test-offers.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -60,6 +61,7 @@ const routes: Routes = [
   { path: 'Assignedappoitments', component: AssignedappoitmentsComponent },
   { path: 'Visitedappoitments', component: VisitedappoitmentsComponent },
   { path: 'Cancelledappoitments', component: CancelledappoitmentsComponent },
+  { path: 'TestOffers', component: TestOffersComponent },
 
 
 

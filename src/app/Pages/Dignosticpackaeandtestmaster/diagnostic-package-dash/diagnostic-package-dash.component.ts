@@ -30,10 +30,11 @@ export class DiagnosticPackageDashComponent implements OnInit {
   public dummpackagelist: any;
   dummdiagnosticid: any;
   diagnosticname: any;
+  roleid:any;
 
 
   ngOnInit() {
-
+    this.roleid = localStorage.getItem('roleid');
     this.languageid = localStorage.getItem('LanguageID');
     this.diagnosticenterid = localStorage.getItem('diagnosticid')
     this.dummdiagnosticid = localStorage.getItem('diagnosticid')

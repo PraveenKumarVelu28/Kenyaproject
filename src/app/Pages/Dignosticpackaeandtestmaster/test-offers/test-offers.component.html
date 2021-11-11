@@ -1,0 +1,106 @@
+<div class="container-fluid card card:hover headerrspace">
+    <div class="row headerspace">
+        <div class="col-lg-8">
+            <h5>Staff Master</h5>
+        </div>
+    </div>
+  </div>
+  <br>
+  <div class="container-fluid card card-hover">
+    <form #myteam="ngForm">
+        <div class="row">
+            <div class="col-lg-7 form-group">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <input type="checkbox" id="testid" name="testid"
+                            [(ngModel)]="testid" value="true">
+                        <label for="vehicle2" class="vehicle2"> Test</label><br>
+                    </div>
+                    <div class="col-lg-3">
+                        <input type="checkbox" id="packageid" name="packageid"
+                            [(ngModel)]="packageid" value="false">
+                        <label for="vehicle3" class="vehicle2"> Package</label><br>
+                    </div>
+
+                </div>
+              
+            </div>
+            <div class="col-lg-8">
+          
+            <div class="row" style="margin-top:20px;">
+                <div class="col-lg-4">
+                    <label>Test :</label>
+                    <span class="required">*</span>
+                </div>
+                <div class="col-lg-6">
+                    <select class="dropdown form-control" [(ngModel)]="testid" id="testid" name="testid"
+               >
+                <option value="0">Select Tests</option>
+                <option  (click)="getpackages()"  *ngFor="let Sites of dummlist" value="{{Sites.id}}">{{Sites.short}}</option>
+            </select></div>
+            </div>
+            <div class="row" style="margin-top:20px;">
+                <div class="col-lg-4">
+                    <label>Packages :</label>
+                    <span class="required">*</span>
+                </div>
+                <div class="col-lg-6">
+                    <select class="dropdown form-control" [(ngModel)]="packageid" id="packageid" name="packageid"
+                >
+                <option value="0">Select Package</option>
+                <option *ngFor="let Sites of dummpackagelist" value="{{Sites.id}}">{{Sites.packageName}}</option>
+            </select></div>
+            </div>
+            <br>
+
+                
+                <br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label>StartDate :</label>
+                        <span class="required">*</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="Date"  required class="form-control" [(ngModel)]="StartDate" name="StartDate" placeholder="StartDate" >
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label>EndDate :</label>
+                        <span class="required">*</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="date" placeholder="EndDate" required class="form-control" [(ngModel)]="EndDate" name="EndDate">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label>Percentage :</label>
+                        <span class="required">*</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <textarea class="form-control" required placeholder="Percentage"  [(ngModel)]="Percentage" name="Percentage"></textarea>
+                    </div>
+                </div>
+                <br>
+              
+              
+                <div class="row">
+                    <div class="col-lg-5">
+                    </div>
+                    <!-- <div class="col-lg-2">
+                        <button type="submit" text_align="center" class="btn btn-block btn-md allbtns btncolor" *ngIf="showbit=='0'" (click)="InsertDetailes()" [disabled]="myteam.form.invalid">{{labels[0].save}}</button>
+                        <button type="submit" text_align="center" class="btn btn-block btn-md allbtns btncolor" *ngIf="showbit=='1'" (click)="UpdateDetailes()" [disabled]="myteam.form.invalid">{{labels[0].save}}</button>
+                    </div> -->
+                    <div class="col-lg-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </form>
+  </div>
+  <br>
+  <br>

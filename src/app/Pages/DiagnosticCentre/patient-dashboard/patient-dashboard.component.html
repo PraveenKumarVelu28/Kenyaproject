@@ -12,6 +12,7 @@
 
   </div>
 </div><br>
+
 <div class="container-fluid card card:hover">
 
   <div class="row">
@@ -19,22 +20,33 @@
       <table>
         <thead>
           <tr>
+            <th>Registered Date</th>
             <th>Patient Name</th>
             <th>Patient Phone</th>
             <th>Patient Email</th>
             <th>Patient Address</th>
+            <th>Last Activity Date</th>
             <th>Actions</th>
           </tr>
           <tr *ngFor="let details of registeredpatients">
+            <td>{{details.modifiedDate | date}}</td>
             <td>{{details.patientName}}</td>
             <td>{{details.mobileNumber}}</td>
             <td>{{details.emailID}}</td>
             <td>{{details.address}}</td>
+            <td>{{details.modifiedDate | date}}</td>
             <td>
-              <ng-template>enable</ng-template>
+             
               <a>
-                <img src="assets/Images/dactive.png" style="width: 46px;margin-left: 10px;">
+                <img src="assets/Images/active.png" style="width: 46px;margin-left: 10px;"
+                  *ngIf="details.enable_Disable==0" (click)="DisablePatient(details.id)">
               </a>&nbsp;
+
+              
+              <a>
+                <img src="assets/Images/dactive.png" style="width: 48px;margin-left: 2px;" *ngIf="details.enable_Disable==1" (click)="DisablePatient(details.id)">
+              </a>&nbsp;
+              
 
               <!-- <ng-template>disable</ng-template>
               <a style="color:black">

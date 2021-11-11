@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MediTestService } from '../../../medi-test.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-patient-dashboard',
   templateUrl: './patient-dashboard.component.html',
@@ -27,5 +28,24 @@ export class PatientDashboardComponent implements OnInit {
     )
 
   }
+
+  public DisablePatient(id: any) {
+    var eb = {
+      'ID': id,
+      'Enable_Disable': 1
+    }
+    this.MediTestService.DisablePatient(eb).subscribe(
+
+      data => {
+        debugger
+        Swal.fire('Updated successfully.');
+        location.reload();
+      },
+    )
+
+  }
+
+
+
 
 }
