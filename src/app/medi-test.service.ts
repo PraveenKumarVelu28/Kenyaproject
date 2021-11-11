@@ -317,6 +317,7 @@ export class MediTestService {
   }
 
 
+
   public GetDiagnosticCenterPackages(lid: any) {
 
     return this.http.get<any[]>(this.host + '/Master/GetDiagnosticCenterPackages?LanguageID=' + lid);
@@ -406,6 +407,14 @@ export class MediTestService {
     return this.http.post(this.url, data);
   }
 
+  public InsertTestOffers(data: any) {
+    this.url = this.host + '/Master/InsertTestOffers';
+    return this.http.post(this.url, data)
+  }
+  public Gettestoffers() {
+
+    return this.http.get<any[]>(this.host + '/Master/Gettestoffers');
+  }
 
 
 }
