@@ -51,7 +51,7 @@
             <!-- <th>{{labels2[0].country}}</th>
             <th>{{labels2[0].province}}</th>
             <th>{{labels2[0].city}}</th> -->
-            <th>Diagnostic Centre</th>
+            <th *ngIf="roleid=='1'">Diagnostic Centre</th>
             <th>Package Name </th>
             <th>Test</th>
             <th>Price</th>
@@ -59,7 +59,7 @@
            
           </tr>
           <tr *ngFor="let details of packagelist| paginate: { id: 'foo', itemsPerPage: 10, currentPage: p}|filter:term">
-          <td>{{details.diagnosticCenterName}}</td>
+          <td *ngIf="roleid=='1'">{{details.diagnosticCenterName}}</td>
             <!-- <td>{{details.country}}</td>
             <td>{{details.city}}</td>
             <td>{{details.areaName}}</td> -->

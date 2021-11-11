@@ -26,10 +26,11 @@ export class DiagnosticTestDashComponent implements OnInit {
   public count: any;
   public labels2: any;
   diagnosticenterid: any;
+  roleid:any;
   ngOnInit() {
     this.languageid = localStorage.getItem('LanguageID');
     this.diagnosticenterid = localStorage.getItem('diagnosticid')
-
+    this.roleid = localStorage.getItem('roleid');
     this.docservice.GetAdmin_Masters_labels(this.languageid).subscribe(
       data => {
 

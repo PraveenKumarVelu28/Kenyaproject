@@ -47,6 +47,7 @@ import { AssignedappoitmentsComponent } from './Pages/DiagnosticCentre/assigneda
 import { VisitedappoitmentsComponent } from './Pages/DiagnosticCentre/visitedappoitments/visitedappoitments.component';
 import { CancelledappoitmentsComponent } from './Pages/DiagnosticCentre/cancelledappoitments/cancelledappoitments.component';
 import { RevenueComponent } from './Pages/DiagnosticCentre/revenue/revenue.component';
+import { TestOffersComponent } from './Pages/Dignosticpackaeandtestmaster/test-offers/test-offers.component';
 
 
 
@@ -99,7 +100,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     AssignedappoitmentsComponent,
     VisitedappoitmentsComponent,
     CancelledappoitmentsComponent,
-    RevenueComponent
+    RevenueComponent,
+    TestOffersComponent
   ],
   imports: [
     BrowserModule,

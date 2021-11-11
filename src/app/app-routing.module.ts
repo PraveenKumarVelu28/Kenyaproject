@@ -27,7 +27,12 @@ import { DignosticprofileComponent } from './Pages/DiagnosticCentre/dignosticpro
 import { AssignedappoitmentsComponent } from './Pages/DiagnosticCentre/assignedappoitments/assignedappoitments.component';
 import { VisitedappoitmentsComponent } from './Pages/DiagnosticCentre/visitedappoitments/visitedappoitments.component';
 import { CancelledappoitmentsComponent } from './Pages/DiagnosticCentre/cancelledappoitments/cancelledappoitments.component';
+<<<<<<< HEAD
 import { RevenueComponent } from './Pages/DiagnosticCentre/revenue/revenue.component';
+import { TestOffersComponent } from './Pages/Dignosticpackaeandtestmaster/test-offers/test-offers.component';
+=======
+import { TestOffersComponent } from './Pages/Dignosticpackaeandtestmaster/test-offers/test-offers.component';
+>>>>>>> 796bbafe5d5f05f3f508fbe0a05e66eefa344761
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -62,6 +67,8 @@ const routes: Routes = [
   { path: 'Visitedappoitments', component: VisitedappoitmentsComponent },
   { path: 'Cancelledappoitments', component: CancelledappoitmentsComponent },
   { path: 'Revenue', component: RevenueComponent },
+  { path: 'TestOffers', component: TestOffersComponent },
+
 
 
 
