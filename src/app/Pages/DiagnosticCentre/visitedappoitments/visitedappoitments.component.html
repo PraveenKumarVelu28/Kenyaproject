@@ -45,7 +45,6 @@
             <th>Email</th>
             <th>Address</th>
             <th>Assigned To</th>
-            <th>Status</th>
             <th>Action</th>
           </tr>
           <tr *ngFor="let details of diagnosticlist">
@@ -73,28 +72,9 @@
               <label *ngIf="details.name!=null">{{details.name}}</label>
             </td>
             <td>
-              <label *ngIf="details.deliverPatnerAssigned!='1' && details.acceptedBit==null">Not Yet Assigned</label>
-              <label *ngIf="details.deliverPatnerAssigned=='1' && details.acceptedBit=='1'">Assigned To
-                Phlebotomist</label>
-              <label *ngIf="details.acceptedBit=='1' && details.deliverPatnerAssigned==null">Accepted</label>
-              <label *ngIf="details.diagnosticCancelled=='1' && details.diagnosticCancelled==null">Rejected</label>
-            </td>
-            <td>
-              <button
-                *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null"
-                class="addbtns" (click)="AcceptOrder(details.id)" type="button">Accept </button><br /> <br />
-              <button
-                *ngIf="details.deliverPatnerAssigned==null && details.diagnosticCancelled==null && details.acceptedBit==null"
-                class="addbtns" (click)="RejecttOrder(details.id)" type="button"> Reject </button>
-              <button *ngIf="details.deliverPatnerAssigned!='1' &&details.acceptedBit==1 " class="addbtns"
-                data-toggle="modal" data-target="#Order" (click)="getdiagnosticAppointmentsbyid(details.id)"
-                type="button">Assign</button>
-              <button *ngIf="details.deliverPatnerAssigned=='1'" class="addbtns" data-toggle="modal"
-                (click)="getdiagnosticAppointmentsbyid(details.id)" style="margin-left: 6px;margin-top:7px"
-                type="button">&#10003; Assigned </button>
-              <br /><br />
-              <button *ngIf="details.deliverPatnerAssigned=='1'" class="addbtns" data-toggle="modal"
-                style="margin-left: 6px;margin-top:-4px" type="button"><a href="{{details.fileURL}}">Report</a></button>
+              <a href="{{details.diagReportURL}}" target="_blank"> <button *ngIf="details.diagReportURL!=null"
+                  class="addbtns" data-toggle="modal" style="margin-left: 6px;margin-top:-4px"
+                  type="button">Report</button></a>
             </td>
           </tr>
         </thead>

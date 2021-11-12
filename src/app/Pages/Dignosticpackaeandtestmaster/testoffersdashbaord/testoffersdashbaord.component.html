@@ -6,8 +6,8 @@
 
         </div>
         <div class="col-lg-3" style="text-align: end;">
-            <button type="button" routerLink="/TestOffers" class="btn btncolor">Add 
-            </button> 
+            <button type="button" routerLink="/TestOffers" class="btn btncolor">Add
+            </button>
         </div>
     </div>
 </div>
@@ -41,7 +41,7 @@
                         <th id="imp">Discount (%)</th>
                         <!-- <th id="imp">Amount</th> -->
                     </tr>
-                    <tr *ngFor="let details of packagelist">
+                    <tr *ngFor="let details of packagelist | filter:term">
                         <td>{{details.testname}}</td>
                         <td>-</td>
                         <td>{{details.startDate|date}}</td>

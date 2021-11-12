@@ -415,6 +415,12 @@ export class MediTestService {
 
     return this.http.get<any[]>(this.host + '/Master/Gettestoffers');
   }
+  public GetPatient_WalletLog() {
+
+    return this.http.get<any[]>(this.host + '/Master/GetPatient_WalletLog');
+  }
+
+
 
 
 }
