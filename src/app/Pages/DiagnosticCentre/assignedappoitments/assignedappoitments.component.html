@@ -73,15 +73,16 @@
               <label *ngIf="details.name!=null">{{details.name}}</label>
             </td>
             <td>
-              <label *ngIf="details.deliverPatnerAssigned!='1' && details.acceptedBit==null">Not Yet Assigned</label>
-              <label
-                *ngIf="details.deliverPatnerAssigned=='1' && details.acceptedBit=='1' && details.phledAccepted==null">Assigned
+              <label *ngIf="details.deliverPatnerAssigned=='1' && details.phledAccepted==0">Assigned
                 To
                 Phlebotomist</label>
-              <label *ngIf="details.phledAccepted=='1' && details.deliverPatnerAssigned=='1' && details.phledCompleted==null">Phlebotomist
+              <label
+                *ngIf="details.phledAccepted==1 && details.deliverPatnerAssigned=='1' && details.phledCompleted==0 && details.phledSamplesCollected==0">Phlebotomist
                 Accepted</label>
-              <label *ngIf="details.phledCompleted=='1' && details.deliverPatnerAssigned=='1'">Phlebotomist
-                Completed</label>
+              <label *ngIf="details.deliverPatnerAssigned=='1' && details.phledSamplesCollected==1 && details.phledCompleted==0">Sample
+                Collected</label>
+              <label *ngIf="details.phledCompleted==1 && details.deliverPatnerAssigned=='1'">Sample
+                Delivered</label>
             </td>
             <td>
               <button class="addbtns" data-toggle="modal" data-target="#Order"

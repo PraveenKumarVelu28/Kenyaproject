@@ -214,4 +214,33 @@ export class OrdersComponent implements OnInit {
       this.ngOnInit();
     })
   }
+  photos: any;
+  photo1: any;
+  public getPrescriptionPhotos(id: any) {
+    debugger
+
+    this.MediTestService.GetDiagnosticAppointmentPhotos().subscribe(data => {
+      this.photos = data.filter(x => x.diagAppID == id)
+      this.photo1 = this.photos[0].attachment;
+    })
+
+  }
+
+  public UpdatePrice(id: any) {
+    this.orderid = id;
+  }
+  price: any;
+  public UpdateNewPrice() {
+    debugger
+    var entity = {
+      'ID': this.orderid,
+      'Amount': this.price
+    }
+    this.MediTestService.UpdateNewPrice(entity).subscribe(res => {
+      let test = res;
+      this.Comments = '';
+      swal.fire('Updated Successfully')
+      this.ngOnInit();
+    })
+  }
 }

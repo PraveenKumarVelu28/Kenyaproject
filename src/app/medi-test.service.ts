@@ -398,8 +398,10 @@ export class MediTestService {
     this.url = this.host + '/Master/UploadReport';
     return this.http.post(this.url, data)
   }
-
-
+  public UpdateNewPrice(data: any) {
+    this.url = this.host + '/Master/UpdateNewPrice';
+    return this.http.post(this.url, data)
+  }
 
   public DisablePatient(data: any) {
     debugger;
@@ -419,6 +421,11 @@ export class MediTestService {
 
     return this.http.get<any[]>(this.host + '/Master/GetPatient_WalletLog');
   }
+  public GetDiagnosticAppointmentPhotos() {
+
+    return this.http.get<any[]>(this.host + '/Master/GetDiagnosticAppointmentPhotos');
+  }
+
 
 
 

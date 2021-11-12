@@ -17,7 +17,7 @@ export class RevenueComponent implements OnInit {
   totalamount: any;
   ngOnInit(): void {
     debugger
-
+    this.MonthID = 0;
     this.docservice.GetPatient_WalletLog().subscribe(
       data => {
 
@@ -27,6 +27,34 @@ export class RevenueComponent implements OnInit {
       },
       error => { }
     );
+  }
+
+  MonthID: any;
+  public GetMonthID(event: any) {
+    debugger
+    this.MonthID = event.target.value;
+
+    if (this.MonthID == 0) {
+      this.docservice.GetPatient_WalletLog().subscribe(
+        data => {
+
+          this.packagelist = data;
+          this.totalamount = this.packagelist[0].totalamount
+
+        },
+        error => { }
+      );
+    } else {
+      this.docservice.GetPatient_WalletLog().subscribe(
+        data => {
+
+          this.packagelist = data.filter(x => x.month == this.MonthID);
+          this.totalamount = this.packagelist[0].totalamount
+
+        },
+        error => { }
+      );
+    }
   }
 
 }

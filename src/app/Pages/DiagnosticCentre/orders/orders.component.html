@@ -45,6 +45,7 @@
             <th>Phone No</th>
             <th>Email</th>
             <th>Address</th>
+            <th>Prescription</th>
             <th>Assigned To</th>
             <th>Status</th>
             <th>Action</th>
@@ -62,6 +63,15 @@
             <td>{{details.mobileNumber}}</td>
             <td>{{details.emailID}}</td>
             <td>{{details.address}}</td>
+            <td>
+              <button *ngIf="details.fileURL==null && details.appointmentType==2" class="addbtns" data-toggle="modal"
+                data-target="#Prescriptionaccept" (click)="getPrescriptionPhotos(details.id)"
+                type="button">Prescription</button>
+              <a *ngIf="details.fileURL!=null && details.appointmentType==2" href="{{details.fileURL}}" target="_blank">
+                <button *ngIf="details.diagReportURL!=null" class="addbtns" data-toggle="modal"
+                  style="margin-left: 6px;margin-top:-4px" type="button">Report</button></a>
+              <p *ngIf="details.appointmentType==1">NA</p>
+            </td>
             <!-- <td>
               <label *ngIf="details.homeSampleBit=='1'&&details.diagnosticSlotID!='0'">{{labels[0].yes}}</label>
                 <label *ngIf="details.homeSampleBit=='0'&&details.diagnosticSlotID!='0'">{{labels[0].no}}</label>
@@ -82,16 +92,20 @@
             </td>
             <td>
               <button
-                *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null"
+                *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null && details.appointmentType==1"
                 class="addbtns" (click)="AcceptOrder(details.id)" type="button">Accept </button><br /> <br />
+              <button
+                *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null && details.appointmentType==2"
+                class="addbtns" (click)="UpdatePrice(details.id)" data-toggle="modal" data-target="#UpdateNewPrice"
+                type="button">Update Price </button><br /> <br />
               <button
                 *ngIf="details.deliverPatnerAssigned==null && details.diagnosticCancelled==null && details.acceptedBit==null"
                 class="addbtns" (click)="RejecttOrder(details.id)" type="button"> Reject </button>
               <button *ngIf="details.deliverPatnerAssigned!='1' &&details.acceptedBit==1  &&details.homeSampleBit==0"
                 class="addbtns" data-toggle="modal" data-target="#Order"
                 (click)="getdiagnosticAppointmentsbyid(details.id)" type="button">Assign</button>
-              <button *ngIf="details.acceptedBit==1 &&details.homeSampleBit==1" class="addbtns" data-toggle="modal" data-target="#Upload"
-                (click)="getdiagnosticAppointmentsbyid(details.id)" type="button">Visited</button>
+              <button *ngIf="details.acceptedBit==1 &&details.homeSampleBit==1" class="addbtns" data-toggle="modal"
+                data-target="#Upload" (click)="getdiagnosticAppointmentsbyid(details.id)" type="button">Visited</button>
               <br /><br />
             </td>
           </tr>
@@ -156,6 +170,59 @@
     </div>
   </div>
 
+  <div id="UpdateNewPrice" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Price</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+              <label style="font-size: 16px;"> Price</label>
+            </div>
+            <div class="col-lg-6">
+              <input type="number" id="price" name="price" [(ngModel)]="price" class="form-control"
+                placeholder="Enter Price">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+              <label style="font-size: 16px;">Comments</label>
+            </div>
+            <div class="col-lg-6">
+              <textarea rows="3" [(ngModel)]="Comments" id="Comments" name="Comments" class="form-control"
+                placeholder="Comments"></textarea>
+            </div>
+          </div>
+
+          <br>
+          <div class="row">
+            <div class="col-lg-5"></div>
+            <div class="col-lg-3">
+              <button type="button" class="btn btn-danger" data-dismiss="modal"
+                (click)="UpdateNewPrice()">Update</button>
+            </div>
+            <div class="col-lg-3"></div>
+
+          </div>
+          <br>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" data-dismiss="modal" class="btn btn-secondary" data-dixsiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
   <div id="Upload" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -203,6 +270,30 @@
           </div>
           <br>
 
+        </div>
+        <div class="modal-footer">
+          <button type="button" data-dismiss="modal" class="btn btn-secondary" data-dixsiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="Prescriptionaccept" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Prescription</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-6">
+              <img src="{{photo1}}" style="width: 200px;">
+            </div>
+            <div class="col-lg-4"></div>
+          </div>
+          <br>
         </div>
         <div class="modal-footer">
           <button type="button" data-dismiss="modal" class="btn btn-secondary" data-dixsiss="modal">Close</button>
