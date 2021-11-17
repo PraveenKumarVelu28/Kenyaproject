@@ -317,6 +317,7 @@ export class MediTestService {
   }
 
 
+
   public GetDiagnosticCenterPackages(lid: any) {
 
     return this.http.get<any[]>(this.host + '/Master/GetDiagnosticCenterPackages?LanguageID=' + lid);
@@ -395,11 +396,39 @@ export class MediTestService {
     return this.http.post(this.url, data)
   }
 
+  public UploadReport(data: any) {
+    this.url = this.host + '/Master/UploadReport';
+    return this.http.post(this.url, data)
+  }
+  public UpdateNewPrice(data: any) {
+    this.url = this.host + '/Master/UpdateNewPrice';
+    return this.http.post(this.url, data)
+  }
+
   public DisablePatient(data: any) {
     debugger;
     this.url = this.host + "/Master/DisablePatient";
     return this.http.post(this.url, data);
   }
+
+  public InsertTestOffers(data: any) {
+    this.url = this.host + '/Master/InsertTestOffers';
+    return this.http.post(this.url, data)
+  }
+  public Gettestoffers() {
+
+    return this.http.get<any[]>(this.host + '/Master/Gettestoffers');
+  }
+  public GetPatient_WalletLog() {
+
+    return this.http.get<any[]>(this.host + '/Master/GetPatient_WalletLog');
+  }
+  public GetDiagnosticAppointmentPhotos() {
+
+    return this.http.get<any[]>(this.host + '/Master/GetDiagnosticAppointmentPhotos');
+  }
+
+
 
 
   public GetCountryMasterByLanguageID(lid: any) {

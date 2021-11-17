@@ -30,7 +30,7 @@
       </div>
     </div><br> -->
   <div class="row">
-    
+
     <div class="col-lg-12" style="overflow-y: auto;height:200vh">
       <br>
       <table>
@@ -45,6 +45,7 @@
             <th>Phone No</th>
             <th>Email</th>
             <th>Address</th>
+            <th>Prescription</th>
             <th>Assigned To</th>
             <th>Status</th>
             <th>Action</th>
@@ -55,13 +56,22 @@
             <td>{{details.slotTime}}</td>
             <td>0000{{details.id}}</td>
             <td>
-              <label *ngIf="details.homeSampleBit!=0">Visiting Center</label>
-              <label *ngIf="details.homeSampleBit==1">Home Sample Collection</label>
+              <label *ngIf="details.homeSampleBit==1">Visiting Center</label>
+              <label *ngIf="details.homeSampleBit==0">Home Sample Collection</label>
             </td>
             <td>{{details.patientName}}</td>
             <td>{{details.mobileNumber}}</td>
             <td>{{details.emailID}}</td>
             <td>{{details.address}}</td>
+            <td>
+              <button *ngIf="details.fileURL==null && details.appointmentType==2" class="addbtns" data-toggle="modal"
+                data-target="#Prescriptionaccept" (click)="getPrescriptionPhotos(details.id)"
+                type="button">Prescription</button>
+              <a *ngIf="details.fileURL!=null && details.appointmentType==2" href="{{details.fileURL}}" target="_blank">
+                <button *ngIf="details.diagReportURL!=null" class="addbtns" data-toggle="modal"
+                  style="margin-left: 6px;margin-top:-4px" type="button">Report</button></a>
+              <p *ngIf="details.appointmentType==1">NA</p>
+            </td>
             <!-- <td>
               <label *ngIf="details.homeSampleBit=='1'&&details.diagnosticSlotID!='0'">{{labels[0].yes}}</label>
                 <label *ngIf="details.homeSampleBit=='0'&&details.diagnosticSlotID!='0'">{{labels[0].no}}</label>
@@ -75,27 +85,28 @@
             </td>
             <td>
               <label *ngIf="details.deliverPatnerAssigned!='1' && details.acceptedBit==null">Not Yet Assigned</label>
-              <label *ngIf="details.deliverPatnerAssigned=='1' && details.acceptedBit=='1'">Assigned To Phlebotomist</label>
+              <label *ngIf="details.deliverPatnerAssigned=='1' && details.acceptedBit=='1'">Assigned To
+                Phlebotomist</label>
               <label *ngIf="details.acceptedBit=='1' && details.deliverPatnerAssigned==null">Accepted</label>
               <label *ngIf="details.diagnosticCancelled=='1' && details.diagnosticCancelled==null">Rejected</label>
             </td>
             <td>
               <button
-                *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null"
+                *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null && details.appointmentType==1"
                 class="addbtns" (click)="AcceptOrder(details.id)" type="button">Accept </button><br /> <br />
+              <button
+                *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null && details.appointmentType==2"
+                class="addbtns" (click)="UpdatePrice(details.id)" data-toggle="modal" data-target="#UpdateNewPrice"
+                type="button">Update Price </button><br /> <br />
               <button
                 *ngIf="details.deliverPatnerAssigned==null && details.diagnosticCancelled==null && details.acceptedBit==null"
                 class="addbtns" (click)="RejecttOrder(details.id)" type="button"> Reject </button>
-              <button *ngIf="details.deliverPatnerAssigned!='1' &&details.acceptedBit==1 " class="addbtns"
-                data-toggle="modal" data-target="#Order" (click)="getdiagnosticAppointmentsbyid(details.id)"
-                type="button">Assign</button>
-              <button *ngIf="details.deliverPatnerAssigned=='1'" class="addbtns" data-toggle="modal"
-                (click)="getdiagnosticAppointmentsbyid(details.id)" style="margin-left: 6px;margin-top:7px"
-                type="button">&#10003; Assigned </button>
+              <button *ngIf="details.deliverPatnerAssigned!='1' &&details.acceptedBit==1  &&details.homeSampleBit==0"
+                class="addbtns" data-toggle="modal" data-target="#Order"
+                (click)="getdiagnosticAppointmentsbyid(details.id)" type="button">Assign</button>
+              <button *ngIf="details.acceptedBit==1 &&details.homeSampleBit==1" class="addbtns" data-toggle="modal"
+                data-target="#Upload" (click)="getdiagnosticAppointmentsbyid(details.id)" type="button">Visited</button>
               <br /><br />
-              <button *ngIf="details.deliverPatnerAssigned=='1'" class="addbtns" data-toggle="modal"
-                style="margin-left: 6px;margin-top:-4px" type="button"><a
-                  href="http://www.africau.edu/images/default/sample.pdf">Report</a></button>
             </td>
           </tr>
         </thead>
@@ -112,18 +123,18 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Assign phemonatinist</h5>
+          <h5 class="modal-title">Assign Phlebotomist</h5>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
           <div class="row">
             <div class="col-lg-1"></div>
             <div class="col-lg-3">
-              <label style="font-size: 16px;"> phemonatinist</label>
+              <label style="font-size: 16px;"> Phlebotomist</label>
             </div>
             <div class="col-lg-6">
               <select class="form-control" id="staffid" name="staffid" [(ngModel)]="staffid" required>
-                <option value="0">Select phemonatinist</option>
+                <option value="0">Select Phlebotomist</option>
                 <option *ngFor="let Sites of myteamlist" value="{{Sites.id}}">{{Sites.name}}</option>
               </select>
             </div>
@@ -151,6 +162,138 @@
           </div>
           <br>
 
+        </div>
+        <div class="modal-footer">
+          <button type="button" data-dismiss="modal" class="btn btn-secondary" data-dixsiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="UpdateNewPrice" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Price</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+              <label style="font-size: 16px;"> Price</label>
+            </div>
+            <div class="col-lg-6">
+              <input type="number" id="price" name="price" [(ngModel)]="price" class="form-control"
+                placeholder="Enter Price">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+              <label style="font-size: 16px;">Comments</label>
+            </div>
+            <div class="col-lg-6">
+              <textarea rows="3" [(ngModel)]="Comments" id="Comments" name="Comments" class="form-control"
+                placeholder="Comments"></textarea>
+            </div>
+          </div>
+
+          <br>
+          <div class="row">
+            <div class="col-lg-5"></div>
+            <div class="col-lg-3">
+              <button type="button" class="btn btn-danger" data-dismiss="modal"
+                (click)="UpdateNewPrice()">Update</button>
+            </div>
+            <div class="col-lg-3"></div>
+
+          </div>
+          <br>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" data-dismiss="modal" class="btn btn-secondary" data-dixsiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div id="Upload" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Upload Report</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+              <label style="font-size: 16px;"> phemonatinist</label>
+            </div>
+            <div class="col-lg-6">
+              <ngx-dropzone [multiple]="false" (change)="onattachmentUpload($event)" class="dropzone_vendorinvoice">
+                <ngx-dropzone-label>Upload Attachment</ngx-dropzone-label>
+              </ngx-dropzone>
+              <div>
+                <span>
+                  <!-- <img src="{{photo}}" style="height:70px;width:50px">&nbsp; -->
+                </span>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+              <label style="font-size: 16px;">Comments</label>
+            </div>
+            <div class="col-lg-6">
+              <textarea rows="3" [(ngModel)]="Comments" id="Comments" name="Comments" class="form-control"
+                placeholder="Comments"></textarea>
+            </div>
+          </div>
+
+          <br>
+          <div class="row">
+            <div class="col-lg-5"></div>
+            <div class="col-lg-3">
+              <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="UploadReport()">Upload</button>
+            </div>
+            <div class="col-lg-3"></div>
+
+          </div>
+          <br>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" data-dismiss="modal" class="btn btn-secondary" data-dixsiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="Prescriptionaccept" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Prescription</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-6">
+              <img src="{{photo1}}" style="width: 200px;">
+            </div>
+            <div class="col-lg-4"></div>
+          </div>
+          <br>
         </div>
         <div class="modal-footer">
           <button type="button" data-dismiss="modal" class="btn btn-secondary" data-dixsiss="modal">Close</button>

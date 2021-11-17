@@ -4,27 +4,43 @@
             <h5>Staff Master</h5>
         </div>
     </div>
-  </div>
-  <br>
-  <div class="container-fluid card card-hover">
+</div>
+<br>
+<div class="container-fluid card card-hover">
     <form #myteam="ngForm">
         <div class="row">
             <div class="col-lg-8">
 
-              
-            <div class="row" style="margin-top:20px;">
-                <div class="col-lg-4">
-                    <label>Diagnostic Centre :</label>
-                    <span class="required">*</span>
+
+                <div *ngIf="Diagnosticid==undefined" class="row" style="margin-top:20px;">
+                    <div class="col-lg-4">
+                        <label>Diagnostic Centre :</label>
+                        <span class="required">*</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <select class="dropdown form-control" [(ngModel)]="Diagnosticid" id="Diagnosticid"
+                            name="Diagnosticid" (change)="getdiagnosticforadmin()">
+                            <option value="0">Select Diagnostic Name</option>
+                            <option *ngFor="let Sites of diagnosticlist" value="{{Sites.id}}">
+                                {{Sites.diagnosticCenterName}}</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-lg-6">
-                    <select class="dropdown form-control" [(ngModel)]="Diagnosticid" id="Diagnosticid" name="Diagnosticid"
-                (change)="getdiagnosticforadmin()">
-                <option value="0">Select Diagnostic Name</option>
-                <option *ngFor="let Sites of diagnosticlist" value="{{Sites.id}}">{{Sites.diagnosticCenterName}}</option>
-            </select></div>
-            </div>
-            <br>
+                <div *ngIf="Diagnosticid!=undefined" class="row" style="margin-top:20px;">
+                    <div class="col-lg-4">
+                        <label>Diagnostic Centre :</label>
+                        <span class="required">*</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <select class="dropdown form-control" [(ngModel)]="Diagnosticid" id="Diagnosticid"
+                            name="Diagnosticid" (change)="getdiagnosticforadmin()">
+                            <option value="0">Select Diagnostic Name</option>
+                            <option *ngFor="let Sites of diagnosticlist" value="{{Sites.id}}">
+                                {{Sites.diagnosticCenterName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
 
                 <div class="row" style="margin-top:20px;">
                     <div class="col-lg-4">
@@ -32,7 +48,9 @@
                         <span class="required">*</span>
                     </div>
                     <div class="col-lg-6">
-                        <input type="text" placeholder="{{labels[0].name}}" required class="form-control" [(ngModel)]="name" name="name"></div>
+                        <input type="text" placeholder="{{labels[0].name}}" required class="form-control"
+                            [(ngModel)]="name" name="name">
+                    </div>
                 </div>
                 <br>
                 <div class="row">
@@ -41,7 +59,9 @@
                         <span class="required">*</span>
                     </div>
                     <div class="col-lg-6">
-                        <input type="text" maxlength="10" required class="form-control" [(ngModel)]="phoneno" name="phoneno" placeholder="{{labels[0].phoneNo}}" onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+                        <input type="text" maxlength="10" required class="form-control" [(ngModel)]="phoneno"
+                            name="phoneno" placeholder="{{labels[0].phoneNo}}"
+                            onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
                     </div>
                 </div>
                 <br>
@@ -51,7 +71,8 @@
                         <span class="required">*</span>
                     </div>
                     <div class="col-lg-6">
-                        <input type="email" placeholder="{{labels[0].email}}" required class="form-control" [(ngModel)]="email" name="email">
+                        <input type="email" placeholder="{{labels[0].email}}" required class="form-control"
+                            [(ngModel)]="email" name="email">
                     </div>
                 </div>
                 <br>
@@ -61,7 +82,8 @@
                         <span class="required">*</span>
                     </div>
                     <div class="col-lg-6">
-                        <textarea class="form-control" required placeholder="{{labels[0].address}}" rows="4" cols="30" [(ngModel)]="address" name="address"></textarea>
+                        <textarea class="form-control" required placeholder="{{labels[0].address}}" rows="4" cols="30"
+                            [(ngModel)]="address" name="address"></textarea>
                     </div>
                 </div>
                 <br>
@@ -71,7 +93,8 @@
                         <span class="required">*</span>
                     </div>
                     <div class="col-lg-6">
-                        <input type="text" required placeholder="{{labels[0].userName}}" class="form-control" [(ngModel)]="username" name="username">
+                        <input type="text" required placeholder="{{labels[0].userName}}" class="form-control"
+                            [(ngModel)]="username" name="username">
                     </div>
                 </div>
                 <br>
@@ -81,7 +104,8 @@
                         <span class="required">*</span>
                     </div>
                     <div class="col-lg-6">
-                        <input type="text" required class="form-control" placeholder="{{labels[0].password}}" [(ngModel)]="password" name="password">
+                        <input type="text" required class="form-control" placeholder="{{labels[0].password}}"
+                            [(ngModel)]="password" name="password">
                     </div>
                 </div>
                 <br>
@@ -89,8 +113,12 @@
                     <div class="col-lg-5">
                     </div>
                     <div class="col-lg-2">
-                        <button type="submit" text_align="center" class="btn btn-block btn-md allbtns btncolor" *ngIf="showbit=='0'" (click)="InsertDetailes()" [disabled]="myteam.form.invalid">{{labels[0].save}}</button>
-                        <button type="submit" text_align="center" class="btn btn-block btn-md allbtns btncolor" *ngIf="showbit=='1'" (click)="UpdateDetailes()" [disabled]="myteam.form.invalid">{{labels[0].save}}</button>
+                        <button type="submit" text_align="center" class="btn btn-block btn-md allbtns btncolor"
+                            *ngIf="showbit=='0'" (click)="InsertDetailes()"
+                            [disabled]="myteam.form.invalid">{{labels[0].save}}</button>
+                        <button type="submit" text_align="center" class="btn btn-block btn-md allbtns btncolor"
+                            *ngIf="showbit=='1'" (click)="UpdateDetailes()"
+                            [disabled]="myteam.form.invalid">{{labels[0].save}}</button>
                     </div>
                     <div class="col-lg-3">
                     </div>
@@ -99,6 +127,6 @@
         </div>
         <br>
     </form>
-  </div>
-  <br>
-  <br>
+</div>
+<br>
+<br>

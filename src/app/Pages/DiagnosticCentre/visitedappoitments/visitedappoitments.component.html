@@ -1,20 +1,20 @@
 <div class="container-fluid card card:hover headerrspace">
-    <div class="row headerspace" style="margin-top: 10px;">
-      <div class="col-lg-3">
-        <h5>Visited Appointments</h5>
-      </div>
-      <div class="col-lg-7">
-      </div>
-  
-      <div class="col-lg-2">
-        <!-- <button type="button" routerLink="/NewAppointment" style="float: right;background-color:  #fa0300;color: white;"
-            *ngIf="recpid!=undefined" class="btn btncolor">{{labels[0].newAppointment}}</button> -->
-      </div>
-  
+  <div class="row headerspace" style="margin-top: 10px;">
+    <div class="col-lg-3">
+      <h5>Visited Appointments</h5>
     </div>
-  </div><br>
-  <div class="container-fluid card card:hover">
-    <!-- <div class="row" style="margin-top: 20px;">
+    <div class="col-lg-7">
+    </div>
+
+    <div class="col-lg-2">
+      <!-- <button type="button" routerLink="/NewAppointment" style="float: right;background-color:  #fa0300;color: white;"
+            *ngIf="recpid!=undefined" class="btn btncolor">{{labels[0].newAppointment}}</button> -->
+    </div>
+
+  </div>
+</div><br>
+<div class="container-fluid card card:hover">
+  <!-- <div class="row" style="margin-top: 20px;">
         <div class="col-lg-3">
          
           <input *ngIf="languageid==1" type="text" placeholder="Select Date" [bsConfig]="{ showWeekNumbers:false }"
@@ -29,131 +29,111 @@
           <input type="text" class="form-control" placeholder="{{labels[0].search}}" [(ngModel)]="term">
         </div>
       </div><br> -->
-    <div class="row">
-      <div class="col-lg-12" style="overflow-y: auto;height:200vh">
-        <br>
-        <table>
-          <thead>
-            <tr>
-              <th id="imp">Appointment Date</th>
-              <!-- <th id="imp">{{labels[0].diaAppointmentType}}</th> -->
-              <th id="imp">Appointment Time</th>
-              <th id="imp">Appointment ID</th>
-              <th>Appointment Type</th>
-              <th>Patient Name</th>
-              <th>Phone No</th>
-              <th>Email</th>
-              <th>Address</th>
-              <th>Assigned To</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-            <tr *ngFor="let details of diagnosticlist">
-              <td>{{details.date| date }}</td>
-              <!-- <td>{{details.appointmentTypeText}}</td> -->
-              <td>{{details.slotTime}}</td>
-              <td>0000{{details.id}}</td>
-              <td>
-                <label *ngIf="details.homeSampleBit!=0">Visiting Center</label>
-                <label *ngIf="details.homeSampleBit==1">Home Sample Collection</label>
-              </td>
-              <td>{{details.patientName}}</td>
-              <td>{{details.mobileNumber}}</td>
-              <td>{{details.emailID}}</td>
-              <td>{{details.address}}</td>
-              <!-- <td>
+  <div class="row">
+    <div class="col-lg-12" style="overflow-y: auto;height:200vh">
+      <br>
+      <table>
+        <thead>
+          <tr>
+            <th id="imp">Appointment Date</th>
+            <!-- <th id="imp">{{labels[0].diaAppointmentType}}</th> -->
+            <th id="imp">Appointment Time</th>
+            <th id="imp">Appointment ID</th>
+            <th>Appointment Type</th>
+            <th>Patient Name</th>
+            <th>Phone No</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Assigned To</th>
+            <th>Action</th>
+          </tr>
+          <tr *ngFor="let details of diagnosticlist">
+            <td>{{details.date| date }}</td>
+            <!-- <td>{{details.appointmentTypeText}}</td> -->
+            <td>{{details.slotTime}}</td>
+            <td>0000{{details.id}}</td>
+            <td>
+              <label *ngIf="details.homeSampleBit==1">Visiting Center</label>
+              <label *ngIf="details.homeSampleBit==0">Home Sample Collection</label>
+            </td>
+            <td>{{details.patientName}}</td>
+            <td>{{details.mobileNumber}}</td>
+            <td>{{details.emailID}}</td>
+            <td>{{details.address}}</td>
+            <!-- <td>
                 <label *ngIf="details.homeSampleBit=='1'&&details.diagnosticSlotID!='0'">{{labels[0].yes}}</label>
                   <label *ngIf="details.homeSampleBit=='0'&&details.diagnosticSlotID!='0'">{{labels[0].no}}</label>
                   <label *ngIf="details.homeSampleBit=='1'&&details.appointmentType=='2'">{{labels[0].yes}}</label>
                   <label *ngIf="details.homeSampleBit=='0'&&details.appointmentType=='2'">{{labels[0].no}}</label>
               </td> -->
-  
-  
-              <td><label *ngIf="details.name==null">Not Yet Assigned</label>
-                <label *ngIf="details.name!=null">{{details.name}}</label>
-              </td>
-              <td>
-                <label *ngIf="details.deliverPatnerAssigned!='1' && details.acceptedBit==null">Not Yet Assigned</label>
-                <label *ngIf="details.deliverPatnerAssigned=='1' && details.acceptedBit=='1'">Assigned To Phlebotomist</label>
-                <label *ngIf="details.acceptedBit=='1' && details.deliverPatnerAssigned==null">Accepted</label>
-                <label *ngIf="details.diagnosticCancelled=='1' && details.diagnosticCancelled==null">Rejected</label>
-              </td>
-              <td>
-                <button
-                  *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null"
-                  class="addbtns" (click)="AcceptOrder(details.id)" type="button">Accept </button><br /> <br />
-                <button
-                  *ngIf="details.deliverPatnerAssigned==null && details.diagnosticCancelled==null && details.acceptedBit==null"
-                  class="addbtns" (click)="RejecttOrder(details.id)" type="button"> Reject </button>
-                <button *ngIf="details.deliverPatnerAssigned!='1' &&details.acceptedBit==1 " class="addbtns"
-                  data-toggle="modal" data-target="#Order" (click)="getdiagnosticAppointmentsbyid(details.id)"
-                  type="button">Assign</button>
-                <button *ngIf="details.deliverPatnerAssigned=='1'" class="addbtns" data-toggle="modal"
-                  (click)="getdiagnosticAppointmentsbyid(details.id)" style="margin-left: 6px;margin-top:7px"
-                  type="button">&#10003; Assigned </button>
-                <br /><br />
-                <button *ngIf="details.deliverPatnerAssigned=='1'" class="addbtns" data-toggle="modal"
-                  style="margin-left: 6px;margin-top:-4px" type="button"><a
-                    href="http://www.africau.edu/images/default/sample.pdf">Report</a></button>
-              </td>
-            </tr>
-          </thead>
-        </table><br>
-      </div><br><br>
-    </div><br><br><br>
-    <div class="col-lg-12" style="text-align: center">
-      <br>
-  
-    </div><br>
-  
-  
-    <div id="Order" class="modal fade" role="dialog">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Assign phemonatinist</h5>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col-lg-1"></div>
-              <div class="col-lg-3">
-                <label style="font-size: 16px;"> phemonatinist</label>
-              </div>
-              <div class="col-lg-6">
-                <select class="form-control" id="staffid" name="staffid" [(ngModel)]="staffid" required>
-                  <option value="0">Select phemonatinist</option>
-                  <option *ngFor="let Sites of myteamlist" value="{{Sites.id}}">{{Sites.name}}</option>
-                </select>
-              </div>
+
+
+            <td><label *ngIf="details.name==null">Not Yet Assigned</label>
+              <label *ngIf="details.name!=null">{{details.name}}</label>
+            </td>
+            <td>
+              <a href="{{details.diagReportURL}}" target="_blank"> <button *ngIf="details.diagReportURL!=null"
+                  class="addbtns" data-toggle="modal" style="margin-left: 6px;margin-top:-4px"
+                  type="button">Report</button></a>
+            </td>
+          </tr>
+        </thead>
+      </table><br>
+    </div><br><br>
+  </div><br><br><br>
+  <div class="col-lg-12" style="text-align: center">
+    <br>
+
+  </div><br>
+
+
+  <div id="Order" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Assign phemonatinist</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+              <label style="font-size: 16px;"> phemonatinist</label>
             </div>
-            <br>
-            <div class="row">
-              <div class="col-lg-1"></div>
-              <div class="col-lg-3">
-                <label style="font-size: 16px;">Comments</label>
-              </div>
-              <div class="col-lg-6">
-                <textarea rows="3" [(ngModel)]="Comments" id="Comments" name="Comments" class="form-control"
-                  placeholder="Comments"></textarea>
-              </div>
+            <div class="col-lg-6">
+              <select class="form-control" id="staffid" name="staffid" [(ngModel)]="staffid" required>
+                <option value="0">Select phemonatinist</option>
+                <option *ngFor="let Sites of myteamlist" value="{{Sites.id}}">{{Sites.name}}</option>
+              </select>
             </div>
-  
-            <br>
-            <div class="row">
-              <div class="col-lg-5"></div>
-              <div class="col-lg-3">
-                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="UpdateOrders()">Assign</button>
-              </div>
-              <div class="col-lg-3"></div>
-  
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+              <label style="font-size: 16px;">Comments</label>
             </div>
-            <br>
-  
+            <div class="col-lg-6">
+              <textarea rows="3" [(ngModel)]="Comments" id="Comments" name="Comments" class="form-control"
+                placeholder="Comments"></textarea>
+            </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" data-dismiss="modal" class="btn btn-secondary" data-dixsiss="modal">Close</button>
+
+          <br>
+          <div class="row">
+            <div class="col-lg-5"></div>
+            <div class="col-lg-3">
+              <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="UpdateOrders()">Assign</button>
+            </div>
+            <div class="col-lg-3"></div>
+
           </div>
+          <br>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" data-dismiss="modal" class="btn btn-secondary" data-dixsiss="modal">Close</button>
         </div>
       </div>
     </div>
+  </div>

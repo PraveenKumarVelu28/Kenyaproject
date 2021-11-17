@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MediTestService } from '../../../medi-test.service';
 import Swal from 'sweetalert2';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-staffmaster',
@@ -23,11 +23,12 @@ export class StaffmasterComponent implements OnInit {
     password: any;
     myteamlist: any;
     Diagnosticid: any;
-    constructor(public MediTestService: MediTestService, private activatedroute: ActivatedRoute) { }
+    constructor(public MediTestService: MediTestService, private activatedroute: ActivatedRoute, public router: Router) { }
     ngOnInit() {
+        debugger
         this.languageid = localStorage.getItem('LanguageID');
-        this.Diagnosticid = 0
         this.getdiagnosticforadmin();
+        this.Diagnosticid = localStorage.getItem('Diagnosticid')
         this.activatedroute.params.subscribe(params => {
 
             this.id = params['id'];
@@ -92,11 +93,11 @@ export class StaffmasterComponent implements OnInit {
         this.MediTestService.InsertMyTeam(entity).subscribe(res => {
             if (this.languageid == 1) {
                 Swal.fire('Success', 'Added successfully')
-                location.href = "/Staffdashboard"
+                this.router.navigate(["/Staffdashboard"])
             }
             else if (this.languageid == 6) {
                 Swal.fire('Mis à jour avec Succés');
-                location.href = "/Staffdashboard"
+                this.router.navigate(["/Staffdashboard"])
             }
         })
     }

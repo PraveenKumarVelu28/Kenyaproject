@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { formatDate } from "@angular/common";
 import * as XLSX from 'xlsx';
 import swal from 'sweetalert2';
+import { DomSanitizer } from '@angular/platform-browser';
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
 
@@ -27,7 +28,7 @@ export class VisitedappoitmentsComponent implements OnInit {
   diagnosticlist: any;
   todaydate: any;
   public languageid: any;
-  constructor(public MediTestService: MediTestService, private activatedroute: ActivatedRoute) { }
+  constructor(public MediTestService: MediTestService, private activatedroute: ActivatedRoute,private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     debugger
@@ -69,7 +70,9 @@ export class VisitedappoitmentsComponent implements OnInit {
     )
 
   }
-
+  public getSantizeUrl(url : string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
+}
 
 
 
@@ -78,7 +81,7 @@ export class VisitedappoitmentsComponent implements OnInit {
     this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(this.diagnosticid, '2021-10-01', '2022-12-01', 1).subscribe(
       data => {
         debugger
-        this.diagnosticlist = data;
+        this.diagnosticlist = data.filter(x => x.diagReportURL != null);
       }, _error => {
       }
     )

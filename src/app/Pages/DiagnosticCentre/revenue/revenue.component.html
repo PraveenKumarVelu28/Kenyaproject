@@ -1,0 +1,89 @@
+<br>
+<div class="container-fluid card card:hover headerspace">
+    <div class="row headerspace">
+        <div class="col-lg-9" style="margin-top:4px;">
+            <h5>Revenue</h5>
+
+        </div>
+        <div class="col-lg-3" style="text-align: end;">
+        </div>
+    </div>
+</div>
+<br>
+<div class="container-fluid card card:hover ">
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-lg-3">
+            <input type="text" class="form-control" [(ngModel)]="term" placeholder="Search">
+        </div>
+        <div class="col-lg-3">
+            <select class="form-control" id="MonthID" name="MonthID" [(ngModel)]="MonthID" (click)="GetMonthID($event)"
+                required>
+                <option value="0">Select Month</option>
+                <option value="1">january </option>
+                <option value="2">february </option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">august </option>
+                <option value="9">september </option>
+                <option value="10">october </option>
+                <option value="11">november </option>
+                <option value="12">december </option>
+            </select>
+        </div>
+        <div class="col-lg-2">
+
+        </div>
+        <div class="col-lg-2">
+            <h4>Total Amount : {{totalamount}}</h4>
+        </div>
+        <div class="col-lg-2">
+            <h4>Count : {{packagelist.length}}</h4>
+        </div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-lg-12" style="overflow: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th id="imp">Appointment Date</th>
+                        <th id="imp">Patient Name</th>
+                        <th id="imp">Tests</th>
+                        <th id="imp">Packages</th>
+                        <th id="imp">Payment Mode</th>
+                        <th id="imp">Amount</th>
+                    </tr>
+                    <tr *ngFor="let details of packagelist|filter:term">
+                        <td>{{details.date|date}}</td>
+                        <td>{{details.user}}</td>
+                        <td>{{details.testName}}</td>
+                        <td>{{details.packageName}}</td>
+                        <td>
+                            <p *ngIf="details.paymentType==1">Wallet</p>
+                            <p *ngIf="details.paymentType==2">Credit Card</p>
+                            <p *ngIf="details.paymentType==3">Cash On Delivery</p>
+                        </td>
+                        <td>{{details.amount}}</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <!-- <div class="col-lg-12" style="text-align: center">
+      <br>
+      <pagination-controls id="foo" (pageChange)="pageChanged($event)" maxSize="15" directionLinks="true" autoHide="true" responsive="true" previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+      </pagination-controls>
+  </div> -->
+    <br>
+</div>
+<br>
+<br>
+<br>
+<br>
