@@ -47,6 +47,10 @@ export class ProvinceMasterDashComponent implements OnInit {
       }
     )
   }
+
+
+
+
   public GetCountryID(even: any) {
     if (even.target.value != 0) {
 
@@ -90,11 +94,11 @@ export class ProvinceMasterDashComponent implements OnInit {
 
 
   public getprobincelist() {
-    this.MediTestService.GetCityMasterByLangID(this.languageid).subscribe(
+    this.MediTestService.GetStatefromMeditest().subscribe(
       data => {
 
-        this.provincelist = data;
-        this.dummlist = this.provincelist
+        let temp: any = data;
+        this.provincelist = temp.listObject;
       }, error => {
       }
     )
@@ -103,7 +107,7 @@ export class ProvinceMasterDashComponent implements OnInit {
 
 
 
-  public DeleteCityMaster(id:any) {
+  public DeleteCityMaster(id: any) {
 
     Swal.fire({
       title: 'Are you sure?',

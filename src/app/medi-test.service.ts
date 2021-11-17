@@ -77,10 +77,10 @@ export class MediTestService {
     return this.http.post(this.host + '/Master/UploadAttachment/', formdata);
   }
 
-  public GetCountryMasterByLanguageID(lid: any) {
+  // public GetCountryMasterByLanguageID(lid: any) {
 
-    return this.http.get<any[]>(this.host + '/Master/GetCountryMasterByLanguageID?LanguageID=' + lid);
-  }
+  //   return this.http.get<any[]>(this.host + '/Master/GetCountryMasterByLanguageID?LanguageID=' + lid);
+  // }
 
   public GetCityMasterBYIDandLanguageID(did: any, lid: any) {
 
@@ -380,6 +380,8 @@ export class MediTestService {
     return this.http.post(this.url, data)
   }
 
+
+
   public UpdateOrders(data: any) {
     this.url = this.host + '/Master/UpdateOrders';
     return this.http.post(this.url, data)
@@ -400,5 +402,47 @@ export class MediTestService {
   }
 
 
+  public GetCountryMasterByLanguageID(lid: any) {
+
+    return this.http.get<any[]>(' https://qa.his.clinivantage.dev/adt/getActiveCountryList/35');
+  }
+
+
+  ///Meditest API
+
+  public GetStatefromMeditest() {
+    var entity = {
+      'countryId': 34,
+      'organizationId': 35
+    }
+    this.url = 'https://qa.his.clinivantage.dev/adt/getActiveStateListByCountryId';
+    return this.http.post(this.url, entity)
+  }
+
+  public GetCityfromMeditest() {
+    var entity = {
+      "stateId":34
+    }
+    this.url = '  https://qa.his.clinivantage.dev/adt/getActiveDistrictListByStateId';
+    return this.http.post(this.url, entity)
+  }
+
+  public GetPackagesfromMeditest() {
+    var entity ={
+      "organisationId": 35,
+      "unitId": 34,
+      "visitTypeId": 1,
+      "bedBillingCategoryId": 35,
+      "genderId": 1,
+      "paymentEntitlementId": 1,
+      "patientTypeId": 35,
+      "serviceCode": "a",
+      "serviceName": "a"
+    }
+    this.url = 'https://qa.his.clinivantage.dev/api/packages/bill/package/search';
+    return this.http.post(this.url, entity)
+  }
+
+  
 
 }

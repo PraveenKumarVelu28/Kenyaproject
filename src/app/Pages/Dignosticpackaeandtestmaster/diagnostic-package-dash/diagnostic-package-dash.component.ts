@@ -75,29 +75,15 @@ export class DiagnosticPackageDashComponent implements OnInit {
   public GetDiagnosticPackages() {
 
 
-    if (this.diagnosticenterid != undefined) {
-      this.docservice.GetDiagnosticCenterPackages(this.languageid).subscribe(
-        data => {
-
-          this.dummpackagelist = data;
-          this.packagelist = this.dummpackagelist.filter((x: { diagnosticCenterID: any; }) => x.diagnosticCenterID == this.diagnosticenterid)
-          this.count = this.packagelist.length;
-        }, error => {
-        }
-      )
-    }
-    else {
-      this.docservice.GetDiagnosticCenterPackages(this.languageid).subscribe(
-        data => {
-
-          this.dummpackagelist = data;
-          this.packagelist = this.dummpackagelist
-          this.count = this.packagelist.length;
-
-        }, error => {
-        }
-      )
-    }
+    this.docservice.GetPackagesfromMeditest().subscribe(
+      data => {
+        let temp:any = data;
+        this.packagelist = temp.listObject;
+     
+        this.count = this.packagelist.length;
+      }, error => {
+      }
+    )
   }
   public DeleteDiagnostocServces(id: any) {
 

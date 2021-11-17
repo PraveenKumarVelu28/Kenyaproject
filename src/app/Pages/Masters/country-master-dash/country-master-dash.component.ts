@@ -33,41 +33,43 @@ export class CountryMasterDashComponent implements OnInit {
     )
   }
   public GetCountryMaster() {
+    debugger
     this.MediTestService.GetCountryMasterByLanguageID(this.languageid).subscribe(
       data => {
 
-        this.countrylist = data;
+        let temp: any = data;
+        this.countrylist = temp.listObject;
       }, error => {
       }
     )
   }
 
 
-public DeleteCountryMaster(id:any) {
+  public DeleteCountryMaster(id: any) {
 
-   Swal.fire({
-     title: 'Are you sure?',
-     text: "You Want to Delete This Country!",
-     type: 'warning',
-     showCancelButton: true,
-     confirmButtonColor: '#3085d6',
-     cancelButtonColor: '#d33',
-     confirmButtonText: 'Yes, delete it!'
-   }).then((result) => {
-     if (result.value) {
-       this.MediTestService.DeleteCountryMaster(id).subscribe(res => {
-         let test = res;
-         this.GetCountryMaster();
-       })
-       Swal.fire(
-         'Deleted!',
-         'Country has been deleted.',
-         'success'
-       )
-     }
-     else {
-       this.GetCountryMaster();
-     }
-   })
-}
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You Want to Delete This Country!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        this.MediTestService.DeleteCountryMaster(id).subscribe(res => {
+          let test = res;
+          this.GetCountryMaster();
+        })
+        Swal.fire(
+          'Deleted!',
+          'Country has been deleted.',
+          'success'
+        )
+      }
+      else {
+        this.GetCountryMaster();
+      }
+    })
+  }
 }

@@ -42,7 +42,7 @@
             </tr>
             <tr *ngFor="let list of provincelist|filter:term">
               <td>{{list.country}}</td>
-              <td>{{list.short}}</td>
+              <td>{{list.stateName}}</td>
               <td>
                 <ng-template #tipcontent1>{{labels[0].edit}}</ng-template>
                 <a  [routerLink]="['/ProvinceMaster',list.id]" style="color:black">

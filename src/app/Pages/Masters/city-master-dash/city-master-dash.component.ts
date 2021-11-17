@@ -42,11 +42,11 @@ export class CityMasterDashComponent implements OnInit {
   }
   public getcitymasters() {
     debugger;
-    this.MediTestService.GetAreaMasterByLangID(this.languageid).subscribe(
+    this.MediTestService.GetCityfromMeditest().subscribe(
       data => {
 
-        this.cityslist = data;
-        this.dummlist = this.cityslist
+        let temp:any = data;
+        this.cityslist =  temp.listObject;
       }, error => {
       }
     )
@@ -70,7 +70,7 @@ export class CityMasterDashComponent implements OnInit {
 
       this.countryid = even.target.value;
 
-      this.cityslist = this.dummlist.filter((x: { countryID: any; }) => x.countryID == this.countryid)
+      this.cityslist = this.dummlist
 
       this.getcity();
     }
@@ -97,8 +97,8 @@ export class CityMasterDashComponent implements OnInit {
 
       this.cityid = even.target.value;
 
-      this.cityslist = this.dummlist.filter((x: { cityID: any; }) => x.cityID == this.cityid)
-
+      this.cityslist = this.dummlist
+     
     }
     else if (even.target.value == 0) {
       this.getcity()

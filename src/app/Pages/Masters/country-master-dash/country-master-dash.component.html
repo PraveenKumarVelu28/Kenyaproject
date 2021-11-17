@@ -29,7 +29,7 @@
               <!-- <th>{{labels[0].description}}</th> -->
             </tr>
             <tr *ngFor="let list of countrylist|filter:term">
-              <td>{{list.short}}</td>
+              <td>{{list.countryName}}</td>
               <td>
                 <ng-template #tipcontent1>{{labels[0].edit}}</ng-template>
                 <a [routerLink]="['/CountryMaster',list.id]" style="color:black">
