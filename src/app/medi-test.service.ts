@@ -465,8 +465,8 @@ export class MediTestService {
       "genderId": 1,
       "paymentEntitlementId": 1,
       "patientTypeId": 35,
-      "serviceCode": "a",
-      "serviceName": "a"
+      "serviceCode": "",
+      "serviceName": ""
     }
     this.url = 'https://qa.his.clinivantage.dev/api/packages/bill/package/search';
     return this.http.post(this.url, entity)
