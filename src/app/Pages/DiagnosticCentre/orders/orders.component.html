@@ -91,9 +91,13 @@
               <label *ngIf="details.diagnosticCancelled=='1' && details.diagnosticCancelled==null">Rejected</label>
             </td>
             <td>
-              <button
+              <!-- <button
                 *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null && details.appointmentType==1"
                 class="addbtns" (click)="AcceptOrder(details.id)" type="button">Accept </button><br /> <br />
+              <button -->
+              <button
+                *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null && details.appointmentType==1"
+                class="addbtns" (click)="SendSMSCheck()" type="button">SendSMS </button><br /> <br />
               <button
                 *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null && details.appointmentType==2"
                 class="addbtns" (click)="UpdatePrice(details.id)" data-toggle="modal" data-target="#UpdateNewPrice"

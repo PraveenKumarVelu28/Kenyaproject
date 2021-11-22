@@ -28,7 +28,7 @@ export class VisitedappoitmentsComponent implements OnInit {
   diagnosticlist: any;
   todaydate: any;
   public languageid: any;
-  constructor(public MediTestService: MediTestService, private activatedroute: ActivatedRoute,private sanitizer: DomSanitizer) { }
+  constructor(public MediTestService: MediTestService, private activatedroute: ActivatedRoute, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     debugger
@@ -70,10 +70,18 @@ export class VisitedappoitmentsComponent implements OnInit {
     )
 
   }
-  public getSantizeUrl(url : string) {
+  public getSantizeUrl(url: string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);
-}
+  }
+  showPdf() {
+    const linkSource = 'data:application/pdf;base64,' + ' JVBERi0xLjQKJeLjz9MKMyAwIG9iago8PC9Db2xvclNwYWNlL0';
+    const downloadLink = document.createElement("a");
+    const fileName = "sample.pdf";
 
+    downloadLink.href = linkSource;
+    downloadLink.download = fileName;
+    downloadLink.click();
+  }
 
 
   public getlanguage() {

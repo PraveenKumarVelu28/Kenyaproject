@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import axios from 'axios';
+import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -450,14 +451,14 @@ export class MediTestService {
 
   public GetCityfromMeditest() {
     var entity = {
-      "stateId":34
+      "stateId": 34
     }
     this.url = '  https://qa.his.clinivantage.dev/adt/getActiveDistrictListByStateId';
     return this.http.post(this.url, entity)
   }
 
   public GetPackagesfromMeditest() {
-    var entity ={
+    var entity = {
       "organisationId": 35,
       "unitId": 34,
       "visitTypeId": 1,
@@ -472,6 +473,37 @@ export class MediTestService {
     return this.http.post(this.url, entity)
   }
 
-  
+  public SendSMS(): any {
+    debugger
+
+
+    var body = {
+      "data": [
+        {
+          "message_bag": {
+            "numbers": "254739122099",
+            "message": "Test Message From MediTEst",
+            "sender": "UjumbeSMS"
+          }
+        }
+      ]
+    }
+
+    this.http.jsonp('https://ujumbesms.co.ke/api/messaging', 'callbak').subscribe(data => {
+      debugger
+
+      return data
+    });
+
+    // axios.post('http://ujumbesms.co.ke/api/messaging', body, { headers: { 'X-Authorization': 'ZmI5NjgwYWI2ODE3MmU4ZWQzNGRkYjNmOWY1YmNl', 'Email': 'info@meditestdiagnostic.com', "Content-Type": "application/json" } })
+    //   .then(res => {
+    //     return res;
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //   });
+  }
+
+
 
 }

@@ -143,6 +143,20 @@ export class OrdersComponent implements OnInit {
     var entity = {
       'ID': id,
     }
+    // var data = {
+    //   "data": [
+    //     {
+    //       "message_bag": {
+    //         "numbers": this.myteamlist,
+    //         "message": "Test Message From MediTEst",
+    //         "sender": "UjumbeSMS"
+    //       }
+
+
+    //     }
+
+    //   ]
+    // }
     this.MediTestService.AcceptOrder(entity).subscribe(res => {
       let test = res;
       swal.fire('Appointment Accepted Successfully')
@@ -225,6 +239,16 @@ export class OrdersComponent implements OnInit {
     })
 
   }
+  showPdf() {
+    const linkSource = 'data:application/pdf;base64,' + 'eyJNZXNzYWdlIjoiQW4gZXJyb3IgaGFzIG9jY3VycmVkLiJ9';
+    const downloadLink = document.createElement("a");
+    const fileName = "sample.pdf";
+
+    downloadLink.href = linkSource;
+    downloadLink.download = fileName;
+    downloadLink.click();
+  }
+
 
   public UpdatePrice(id: any) {
     this.orderid = id;
@@ -241,6 +265,16 @@ export class OrdersComponent implements OnInit {
       this.Comments = '';
       swal.fire('Updated Successfully')
       this.ngOnInit();
+    })
+  }
+
+
+  public SendSMSCheck() {
+    debugger
+    this.MediTestService.SendSMS().subscribe((res: any) => {
+      debugger
+      let test = res;
+
     })
   }
 }
