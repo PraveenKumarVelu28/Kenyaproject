@@ -249,7 +249,7 @@ export class OrdersComponent implements OnInit {
     downloadLink.click();
   }
 
-
+  term: any;
   public UpdatePrice(id: any) {
     this.orderid = id;
   }

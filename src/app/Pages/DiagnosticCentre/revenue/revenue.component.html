@@ -33,10 +33,10 @@
                 <option value="12">december </option>
             </select>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-1">
 
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-3">
             <h4>Total Amount : {{totalamount}}</h4>
         </div>
         <div class="col-lg-2">
@@ -58,7 +58,7 @@
                         <th id="imp">Amount</th>
                     </tr>
                     <tr *ngFor="let details of packagelist|filter:term">
-                        <td>{{details.date|date}}</td>
+                        <td>{{details.date}}</td>
                         <td>{{details.user}}</td>
                         <td>{{details.testName}}</td>
                         <td>{{details.packageName}}</td>

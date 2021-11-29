@@ -11,6 +11,9 @@ export class MediTestService {
   constructor(private http: HttpClient) { }
 
   public host = "https://23.101.22.93/MediTestApi";
+
+
+  //public host = "http://localhost:4199/";
   private url: string = '';
 
   public GetLanguageMaster() {
@@ -473,37 +476,55 @@ export class MediTestService {
     return this.http.post(this.url, entity)
   }
 
-  public SendSMS(): any {
+  // public SendSMS(): any {
+  //   debugger
+
+
+  //   var body = {
+  //     "data": [
+  //       {
+  //         "message_bag": {
+  //           "numbers": "254739122099",
+  //           "message": "Test Message From MediTEst",
+  //           "sender": "UjumbeSMS"
+  //         }
+  //       }
+  //     ]
+  //   }
+
+
+  //   // this.http.jsonp('https://ujumbesms.co.ke/api/messaging', 'callbak').subscribe(data => {
+  //   //   debugger
+
+  //   //   return data
+  //   // });
+
+  //   // axios.post('http://ujumbesms.co.ke/api/messaging', body, { headers: { 'X-Authorization': 'ZmI5NjgwYWI2ODE3MmU4ZWQzNGRkYjNmOWY1YmNl', 'Email': 'info@meditestdiagnostic.com', "Content-Type": "application/json" } })
+  //   //   .then(res => {
+  //   //     return res;
+  //   //   })
+  //   //   .catch((error) => {
+  //   //     console.log(error)
+  //   //   });
+  // }
+
+  public SendSMS() {
     debugger
-
-
-    var body = {
-      "data": [
-        {
-          "message_bag": {
-            "numbers": "254739122099",
-            "message": "Test Message From MediTEst",
-            "sender": "UjumbeSMS"
-          }
-        }
-      ]
+    var message_bag = {
+      "numbers": "254739122099",
+      "message": "Test Message From MediTEst",
+      "sender": "UjumbeSMS"
     }
+    this.url = this.host + '/Master/SendSMS';
+    return this.http.post(this.url, message_bag)
+    // this.url = 'https://qa.his.clinivantage.dev/api/packages/bill/package/search';
 
-    this.http.jsonp('https://ujumbesms.co.ke/api/messaging', 'callbak').subscribe(data => {
-      debugger
 
-      return data
-    });
 
-    // axios.post('http://ujumbesms.co.ke/api/messaging', body, { headers: { 'X-Authorization': 'ZmI5NjgwYWI2ODE3MmU4ZWQzNGRkYjNmOWY1YmNl', 'Email': 'info@meditestdiagnostic.com', "Content-Type": "application/json" } })
-    //   .then(res => {
-    //     return res;
-    //   })
-    //   .catch((error) => {
-    //     console.log(error)
-    //   });
+    // return this.http.post(this.url, entity)
+
+
+
   }
-
-
 
 }
