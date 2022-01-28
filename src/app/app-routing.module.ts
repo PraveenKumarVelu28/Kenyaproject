@@ -30,6 +30,7 @@ import { CancelledappoitmentsComponent } from './Pages/DiagnosticCentre/cancelle
 import { RevenueComponent } from './Pages/DiagnosticCentre/revenue/revenue.component';
 import { TestOffersComponent } from './Pages/Dignosticpackaeandtestmaster/test-offers/test-offers.component';
 import { TestoffersdashbaordComponent } from './Pages/Dignosticpackaeandtestmaster/testoffersdashbaord/testoffersdashbaord.component';
+import { DigDashboardComponent } from './Pages/DiagnosticCentre/dig-dashboard/dig-dashboard.component';
 
 
 const routes: Routes = [
@@ -68,7 +69,7 @@ const routes: Routes = [
   { path: 'TestOffers', component: TestOffersComponent },
   { path: 'Testoffersdashbaord', component: TestoffersdashbaordComponent },
 
-
+  { path: 'DigDashboard', component: DigDashboardComponent },
 
 ];
 @NgModule({

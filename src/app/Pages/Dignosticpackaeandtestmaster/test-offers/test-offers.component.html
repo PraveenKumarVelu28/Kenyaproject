@@ -9,11 +9,8 @@
 <div class="container-fluid card card-hover">
     <form #myteam="ngForm">
         <br>
-        <div class="row">
-            <div class="col-lg-3">
-
-            </div>
-            <div class="col-lg-8 form-group">
+       
+            <!-- <div class="col-lg-8 form-group">
                 <input type="radio" id="radoi1" name="radoi1" [(ngModel)]="radoi1" value="Test">&nbsp;
                 <label for="vehicle2" class="vehicle2"> Test</label> &nbsp;&nbsp;&nbsp;
                 <input type="radio" id="radoi1" name="radoi1" [(ngModel)]="radoi1" value="Package">&nbsp;
@@ -25,7 +22,7 @@
                         <label>Test :</label>
                         <span class="required">*</span>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <select class="dropdown form-control" [(ngModel)]="testid" id="testid" name="testid">
                             <option value="0">Select Tests</option>
                             <option (click)="getpackages()" *ngFor="let Sites of dummlist" value="{{Sites.id}}">
@@ -38,43 +35,76 @@
                         <label>Packages :</label>
                         <span class="required">*</span>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <select class="dropdown form-control" [(ngModel)]="packageid" id="packageid" name="packageid">
                             <option value="0">Select Package</option>
                             <option *ngFor="let Sites of dummpackagelist" value="{{Sites.id}}">{{Sites.packageName}}
                             </option>
                         </select>
                     </div>
+                </div> -->
+            <br>
+            <div class="row">
+                <div class="col-lg-4">
+                    <label>StartDate :</label>
+                    <span class="required">*</span>
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <label>StartDate :</label>
-                        <span class="required">*</span>
-                    </div>
-                    <div class="col-lg-6">
-                        <input type="Date" required class="form-control" [(ngModel)]="StartDate" name="StartDate"
-                            placeholder="StartDate">
+                <div class="col-lg-4">
+                    <input type="Date" required class="form-control" [(ngModel)]="StartDate" name="StartDate"
+                        placeholder="StartDate">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-4">
+                    <label>EndDate :</label>
+                    <span class="required">*</span>
+                </div>
+                <div class="col-lg-4">
+                    <input type="date" placeholder="EndDate" required class="form-control" [(ngModel)]="EndDate"
+                        name="EndDate">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-4">
+                    <label>Attachment : </label>
+                </div>
+                <div class="col-lg-4">
+                    <ngx-dropzone [multiple]="false" (change)="onattachmentUpload($event)"
+                        class="dropzone_vendorinvoice">
+                        <ngx-dropzone-label>Attachment</ngx-dropzone-label>
+                    </ngx-dropzone>
+                    <div>
+                        <span *ngFor="let photo of showphoto">
+                            <img src="{{photo}}" style="height:70px;width:50px">&nbsp;
+                        </span>
                     </div>
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <label>EndDate :</label>
-                        <span class="required">*</span>
-                    </div>
-                    <div class="col-lg-6">
-                        <input type="date" placeholder="EndDate" required class="form-control" [(ngModel)]="EndDate"
-                            name="EndDate">
-                    </div>
+                <div>
+
                 </div>
-                <br>
-                <div class="row">
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <label>Offer Description :</label>
+                    <span class="required">*</span>
+                </div>
+                <div class="col-lg-4">
+                    <textarea type="text" placeholder="Offer Description" id="Offer_Description" required
+                        class="form-control" [(ngModel)]="Offer_Description" name="Offer_Description"
+                        rows="3"></textarea>
+                </div>
+            </div>
+            <br>
+            <!-- <div class="row">
                     <div class="col-lg-4">
                         <label>Percentage :</label>
                         <span class="required">*</span>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <select class="dropdown form-control" [(ngModel)]="Percentage" id="Percentage"
                             name="Percentage">
                             <option value="0">Select Percentage</option>
@@ -101,26 +131,27 @@
                         </select>
                     </div>
                 </div>
-                <br>
+                <br> -->
 
 
-                <div class="row">
-                    <div class="col-lg-5">
-                    </div>
-                    <div class="col-lg-2">
-                        <button type="submit" text_align="center" class="btn btn-block btn-md allbtns btncolor"
-                            (click)="InsertDetailes()">Save</button>
-                        <!-- <button type="submit" text_align="center" class="btn btn-block btn-md allbtns btncolor"
+            <div class="row">
+                <div class="col-lg-5">
+                </div>
+                <div class="col-lg-2">
+                    <button type="submit" text_align="center" class="btn btn-block btn-md allbtns btncolor"
+                        (click)="InsertDetailes()">Save</button>
+                    <!-- <button type="submit" text_align="center" class="btn btn-block btn-md allbtns btncolor"
                             *ngIf="showbit=='1'" (click)="UpdateDetailes()"
                             [disabled]="myteam.form.invalid">{{labels[0].save}}</button> -->
-                    </div>
-                    <div class="col-lg-3">
-                    </div>
+                </div>
+                <div class="col-lg-3">
                 </div>
             </div>
-        </div>
+       
         <br>
     </form>
 </div>
+
+
 <br>
 <br>

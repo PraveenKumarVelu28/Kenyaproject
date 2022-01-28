@@ -25,15 +25,17 @@ export class OrdersComponent implements OnInit {
   diagnosticlist: any;
   todaydate: any;
   public languageid: any;
+  base64textString: any;
   constructor(public MediTestService: MediTestService, private activatedroute: ActivatedRoute) { }
 
   ngOnInit() {
     debugger
+    this.showtable = 0;
     this.diagnosticid = localStorage.getItem('DiagnosticId');
     // var kkk = this.SDate.setDate(this.SDate.getDate() - 0);
     // var lll = this.EDate.setDate(this.EDate.getDate() + 7);
 
-    // const format = 'yyyy-MM-dd';
+    // const format = 'dd-mm-yyyy';
     // const myDate = new Date();
     // const locale = 'en-US';
     // this.todaydate = formatDate(myDate, format, locale);
@@ -41,6 +43,10 @@ export class OrdersComponent implements OnInit {
 
     // this.startdate = formatDate(kkk, format, locale);
     // this.enddate = formatDate(lll, format, locale);
+    const format = 'yyyy-MM-dd';
+    const myDate = new Date();
+    const locale = 'en-US';
+    this.todaydate = formatDate(myDate, format, locale);
     this.staffid = 0;
     this.GetMyTeam();
     this.getlanguage();
@@ -105,9 +111,10 @@ export class OrdersComponent implements OnInit {
     )
   }
   orderid: any;
-  public getdiagnosticAppointmentsbyid(id: any) {
+  public getdiagnosticAppointmentsbyid(details: any) {
     debugger;
-    this.orderid = id
+    this.orderid = details.id;
+    this.useremail = details.emailID;
   }
 
   staffid: any;
@@ -124,6 +131,8 @@ export class OrdersComponent implements OnInit {
     this.MediTestService.UpdateOrders(entity).subscribe(res => {
       let test = res;
       Swal.fire(' Updated Successfully');
+      this.Comments = '';
+      this.sendAzureNotification2();
       this.ngOnInit();
     })
 
@@ -140,27 +149,92 @@ export class OrdersComponent implements OnInit {
 
   public AcceptOrder(id: any) {
     debugger
+
     var entity = {
       'ID': id,
     }
-    // var data = {
-    //   "data": [
-    //     {
-    //       "message_bag": {
-    //         "numbers": this.myteamlist,
-    //         "message": "Test Message From MediTEst",
-    //         "sender": "UjumbeSMS"
-    //       }
 
-
-    //     }
-
-    //   ]
-    // }
     this.MediTestService.AcceptOrder(entity).subscribe(res => {
       let test = res;
-      swal.fire('Appointment Accepted Successfully')
-      this.ngOnInit();
+      swal.fire('Accepted Successfully');
+      this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(this.diagnosticid, '2021-10-01', '2022-12-01', 1).subscribe(
+        data => {
+          debugger
+          let temp: any = data.filter(x => x.id == id);
+          let orderid = temp[0].mediOrderID;
+          this.useremail = temp[0].emailID;
+          this.MediTestService.GetMediTestOrderDetailsNewWeb().subscribe(data => {
+            debugger
+            let temp1: any = data.filter(x => x.orderid == orderid);
+            this.base64textString = temp1[0].reciept;
+            var entity1 = {
+              'ID': id,
+              'FileName': id,
+              'FileType': 'pdf',
+              'modifieddate': new Date(),
+              'Base64Data': this.base64textString,
+            }
+            this.MediTestService.UploadReciept(entity1).subscribe(res => {
+              let test = res;
+              swal.fire('Accepted Successfully');
+              this.sendAzureNotification();
+              this.ngOnInit();
+            })
+          })
+
+
+
+        }, _error => {
+        }
+      )
+
+
+      // this.ngOnInit();
+    })
+
+  }
+  useremail: any;
+  public sendAzureNotification() {
+    debugger
+    var entity = {
+      'Description': "Diagnostic Center Accepted Your Order.",
+      'EmailID': this.useremail,
+    }
+    this.MediTestService.PostGCMNotifications(entity).subscribe(data => {
+
+      if (data != 0) {
+
+      }
+    })
+
+  }
+  public sendAzureNotification1() {
+    debugger
+    var entity = {
+      'Description': "Diagnostic Center Rejected Your Order.",
+      'EmailID': this.useremail,
+    }
+    this.MediTestService.PostGCMNotifications(entity).subscribe(data => {
+
+      if (data != 0) {
+
+      }
+    })
+
+  }
+
+
+  public sendAzureNotification2() {
+    debugger
+    var entity = {
+      'Description': "Phlebotomist has been Assigned for your Order to collect Sample.",
+      'EmailID': this.useremail,
+    }
+    this.MediTestService.PostGCMNotifications(entity).subscribe(data => {
+
+      if (data != 0) {
+
+      }
     })
 
   }
@@ -174,8 +248,37 @@ export class OrdersComponent implements OnInit {
     }
     this.MediTestService.RejectOrder(entity).subscribe(res => {
       let test = res;
-      swal.fire('Appointment Rejected Successfully')
-      this.ngOnInit();
+      this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(this.diagnosticid, '2021-10-01', '2022-12-01', 1).subscribe(
+        data => {
+          debugger
+          let temp: any = data.filter(x => x.id == id);
+          let orderid = temp[0].mediOrderID;
+          this.useremail = temp[0].emailID;
+          this.MediTestService.GetMediTestOrderDetailsNewWeb().subscribe(data => {
+            let temp1: any = data.filter(x => x.orderid == orderid);
+            this.base64textString = temp1[0].reciept;
+            var entity1 = {
+              'ID': id,
+              'FileName': id,
+              'FileType': 'pdf',
+              'modifieddate': new Date(),
+              'Base64Data': this.base64textString,
+            }
+            this.MediTestService.UploadReciept(entity1).subscribe(res => {
+              let test = res;
+              swal.fire('Rejected Successfully');
+              this.sendAzureNotification1();
+              this.ngOnInit();
+            })
+          })
+
+
+
+        }, _error => {
+        }
+      )
+
+
     })
 
   }
@@ -274,6 +377,19 @@ export class OrdersComponent implements OnInit {
     this.MediTestService.SendSMS().subscribe((res: any) => {
       debugger
       let test = res;
+
+    })
+  }
+  showtable: any
+
+  public phbworkingdetails: any;
+  public getphbstaffid() {
+    debugger
+    this.MediTestService.GetAssigned_Phlebotomist_Details(this.todaydate, this.staffid).subscribe((res: any) => {
+      debugger
+      this.showtable = 1;
+      this.phbworkingdetails = res;
+
 
     })
   }

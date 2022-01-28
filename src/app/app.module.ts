@@ -49,6 +49,8 @@ import { CancelledappoitmentsComponent } from './Pages/DiagnosticCentre/cancelle
 import { RevenueComponent } from './Pages/DiagnosticCentre/revenue/revenue.component';
 import { TestOffersComponent } from './Pages/Dignosticpackaeandtestmaster/test-offers/test-offers.component';
 import { TestoffersdashbaordComponent } from './Pages/Dignosticpackaeandtestmaster/testoffersdashbaord/testoffersdashbaord.component';
+import { DigDashboardComponent } from './Pages/DiagnosticCentre/dig-dashboard/dig-dashboard.component';
+import { SpinnerComponent } from './Pages/Login/spinner/spinner.component';
 
 
 
@@ -103,7 +105,9 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     CancelledappoitmentsComponent,
     RevenueComponent,
     TestOffersComponent,
-    TestoffersdashbaordComponent
+    TestoffersdashbaordComponent,
+    DigDashboardComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

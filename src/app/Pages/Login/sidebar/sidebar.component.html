@@ -5,6 +5,10 @@
             <img src="assets/Images/docreg.png" style="width: 20px;">&nbsp;<label class="sidebaritems">
                 Profile </label>
         </a><br />
+        <a data-toggle="collapse" class="button" routerLink="/DigDashboard" *ngIf="roleid!='1'">
+            <img src="assets/Images/docreg.png" style="width: 20px;">&nbsp;<label class="sidebaritems">
+                Dashboard </label>
+        </a><br />
 
         <!-- <a data-toggle="collapse" class="button" data-target="#AdminReports">
             <img src="assets/Images/docreg.png" style="width: 20px;">&nbsp;<label class="sidebaritems">
@@ -35,11 +39,14 @@
         </div>
 
 
-
-        <a data-toggle="collapse" class="button" data-target="#Master" *ngIf="roleid=='1'">
+        <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='1'" routerLink="/Dignosticdashboard">
+            <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Diagnostic
+                Center</label>
+        </a>
+        <!-- <a data-toggle="collapse" class="button" data-target="#Master" *ngIf="roleid=='1'">
             <img src="assets/Images/docreg.png" style="width: 20px;">&nbsp;<label class="sidebaritems">
                 Masters</label>
-        </a><br />
+        </a><br /> -->
 
 
         <div id="Master" class="collapse">
@@ -104,9 +111,9 @@
         <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/Revenue">
             <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Revenue</label>
         </a>
-        <!-- <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/Testoffersdashbaord">
+        <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/Testoffersdashbaord">
             <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Offers</label>
-        </a> -->
+        </a>
 
         <!-- <a class="tablinks" (click)="highlight($event)" *ngIf="roleid=='2'" routerLink="/Orders">
             <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Appointments

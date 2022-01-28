@@ -14,7 +14,20 @@
 </div><br>
 
 <div class="container-fluid card card:hover">
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-lg-3">
+      <input type="text" class="form-control" placeholder="Search" [(ngModel)]="term">
+    </div>
+    <div class="col-lg-3">
+      <input type="date" id="todaydate" class="form-control" placeholder="todaydate" [(ngModel)]="todaydate">
+    </div>
+    <div class="col-lg-3">
 
+    </div>
+    <div class="col-lg-3" style="text-align: end;">
+      <h4 style="font-size: 20px;">Count : {{registeredpatients.length}}</h4>
+    </div>
+  </div><br>
   <div class="row">
     <div class="col-lg-12" style="overflow-y: auto;height:200vh">
       <br>
@@ -29,7 +42,7 @@
             <th>Last Activity Date</th>
             <th>Actions</th>
           </tr>
-          <tr *ngFor="let details of registeredpatients">
+          <tr *ngFor="let details of registeredpatients|filter:term">
             <td>{{details.modifiedDate | date}}</td>
             <td>{{details.patientName}}</td>
             <td>{{details.mobileNumber}}</td>

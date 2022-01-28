@@ -14,21 +14,20 @@
   </div>
 </div><br>
 <div class="container-fluid card card:hover">
-  <!-- <div class="row" style="margin-top: 20px;">
-        <div class="col-lg-3">
-         
-          <input *ngIf="languageid==1" type="text" placeholder="Select Date" [bsConfig]="{ showWeekNumbers:false }"
-            class="form-control" [(ngModel)]="value" (ngModelChange)="selectedDate($event)" [(bsValue)]="myDateValue"
-            bsDaterangepicker>
-          <input *ngIf="languageid==6" type="text" placeholder="Sélecteur de date" [bsConfig]="{ showWeekNumbers:false }"
-            class="form-control" [(ngModel)]="value" (bsValueChange)="selectedDate($event)" [(bsValue)]="myDateValue"
-            bsDaterangepicker>
-    
-        </div>
-        <div class="col-lg-3">
-          <input type="text" class="form-control" placeholder="{{labels[0].search}}" [(ngModel)]="term">
-        </div>
-      </div><br> -->
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-lg-3">
+      <input type="text" class="form-control" placeholder="Search" [(ngModel)]="Search">
+    </div>
+    <div class="col-lg-3">
+      <input type="date" id="todaydate" class="form-control" placeholder="todaydate" [(ngModel)]="todaydate">
+    </div>
+    <div class="col-lg-3">
+
+    </div>
+    <div class="col-lg-3" style="text-align: end;">
+      <h4 style="font-size: 20px;">Count : {{diagnosticlist.length}}</h4>
+    </div>
+  </div><br>
   <div class="row">
     <div class="col-lg-12" style="overflow-y: auto;height:200vh">
       <br>
@@ -39,6 +38,7 @@
             <!-- <th id="imp">{{labels[0].diaAppointmentType}}</th> -->
             <th id="imp">Appointment Time</th>
             <th id="imp">Appointment ID</th>
+            <th id="imp">Test Names</th>
             <th>Appointment Type</th>
             <th>Patient Name</th>
             <th>Phone No</th>
@@ -47,11 +47,12 @@
             <th>Assigned To</th>
             <th>Action</th>
           </tr>
-          <tr *ngFor="let details of diagnosticlist">
+          <tr *ngFor="let details of diagnosticlist|filter:Search">
             <td>{{details.date| date }}</td>
             <!-- <td>{{details.appointmentTypeText}}</td> -->
             <td>{{details.slotTime}}</td>
             <td>0000{{details.id}}</td>
+            <td>{{details.testNames}}</td>
             <td>
               <label *ngIf="details.homeSampleBit==1">Visiting Center</label>
               <label *ngIf="details.homeSampleBit==0">Home Sample Collection</label>
@@ -72,9 +73,11 @@
               <label *ngIf="details.name!=null">{{details.name}}</label>
             </td>
             <td>
-              <a href="{{details.diagReportURL}}" target="_blank"> <button *ngIf="details.diagReportURL!=null"
-                  class="addbtns" data-toggle="modal" style="margin-left: 6px;margin-top:-4px"
-                  type="button">Report</button></a>
+              <button *ngIf="details.diagReportURL==null" class="addbtns" (click)="getreportdetials(details)"
+                style="margin-left: 6px;margin-top:-4px" type="button">Generate Report</button>
+              <a *ngIf="details.diagReportURL!=null" href="{{details.diagReportURL}}" target="_blank"> <button
+                  class="addbtns" style="margin-left: 6px;margin-top:-4px" type="button">View
+                  Report</button></a>
             </td>
           </tr>
         </thead>
@@ -137,3 +140,5 @@
       </div>
     </div>
   </div>
+
+  <app-spinner *ngIf="loader"></app-spinner>

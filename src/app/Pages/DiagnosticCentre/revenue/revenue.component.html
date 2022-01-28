@@ -19,18 +19,18 @@
             <select class="form-control" id="MonthID" name="MonthID" [(ngModel)]="MonthID" (click)="GetMonthID($event)"
                 required>
                 <option value="0">Select Month</option>
-                <option value="1">january </option>
-                <option value="2">february </option>
+                <option value="1">January </option>
+                <option value="2">February </option>
                 <option value="3">March</option>
                 <option value="4">April</option>
                 <option value="5">May</option>
                 <option value="6">June</option>
                 <option value="7">July</option>
-                <option value="8">august </option>
-                <option value="9">september </option>
-                <option value="10">october </option>
-                <option value="11">november </option>
-                <option value="12">december </option>
+                <option value="8">August </option>
+                <option value="9">September </option>
+                <option value="10">October </option>
+                <option value="11">November </option>
+                <option value="12">December </option>
             </select>
         </div>
         <div class="col-lg-1">
@@ -58,14 +58,15 @@
                         <th id="imp">Amount</th>
                     </tr>
                     <tr *ngFor="let details of packagelist|filter:term">
-                        <td>{{details.date}}</td>
+                        <td>{{details.modifiedDate|date}}</td>
                         <td>{{details.user}}</td>
-                        <td>{{details.testName}}</td>
+                        <td>{{details.testNames}}</td>
                         <td>{{details.packageName}}</td>
                         <td>
                             <p *ngIf="details.paymentType==1">Wallet</p>
                             <p *ngIf="details.paymentType==2">Credit Card</p>
                             <p *ngIf="details.paymentType==3">Cash On Delivery</p>
+                            <p *ngIf="details.paymentType==0">Cash On Delivery</p>
                         </td>
                         <td>{{details.amount}}</td>
                     </tr>

@@ -34,19 +34,21 @@
             <table>
                 <thead>
                     <tr>
-                        <th id="imp">Test Name</th>
-                        <th id="imp">Package Name</th>
+                        <!-- <th id="imp">Test Name</th>
+                        <th id="imp">Package Name</th> -->
                         <th id="imp">Start Date</th>
                         <th id="imp">End Date</th>
-                        <th id="imp">Discount (%)</th>
+                        <th id="imp">Offer Description</th>
+                        <th id="imp">Offer Image</th>
                         <!-- <th id="imp">Amount</th> -->
                     </tr>
                     <tr *ngFor="let details of packagelist | filter:term">
-                        <td>{{details.testname}}</td>
-                        <td>-</td>
+                        <!-- <td>{{details.testname}}</td>
+                        <td>-</td> -->
                         <td>{{details.startDate|date}}</td>
                         <td>{{details.endDate|date}}</td>
-                        <td>{{details.percentage}}</td>
+                        <td>{{details.offer_Description}}</td>
+                        <td><img src="{{details.imageurl}}" style=" height: 50px;width: 130px;" /></td>
                     </tr>
                 </thead>
             </table>

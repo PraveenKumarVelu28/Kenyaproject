@@ -18,7 +18,10 @@
     <div class="col-lg-3">
       <input type="text" class="form-control" placeholder="Search" [(ngModel)]="term">
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-3">
+      <input type="date" id="todaydate" class="form-control" placeholder="todaydate" [(ngModel)]="todaydate">
+    </div>
+    <div class="col-lg-3">
 
     </div>
     <div class="col-lg-3" style="text-align: end;">
@@ -36,6 +39,7 @@
             <!-- <th id="imp">{{labels[0].diaAppointmentType}}</th> -->
             <th id="imp">Appointment Time</th>
             <th id="imp">Appointment ID</th>
+            <th>Test Names</th>
             <th>Appointment Type</th>
             <th>Patient Name</th>
             <th>Phone No</th>
@@ -51,6 +55,7 @@
             <!-- <td>{{details.appointmentTypeText}}</td> -->
             <td>{{details.slotTime}}</td>
             <td>0000{{details.id}}</td>
+            <td>{{details.testNames}}</td>
             <td>
               <label *ngIf="details.homeSampleBit==1">Visiting Center</label>
               <label *ngIf="details.homeSampleBit==0">Home Sample Collection</label>
@@ -90,20 +95,20 @@
               <button
                 *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null && details.appointmentType==1"
                 class="addbtns" (click)="AcceptOrder(details.id)" type="button">Accept </button><br /> <br />
-                <button
+              <button
                 *ngIf="details.deliverPatnerAssigned==null && details.diagnosticCancelled==null && details.acceptedBit==null"
                 class="addbtns" (click)="RejecttOrder(details.id)" type="button"> Reject </button>
-              <button
+              <!-- <button
                 *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null && details.appointmentType==1"
                 class="addbtns" (click)="SendSMSCheck()" type="button">SendSMS </button><br /> <br />
-              <button
-                *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null && details.appointmentType==2"
+              <button -->
+                <button *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null && details.appointmentType==2"
                 class="addbtns" (click)="UpdatePrice(details.id)" data-toggle="modal" data-target="#UpdateNewPrice"
                 type="button">Update Price </button><br /> <br />
-          
+
               <button *ngIf="details.deliverPatnerAssigned!='1' &&details.acceptedBit==1  &&details.homeSampleBit==0"
                 class="addbtns" data-toggle="modal" data-target="#Order"
-                (click)="getdiagnosticAppointmentsbyid(details.id)" type="button">Assign</button>
+                (click)="getdiagnosticAppointmentsbyid(details)" type="button">Assign</button>
               <button *ngIf="details.acceptedBit==1 &&details.homeSampleBit==1" class="addbtns" data-toggle="modal"
                 data-target="#Upload" (click)="getdiagnosticAppointmentsbyid(details.id)" type="button">Visited</button>
               <br /><br />
@@ -133,10 +138,38 @@
               <label style="font-size: 16px;"> Phlebotomist</label>
             </div>
             <div class="col-lg-6">
-              <select class="form-control" id="staffid" name="staffid" [(ngModel)]="staffid" required>
+              <select class="form-control" id="staffid" name="staffid" [(ngModel)]="staffid" (change)="getphbstaffid()"
+                required>
                 <option value="0">Select Phlebotomist</option>
                 <option *ngFor="let Sites of myteamlist" value="{{Sites.id}}">{{Sites.name}}</option>
               </select>
+            </div>
+          </div>
+          <br>
+          <h6 style="margin-left: 67px;" *ngIf="showtable">Current Appointments:</h6>
+          <div class="row" *ngIf="showtable">
+            <div class="col-lg-1">
+
+            </div>
+
+            <div class="col-lg-3">
+              
+              <table style="width: 500px;">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Address</th>
+                    <th>Patient Name</th>
+                  </tr>
+                  <tr *ngFor="let details of phbworkingdetails">
+                    <td>{{details.date |date }}</td>
+                    <td>{{details.slotTime}}</td>
+                    <td>{{details.address}}</td>
+                    <td>{{details.patientName}}</td>
+                </thead>
+              </table>
+              <h6 *ngIf="phbworkingdetails.length==0">No Appointments </h6>
             </div>
           </div>
           <br>

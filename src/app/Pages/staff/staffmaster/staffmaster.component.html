@@ -10,8 +10,6 @@
     <form #myteam="ngForm">
         <div class="row">
             <div class="col-lg-8">
-
-
                 <div *ngIf="Diagnosticid==undefined" class="row" style="margin-top:20px;">
                     <div class="col-lg-4">
                         <label>Diagnostic Centre :</label>
@@ -31,8 +29,8 @@
                         <label>Diagnostic Centre :</label>
                         <span class="required">*</span>
                     </div>
-                    <div class="col-lg-6">
-                        <select class="dropdown form-control" [(ngModel)]="Diagnosticid" id="Diagnosticid"
+                    <div class="col-lg-6"> 
+                        <select class="dropdown form-control" [(ngModel)]="Diagnosticid" id="Diagnosticid" disabled
                             name="Diagnosticid" (change)="getdiagnosticforadmin()">
                             <option value="0">Select Diagnostic Name</option>
                             <option *ngFor="let Sites of diagnosticlist" value="{{Sites.id}}">

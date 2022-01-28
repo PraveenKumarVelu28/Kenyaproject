@@ -49,7 +49,7 @@ export class RevenueComponent implements OnInit {
         data => {
 
           this.packagelist = data.filter(x => x.month == this.MonthID);
-          this.totalamount = this.packagelist[0].totalamount
+          this.totalamount = this.packagelist[0].totalamount;
 
         },
         error => { }

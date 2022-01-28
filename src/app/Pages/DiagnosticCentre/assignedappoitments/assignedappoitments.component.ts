@@ -25,6 +25,7 @@ export class AssignedappoitmentsComponent implements OnInit {
   diagnosticid: any;
   diagnosticlist: any;
   todaydate: any;
+  Search: any;
   public languageid: any;
   constructor(public MediTestService: MediTestService, private activatedroute: ActivatedRoute) { }
 
@@ -34,10 +35,10 @@ export class AssignedappoitmentsComponent implements OnInit {
     // var kkk = this.SDate.setDate(this.SDate.getDate() - 0);
     // var lll = this.EDate.setDate(this.EDate.getDate() + 7);
 
-    // const format = 'yyyy-MM-dd';
-    // const myDate = new Date();
-    // const locale = 'en-US';
-    // this.todaydate = formatDate(myDate, format, locale);
+    const format = 'yyyy-MM-dd';
+    const myDate = new Date();
+    const locale = 'en-US';
+    this.todaydate = formatDate(myDate, format, locale);
 
 
     // this.startdate = formatDate(kkk, format, locale);

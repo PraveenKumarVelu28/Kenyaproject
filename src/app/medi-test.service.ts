@@ -154,6 +154,10 @@ export class MediTestService {
 
     return this.http.get<any[]>(this.host + '/Master/GetDiagnosticAppointmentsByDiagnosticIDMediTest?DiagnosticCenterID=' + id + '&SDate=' + sdate + '&EDate=' + edate + '&LanguageID=' + lid);
   }
+  public GetAssigned_Phlebotomist_Details(sdate: any, StaffID: any) {
+
+    return this.http.get<any[]>(this.host + '/Master/GetAssigned_Phlebotomist_Details?SDate=' + sdate + '&StaffID=' + StaffID);
+  }
 
   public GetAdmin_DoctorMyAppointments_Label(lid: any) {
 
@@ -419,10 +423,22 @@ export class MediTestService {
     this.url = this.host + '/Master/InsertTestOffers';
     return this.http.post(this.url, data)
   }
+  public UploadReciept(data: any) {
+    this.url = this.host + '/Master/UploadReciept';
+    return this.http.post(this.url, data)
+  }
+
+
   public Gettestoffers() {
 
     return this.http.get<any[]>(this.host + '/Master/Gettestoffers');
   }
+
+  public GetMediTestOrderDetailsNewWeb() {
+
+    return this.http.get<any[]>(this.host + '/Master/GetMediTestOrderDetailsNewWeb');
+  }
+
   public GetPatient_WalletLog() {
 
     return this.http.get<any[]>(this.host + '/Master/GetPatient_WalletLog');
@@ -475,6 +491,16 @@ export class MediTestService {
     this.url = 'https://qa.his.clinivantage.dev/api/packages/bill/package/search';
     return this.http.post(this.url, entity)
   }
+  public GetLabReportfromHIS(labSampleDtlsIds: any) {
+    debugger
+    var entity = {
+      "labSampleDtlsIds": labSampleDtlsIds,
+      "orgId": 1,
+      "orgUnitId": 1,
+    }
+    this.url = 'https://intdev.his.clinivantage.dev/LIS/transaction/labReportPDF/getBinaryStringOfLABReport';
+    return this.http.post(this.url, entity)
+  }
 
   // public SendSMS(): any {
   //   debugger
@@ -510,13 +536,19 @@ export class MediTestService {
 
   public SendSMS() {
     debugger
-    var message_bag = {
-      "numbers": "254739122099",
-      "message": "Test Message From MediTEst",
-      "sender": "UjumbeSMS"
+    var entity = {
+      'data': [
+        {
+          "message_bag": {
+            "numbers": "0723660400,0712090304",
+            "message": "Message from the first bag",
+            "sender": "DEPTHSMS"
+          }
+        }
+      ]
     }
     this.url = this.host + '/Master/SendSMS';
-    return this.http.post(this.url, message_bag)
+    return this.http.post(this.url, entity);
     // this.url = 'https://qa.his.clinivantage.dev/api/packages/bill/package/search';
 
 
@@ -525,6 +557,12 @@ export class MediTestService {
 
 
 
+  }
+
+  public PostGCMNotifications(data: any) {
+
+    this.url = this.host + '/Doctor/PostGCMNotifications';
+    return this.http.post(this.url, data)
   }
 
 }

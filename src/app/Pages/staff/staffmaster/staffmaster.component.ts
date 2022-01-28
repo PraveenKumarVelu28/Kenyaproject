@@ -27,8 +27,9 @@ export class StaffmasterComponent implements OnInit {
     ngOnInit() {
         debugger
         this.languageid = localStorage.getItem('LanguageID');
+        this.Diagnosticid = localStorage.getItem('DiagnosticId');
         this.getdiagnosticforadmin();
-        this.Diagnosticid = localStorage.getItem('Diagnosticid')
+
         this.activatedroute.params.subscribe(params => {
 
             this.id = params['id'];
@@ -64,10 +65,8 @@ export class StaffmasterComponent implements OnInit {
         debugger;
         this.MediTestService.GetDiagnosticForAdminByLanguageID(this.languageid).subscribe(
             data => {
-
                 this.diagnosticlist = data;
-
-
+                this.Diagnosticid = localStorage.getItem('DiagnosticId');
             }, error => {
             }
         )

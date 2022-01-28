@@ -1,0 +1,196 @@
+<div class="container-fluid card card:hover headerspace">
+    <div class="row headerspace">
+        <!-- <div class="col-lg-3">
+            <h5>Dashboard</h5>
+        </div> -->
+        <div class="col-lg-3">
+            <input type="date" id="todaydate" class="form-control" placeholder="todaydate" (change)="applydatefilter()"
+                [(ngModel)]="todaydate">
+        </div>
+    </div>
+</div>
+<br>
+<div class="container-fluid card card-hover">
+    <br>
+    <h5>Appointment Dashboard</h5>
+    <hr>
+    <div class="row">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-2">
+            <div class="optionsboxdown" style="cursor: pointer;border-radius: 16px;">
+                <br>
+                <label style="color: black;font-size: 15px;color: white;">
+                    <b style="font-size: 15px;">
+                        Total Appointment</b>
+                    <br>
+                    <br>
+                </label>
+                <br />
+                <br />
+                <label style="color: black;font-size: 15px;color: #f17e2d;">
+                    <b>
+                        <u style="font-size: 20px;">{{allaptnments}}</u>
+                    </b>
+                </label>
+            </div>
+            <br />
+            <br />
+        </div>
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-2">
+            <div class="optionsboxdown" style="cursor: pointer;border-radius: 16px;">
+                <br>
+                <label style="color: black;font-size: 15px;color: white;">
+                    <b style="font-size: 15px;">
+                        Accepted</b>
+                </label>
+                <br />
+                <br />
+                <label style="color: black;font-size: 15px;color: #f17e2d;margin-top: 21px;">
+                    <b>
+                        <u style="font-size: 20px;">{{accpetedaptnments}}</u>
+                    </b>
+                </label>
+            </div>
+            <br />
+            <br />
+        </div>
+
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-2">
+            <div class="optionsboxdown" style="cursor: pointer;border-radius: 16px;">
+                <br>
+                <label style="color: black;font-size: 15px;color: white;">
+                    <b style="font-size: 15px;">
+                        Visited</b>
+                </label>
+                <br />
+                <br />
+                <label style="color: black;font-size: 15px;color: #f17e2d;margin-top: 21px;">
+                    <b>
+                        <u style="font-size: 20px;">{{visitedaptnments}}</u>
+                    </b>
+                </label>
+            </div>
+            <br />
+            <br />
+        </div>
+
+        <div class="col-lg-2"></div>
+        <br />
+    </div>
+
+</div>
+<br>
+<div class="container-fluid card card-hover">
+    <br>
+    <h5>Revenue Dashboard</h5>
+    <hr>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-2">
+            <div class="optionsboxdown" style="cursor: pointer;border-radius: 16px;">
+                <br>
+                <label style="color: black;font-size: 15px;color: white;">
+                    <b style="font-size: 15px;">
+                        Total Revenue</b>
+                    <br>
+                    <br>
+                </label>
+                <br />
+                <br />
+                <label style="color: black;font-size: 15px;color: #f17e2d;">
+                    <b>
+                        <u style="font-size: 20px;">{{totalrevenue}}</u>
+                    </b>
+                </label>
+            </div>
+            <br />
+            <br />
+        </div>
+
+        <div class="col-lg-2">
+            <div class="optionsboxdown" style="cursor: pointer;border-radius: 16px;">
+                <br>
+                <label style="color: black;font-size: 15px;color: white;">
+                    <b style="font-size: 15px;">
+                        Credit/Debit Card</b>
+                    <br>
+                    <br>
+                </label>
+                <br />
+                <br />
+                <label style="color: black;font-size: 15px;color: #f17e2d;">
+                    <b>
+                        <u style="font-size: 20px;">{{totalrevenucredit}}</u>
+                    </b>
+                </label>
+            </div>
+            <br />
+            <br />
+        </div>
+        <div class="col-lg-2">
+            <div class="optionsboxdown" style="cursor: pointer;border-radius: 16px;">
+                <br>
+                <label style="color: black;font-size: 15px;color: white;">
+                    <b style="font-size: 15px;">
+                        COD</b>
+                    <br>
+                    <br>
+                </label>
+                <br />
+                <br />
+                <label style="color: black;font-size: 15px;color: #f17e2d;">
+                    <b>
+                        <u style="font-size: 20px;">{{totalrevenucod}}</u>
+                    </b>
+                </label>
+            </div>
+            <br />
+            <br />
+        </div>
+        <div class="col-lg-2">
+            <div class="optionsboxdown" style="cursor: pointer;border-radius: 16px;">
+                <br>
+                <label style="color: black;font-size: 15px;color: white;">
+                    <b style="font-size: 15px;">
+                        M Pesa</b>
+                </label>
+                <br />
+                <br />
+                <label style="color: black;font-size: 15px;color: #f17e2d;margin-top: 21px;">
+                    <b>
+                        <u style="font-size: 20px;">{{totalrevenumpesa}}</u>
+                    </b>
+                </label>
+            </div>
+            <br />
+            <br />
+        </div>
+
+        <div class="col-lg-2">
+            <div class="optionsboxdown" style="cursor: pointer;border-radius: 16px;">
+                <br>
+                <label style="color: black;font-size: 15px;color: white;">
+                    <b style="font-size: 15px;">
+                        Wallet</b>
+                </label>
+                <br />
+                <br />
+                <label style="color: black;font-size: 15px;color: #f17e2d;margin-top: 21px;">
+                    <b>
+                        <u style="font-size: 20px;">{{totalrevenuewallet}}</u>
+                    </b>
+                </label>
+            </div>
+            <br />
+            <br />
+        </div>
+
+        <div class="col-lg-2"></div>
+        <br />
+    </div>
+</div>
