@@ -29,12 +29,28 @@
                         <label>Diagnostic Centre :</label>
                         <span class="required">*</span>
                     </div>
-                    <div class="col-lg-6"> 
+                    <div class="col-lg-6">
                         <select class="dropdown form-control" [(ngModel)]="Diagnosticid" id="Diagnosticid" disabled
                             name="Diagnosticid" (change)="getdiagnosticforadmin()">
                             <option value="0">Select Diagnostic Name</option>
                             <option *ngFor="let Sites of diagnosticlist" value="{{Sites.id}}">
                                 {{Sites.diagnosticCenterName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-lg-4">
+                        <label>Staff Type :</label>
+                        <span class="required">*</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <select class="dropdown form-control" [(ngModel)]="role" id="role" name="role">
+                            <option value="0">Select Role</option>
+                            <option value="Phlebotomist">Phlebotomist</option>
+                            <option value="Receptionist">Receptionist</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Medical Staff">Medical Staff</option>
                         </select>
                     </div>
                 </div>
@@ -58,8 +74,7 @@
                     </div>
                     <div class="col-lg-6">
                         <input type="text" maxlength="10" required class="form-control" [(ngModel)]="phoneno"
-                            name="phoneno" placeholder="{{labels[0].phoneNo}}"
-                            onkeypress='return(event.charCode>=48&&event.charCode<=57)'>
+                            name="phoneno" placeholder="{{labels[0].phoneNo}}">
                     </div>
                 </div>
                 <br>
@@ -116,7 +131,7 @@
                             [disabled]="myteam.form.invalid">{{labels[0].save}}</button>
                         <button type="submit" text_align="center" class="btn btn-block btn-md allbtns btncolor"
                             *ngIf="showbit=='1'" (click)="UpdateDetailes()"
-                            [disabled]="myteam.form.invalid">{{labels[0].save}}</button>
+                            [disabled]="myteam.form.invalid">Update</button>
                     </div>
                     <div class="col-lg-3">
                     </div>

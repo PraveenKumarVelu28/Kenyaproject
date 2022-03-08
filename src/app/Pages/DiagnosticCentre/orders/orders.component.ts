@@ -153,40 +153,41 @@ export class OrdersComponent implements OnInit {
     var entity = {
       'ID': id,
     }
-
     this.MediTestService.AcceptOrder(entity).subscribe(res => {
       let test = res;
       swal.fire('Accepted Successfully');
-      this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(this.diagnosticid, '2021-10-01', '2022-12-01', 1).subscribe(
-        data => {
-          debugger
-          let temp: any = data.filter(x => x.id == id);
-          let orderid = temp[0].mediOrderID;
-          this.useremail = temp[0].emailID;
-          this.MediTestService.GetMediTestOrderDetailsNewWeb().subscribe(data => {
-            debugger
-            let temp1: any = data.filter(x => x.orderid == orderid);
-            this.base64textString = temp1[0].reciept;
-            var entity1 = {
-              'ID': id,
-              'FileName': id,
-              'FileType': 'pdf',
-              'modifieddate': new Date(),
-              'Base64Data': this.base64textString,
-            }
-            this.MediTestService.UploadReciept(entity1).subscribe(res => {
-              let test = res;
-              swal.fire('Accepted Successfully');
-              this.sendAzureNotification();
-              this.ngOnInit();
-            })
-          })
+      this.ngOnInit();
+      // this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(this.diagnosticid, '2021-10-01', '2022-12-01', 1).subscribe(
+      //   data => {
+      //     debugger
+      //     let temp: any = data.filter(x => x.id == id);
+      //     let orderid = temp[0].mediOrderID;
+      //     this.useremail = temp[0].emailID;
+      //     this.MediTestService.GetMediTestOrderDetailsNewWeb().subscribe(data => {
+      //       debugger
+      //       let temp1: any = data.filter(x => x.orderid == orderid);
+      //       this.base64textString = temp1[0].reciept;
+      //       var entity1 = {
+      //         'ID': id,
+      //         'FileName': id,
+      //         'FileType': 'pdf',
+      //         'modifieddate': new Date(),
+      //         'Base64Data': this.base64textString,
+      //       }
+      //       this.MediTestService.UploadReciept(entity1).subscribe(res => {
+      //         let test = res;
+      //         swal.fire('Accepted Successfully');
+      //         location.reload();
+      //         this.sendAzureNotification();
+
+      //       })
+      //     })
 
 
 
-        }, _error => {
-        }
-      )
+      //   }, _error => {
+      //   }
+      // )
 
 
       // this.ngOnInit();
@@ -205,6 +206,7 @@ export class OrdersComponent implements OnInit {
       if (data != 0) {
 
       }
+
     })
 
   }

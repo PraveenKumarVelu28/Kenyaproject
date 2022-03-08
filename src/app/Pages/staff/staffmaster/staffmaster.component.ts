@@ -23,6 +23,7 @@ export class StaffmasterComponent implements OnInit {
     password: any;
     myteamlist: any;
     Diagnosticid: any;
+    role: any;
     constructor(public MediTestService: MediTestService, private activatedroute: ActivatedRoute, public router: Router) { }
     ngOnInit() {
         debugger
@@ -38,7 +39,7 @@ export class StaffmasterComponent implements OnInit {
             }
             else if (this.id != undefined) {
                 this.showbit = 1;
-                this.MediTestService.GetMyTeam(280).subscribe(data => {
+                this.MediTestService.GetMyTeam(this.Diagnosticid).subscribe(data => {
                     this.myteamlist = data;
                     var list = this.myteamlist.filter((x: { id: any; }) => x.id == this.id);
                     this.name = list[0].name,
@@ -46,7 +47,8 @@ export class StaffmasterComponent implements OnInit {
                         this.email = list[0].emailID,
                         this.address = list[0].address,
                         this.username = list[0].userName,
-                        this.password = list[0].password
+                        this.password = list[0].password,
+                        this.role=list[0].role
                 })
             }
         }
@@ -87,7 +89,8 @@ export class StaffmasterComponent implements OnInit {
             Address: this.address,
             UserName: this.username,
             LanguageID: this.languageid,
-            Password: this.password
+            Password: this.password,
+            Role: this.role
         }
         this.MediTestService.InsertMyTeam(entity).subscribe(res => {
             if (this.languageid == 1) {

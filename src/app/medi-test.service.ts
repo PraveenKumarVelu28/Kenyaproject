@@ -218,6 +218,7 @@ export class MediTestService {
     return this.http.get<any[]>(this.host + '/Master/GetAdmin_Doctorregistration_LabelsByLanguageID?LanguageID=' + lid);
   }
   public InsertMyTeam(data: any) {
+    debugger
     this.url = this.host + '/Master/InsertMyTeam';
     return this.http.post(this.url, data)
   }

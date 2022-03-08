@@ -30,6 +30,7 @@
         <thead>
           <tr>
             <th>Diagnostic Centre</th>
+            <th>Role</th>
             <th>{{labels[0].name}} </th>
             <th>{{labels[0].phoneNo}}</th>
             <th>{{labels[0].email}}</th>
@@ -40,6 +41,7 @@
           </tr>
           <tr *ngFor="let list of myteamlist|filter:term">
             <td>{{list.diagnosticCenterName}}</td>
+            <td>{{list.role}}</td>
             <td>{{list.name}}</td>
             <td>{{list.phoneNo}}</td>
             <td>{{list.emailID}}</td>
@@ -55,15 +57,15 @@
 
               <ng-template>{{labels1[0].enable}}</ng-template>
               <a>
-                <img src="assets/Images/dactive.png" style="width: 48px;margin-left: 2px;" *ngIf="list.enable_Disable==1" (click)="DisableStaff(list.id)">
+                <img src="assets/Images/dactive.png" style="width: 48px;margin-left: 2px;"
+                  *ngIf="list.enable_Disable==1" (click)="DisableStaff(list.id)">
               </a>&nbsp;
-              
-              <a >
-                <img src="assets/Images/dell.png" style="width: 25px;margin-left: 10px;" 
-                  (click)="Enable(list.id)">
+
+              <a>
+                <img src="assets/Images/dell.png" style="width: 25px;margin-left: 10px;" (click)="Enable(list.id)">
               </a>&nbsp;
-             
-              
+
+
               <ng-template>{{labels[0].edit}}</ng-template>
               <a style="color:black">
                 <img src="assets/Images/edit.png" style="width: 18px" [routerLink]="['/Staffmaster',list.id]"></a>

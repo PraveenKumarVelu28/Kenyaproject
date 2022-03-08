@@ -75,7 +75,7 @@ export class AssignedappoitmentsComponent implements OnInit {
 
   public getlanguage() {
     debugger;
-    this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(this.diagnosticid, '2021-10-01', '2022-12-01', 1).subscribe(
+    this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(this.diagnosticid, '2021-10-01', '2029-12-01', 1).subscribe(
       data => {
         debugger
         this.diagnosticlist = data.filter(x => x.deliverPatnerAssigned != null && x.diagReportURL == null);

@@ -73,8 +73,8 @@
               <label *ngIf="details.name!=null">{{details.name}}</label>
             </td>
             <td>
-              <button *ngIf="details.diagReportURL==null" class="addbtns" (click)="getreportdetials(details)"
-                style="margin-left: 6px;margin-top:-4px" type="button">Generate Report</button>
+              <!-- <button *ngIf="details.diagReportURL==null" class="addbtns" (click)="getreportdetials(details)" style="margin-left: 6px;margin-top:-4px"
+                type="button">Generate Report</button> -->
               <a *ngIf="details.diagReportURL!=null" href="{{details.diagReportURL}}" target="_blank"> <button
                   class="addbtns" style="margin-left: 6px;margin-top:-4px" type="button">View
                   Report</button></a>
