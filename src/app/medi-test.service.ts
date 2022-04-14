@@ -13,7 +13,7 @@ export class MediTestService {
   public host = "https://23.101.22.93/MediTestApi";
 
 
-  //public host = "http://localhost:4199/";
+ // public host = "http://localhost:4199/";
   private url: string = '';
 
   public GetLanguageMaster() {
@@ -389,6 +389,24 @@ export class MediTestService {
     this.url = this.host + '/Master/UpdateDiagnosticCenterTests';
     return this.http.post(this.url, data)
   }
+  public InsertPatientRegistration(data: any) {
+    this.url = this.host + '/Master/InsertPatientRegistration';
+    return this.http.post(this.url, data)
+  }
+  public InsertOrdersMediNew(data: any) {
+    this.url = this.host + '/Master/InsertOrdersMediNew';
+    return this.http.post(this.url, data)
+  }
+  public MediTestMPesaAPI(data: any) {
+    this.url = this.host + '/Master/MediTestM-PesaAPI';
+    return this.http.post<any[]>(this.url, data)
+  }
+
+
+  public InsertDiagnosticAppointmentsWeb(data: any) {
+    this.url = this.host + '/Master/InsertDiagnosticAppointmentsWeb';
+    return this.http.post(this.url, data)
+  }
 
 
 
@@ -563,6 +581,11 @@ export class MediTestService {
   public PostGCMNotifications(data: any) {
 
     this.url = this.host + '/Doctor/PostGCMNotifications';
+    return this.http.post(this.url, data)
+  }
+
+  public GetServices(data: any) {
+    this.url = this.host + '/Diagnostic/GetServices';
     return this.http.post(this.url, data)
   }
 

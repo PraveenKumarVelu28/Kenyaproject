@@ -39,6 +39,7 @@
             <th id="imp">Appointment Time</th>
             <th id="imp">Appointment ID</th>
             <th id="imp">Test Names</th>
+            <th>Toatl Amount</th>
             <th>Appointment Type</th>
             <th>Patient Name</th>
             <th>Phone No</th>
@@ -53,6 +54,7 @@
             <td>{{details.slotTime}}</td>
             <td>0000{{details.id}}</td>
             <td>{{details.testNames}}</td>
+            <td>{{details.totalPrice}}</td>
             <td>
               <label *ngIf="details.homeSampleBit==1">Visiting Center</label>
               <label *ngIf="details.homeSampleBit==0">Home Sample Collection</label>

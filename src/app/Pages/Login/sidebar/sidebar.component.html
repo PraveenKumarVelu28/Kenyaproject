@@ -67,10 +67,15 @@
             </a>
 
         </div>
-        <!-- <a class="tablinks" (click)="highlight($event)" routerLink="/Orders">
-            <img src="assets/Images/hos.png" style="width:8%">&nbsp; <label class="sidebaritems">Orders
-            </label>
-        </a> -->
+        <a data-toggle="collapse" class="button" routerLink="/booktestbyadmin" *ngIf="roleid=='2'">
+            <img src="assets/Images/docreg.png" style="width: 20px;">&nbsp;<label class="sidebaritems">
+                Book Test </label>
+        </a><br />
+
+        <a data-toggle="collapse" class="button" routerLink="/Livetracking" *ngIf="roleid=='2'">
+            <img src="assets/Images/docreg.png" style="width: 20px;">&nbsp;<label class="sidebaritems">
+                Live Tracking </label>
+        </a><br />
         <a data-toggle="collapse" class="button" data-target="#Appointments">
             <img src="assets/Images/docreg.png" style="width: 20px;">&nbsp;<label class="sidebaritems">
                 Appointments</label>

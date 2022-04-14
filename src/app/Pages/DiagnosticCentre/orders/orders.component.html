@@ -40,12 +40,13 @@
             <th id="imp">Appointment Time</th>
             <th id="imp">Appointment ID</th>
             <th>Test Names</th>
+            <th>Total Amount</th>
             <th>Appointment Type</th>
             <th>Patient Name</th>
             <th>Phone No</th>
             <th>Email</th>
             <th>Address</th>
-            <th>Prescription</th>
+            <!-- <th>Prescription</th> -->
             <th>Assigned To</th>
             <th>Status</th>
             <th>Action</th>
@@ -56,6 +57,7 @@
             <td>{{details.slotTime}}</td>
             <td>0000{{details.id}}</td>
             <td>{{details.testNames}}</td>
+            <td>{{details.totalPrice}}</td>
             <td>
               <label *ngIf="details.homeSampleBit==1">Visiting Center</label>
               <label *ngIf="details.homeSampleBit==0">Home Sample Collection</label>
@@ -64,7 +66,7 @@
             <td>{{details.mobileNumber}}</td>
             <td>{{details.emailID}}</td>
             <td>{{details.address}}</td>
-            <td>
+            <!-- <td>
               <button *ngIf="details.fileURL==null && details.appointmentType==2" class="addbtns" data-toggle="modal"
                 data-target="#Prescriptionaccept" (click)="getPrescriptionPhotos(details.id)"
                 type="button">Prescription</button>
@@ -72,7 +74,7 @@
                 <button *ngIf="details.diagReportURL!=null" class="addbtns" data-toggle="modal"
                   style="margin-left: 6px;margin-top:-4px" type="button">Report</button></a>
               <p *ngIf="details.appointmentType==1">NA</p>
-            </td>
+            </td> -->
             <!-- <td>
               <label *ngIf="details.homeSampleBit=='1'&&details.diagnosticSlotID!='0'">{{labels[0].yes}}</label>
                 <label *ngIf="details.homeSampleBit=='0'&&details.diagnosticSlotID!='0'">{{labels[0].no}}</label>
@@ -93,7 +95,7 @@
             </td>
             <td>
               <button
-                *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null && details.appointmentType==1"
+                *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null  "
                 class="addbtns" (click)="AcceptOrder(details.id)" type="button">Accept </button><br /> <br />
               <button
                 *ngIf="details.deliverPatnerAssigned==null && details.diagnosticCancelled==null && details.acceptedBit==null"
@@ -102,11 +104,12 @@
                 *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null && details.appointmentType==1"
                 class="addbtns" (click)="SendSMSCheck()" type="button">SendSMS </button><br /> <br />
               <button -->
-                <button *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null && details.appointmentType==2"
+              <button
+                *ngIf="details.deliverPatnerAssigned==null && details.acceptedBit==null && details.diagnosticCancelled==null && details.appointmentType==2"
                 class="addbtns" (click)="UpdatePrice(details.id)" data-toggle="modal" data-target="#UpdateNewPrice"
                 type="button">Update Price </button><br /> <br />
 
-              <button *ngIf="details.deliverPatnerAssigned!='1' &&details.acceptedBit==1  &&details.homeSampleBit==0"
+              <button *ngIf="details.deliverPatnerAssigned!='1' &&details.acceptedBit==1  &&details.homeSampleBit==0 "
                 class="addbtns" data-toggle="modal" data-target="#Order"
                 (click)="getdiagnosticAppointmentsbyid(details)" type="button">Assign</button>
               <button *ngIf="details.acceptedBit==1 &&details.homeSampleBit==1" class="addbtns" data-toggle="modal"
@@ -153,7 +156,7 @@
             </div>
 
             <div class="col-lg-3">
-              
+
               <table style="width: 500px;">
                 <thead>
                   <tr>

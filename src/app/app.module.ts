@@ -51,6 +51,8 @@ import { TestOffersComponent } from './Pages/Dignosticpackaeandtestmaster/test-o
 import { TestoffersdashbaordComponent } from './Pages/Dignosticpackaeandtestmaster/testoffersdashbaord/testoffersdashbaord.component';
 import { DigDashboardComponent } from './Pages/DiagnosticCentre/dig-dashboard/dig-dashboard.component';
 import { SpinnerComponent } from './Pages/Login/spinner/spinner.component';
+import { BooktestbyadminComponent } from './Pages/DiagnosticCentre/booktestbyadmin/booktestbyadmin.component';
+import { LivetrackingComponent } from './Pages/DiagnosticCentre/livetracking/livetracking.component';
 
 
 
@@ -107,7 +109,9 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     TestOffersComponent,
     TestoffersdashbaordComponent,
     DigDashboardComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    BooktestbyadminComponent,
+    LivetrackingComponent
   ],
   imports: [
     BrowserModule,

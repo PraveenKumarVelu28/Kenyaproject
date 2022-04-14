@@ -1,0 +1,157 @@
+<div class="container-fluid card card:hover headerrspace">
+    <div class="row headerspace">
+        <div class="col-lg-8">
+            <h5>Book Test</h5>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container-fluid card card-hover">
+    <form #myteam="ngForm">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-lg-4">
+                        <label>First Name :</label>
+                        <span class="required">*</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" required class="form-control" placeholder="First Name" id="PatientName"
+                            [(ngModel)]="PatientName" name="PatientName">
+                    </div>
+                </div>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-lg-4">
+                        <label>Last Name :</label>
+                        <span class="required">*</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" required class="form-control" placeholder="Last Name" id="lastname"
+                            [(ngModel)]="lastname" name="lastname">
+                    </div>
+                </div>
+                <br>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-lg-4">
+                        <label>Gender :</label>
+                        <span class="required">*</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <select class="dropdown form-control" [(ngModel)]="GenderID" id="GenderID" name="GenderID">
+                            <option value="0">Select Gender</option>
+                            <option value="1">Male</option>
+                            <option value="2">Female</option>
+
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-lg-4">
+                        <label>Age :</label>
+                        <span class="required">*</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="number" required class="form-control" placeholder="Age" id="age" [(ngModel)]="age"
+                            name="age">
+                    </div>
+                </div>
+                <br>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-lg-4">
+                        <label>DOB :</label>
+                        <span class="required">*</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="date" required class="form-control" placeholder="Patient Name" id="DateOfBirth"
+                            [(ngModel)]="DateOfBirth" name="DateOfBirth">
+                    </div>
+                </div>
+                <br>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-lg-4">
+                        <label>Mobile Number :</label>
+                        <span class="required">*</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" required class="form-control" placeholder="Mobile Number" id="Mobileno"
+                            [(ngModel)]="Mobileno" name="Mobileno" maxlength="10">
+                    </div>
+                </div>
+                <br>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-lg-4">
+                        <label>Email :</label>
+                        <span class="required">*</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" required class="form-control" placeholder="Email" id="Email"
+                            [(ngModel)]="Email" name="Email">
+                    </div>
+                </div>
+                <br>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-lg-4">
+                        <label>Address :</label>
+                        <span class="required">*</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <textarea type="text" required class="form-control" placeholder="Address" id="Address"
+                            [(ngModel)]="Address" name="Address"></textarea>
+                    </div>
+                </div>
+                <br>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-lg-4">
+                        <label>Test :</label>
+                        <span class="required">*</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <ng-multiselect-dropdown [placeholder]="'Select Test'" [settings]="dropdownSettings1"
+                            [data]="servicelist" [(ngModel)]="selectedItems1" (onSelect)="onItemSelect1($event)">
+                        </ng-multiselect-dropdown>
+                    </div>
+                </div>
+                <br>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-lg-4">
+                        <label>Appointment Date :</label>
+                        <span class="required">*</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="date" required class="form-control" placeholder="Address" id="Date"
+                            [(ngModel)]="Date" name="Date">
+                    </div>
+                </div>
+                <br>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-lg-4">
+                        <label>Appointment Time :</label>
+                        <span class="required">*</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="time" required class="form-control" placeholder="" id="SlotTime"
+                            [(ngModel)]="SlotTime" name="SlotTime">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-5">
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="submit" text_align="center" class="btn btn-block btn-md allbtns btncolor"
+                            (click)="InsertDetailes()" [disabled]="myteam.form.invalid">Cash Collected</button>
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="submit" text_align="center" class="btn btn-block btn-md allbtns btncolor"
+                            *ngIf="showplacebutton==1" (click)="InsertAppoitmnetInSamirAPI()">Place Order</button>
+                    </div>
+                    <div class="col-lg-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </form>
+</div>
+<app-spinner *ngIf="loader"></app-spinner>

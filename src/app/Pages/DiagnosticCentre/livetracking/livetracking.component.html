@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-lg-3">
+        <select class="form-control" id="staffid" name="staffid" [(ngModel)]="staffid" (change)="getphbstaffid()"
+            required>
+            <option value="0">Select Phlebotomist</option>
+            <option *ngFor="let Sites of myteamlist" value="{{Sites.id}}">{{Sites.name}}</option>
+        </select>
+    </div>
+    <div class="col-lg-3">
+        <input type="date" id="todaydate" name="todaydate" [(ngModel)]="todaydate" class="form-control"
+            (change)="getdate()">
+    </div>
+
+</div>
+<br>
+
+<iframe id="map" src="" height="600" style="left: -200px; width: -webkit-fill-available;;" frameborder="0"></iframe>

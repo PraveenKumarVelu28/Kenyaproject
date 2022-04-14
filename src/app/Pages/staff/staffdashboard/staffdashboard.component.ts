@@ -24,7 +24,7 @@ export class StaffdashboardComponent implements OnInit {
   email: any;
   username: any;
   password: any;
-  diagnosticid:any;
+  diagnosticid: any;
   constructor(public MediTestService: MediTestService, private activatedroute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -82,8 +82,8 @@ export class StaffdashboardComponent implements OnInit {
 
 
 
-  public getpassword(details:any) {
-    
+  public getpassword(details: any) {
+
     this.oldpassword = details.password,
       this.mypinno = details.pinno,
       this.id = details.id
@@ -96,7 +96,7 @@ export class StaffdashboardComponent implements OnInit {
         this.email = list[0].emailID,
         this.address = list[0].address,
         this.username = list[0].userName
-        // this.password = list[0].password
+      // this.password = list[0].password
     })
     this.Showpassword = 0;
 
@@ -112,9 +112,9 @@ export class StaffdashboardComponent implements OnInit {
 
 
   public CheckPasswordvalidate() {
-    
+
     if (this.Enteredpinno == "" || this.entercurrentpwd == "") {
-      
+
       if (this.languageid == 1) {
         Swal.fire('Please Enter Your Pin No && Current password')
         this.entercurrentpwd = "";
@@ -129,14 +129,14 @@ export class StaffdashboardComponent implements OnInit {
 
     }
     else {
-      
+
       if (this.pinno == this.Enteredpinno && this.currentpwd == this.entercurrentpwd) {
         this.Showpassword = 1;
         this.Enteredpinno = ""
         this.entercurrentpwd = "";
       }
       else {
-        
+
         if (this.languageid == 1) {
           Swal.fire('Please enter valid Pinno and valid password')
           this.Enteredpinno = ""
@@ -156,33 +156,33 @@ export class StaffdashboardComponent implements OnInit {
 
   public UpdateDetailes() {
     var entity = {
-        ID: this.id,
-        DiagnosticID: localStorage.getItem('diagnosticid'),
-        Name: this.name,
-        PhoneNo: this.phoneno,
-        EmailID: this.email,
-        Address: this.address,
-        UserName: this.username,
-        Password: this.password
+      ID: this.id,
+      DiagnosticID: localStorage.getItem('diagnosticid'),
+      Name: this.name,
+      PhoneNo: this.phoneno,
+      EmailID: this.email,
+      Address: this.address,
+      UserName: this.username,
+      Password: this.password
     }
     this.MediTestService.UpdateMyTeam(entity).subscribe(res => {
-        if (this.languageid == 1) {
-            Swal.fire('Success', 'Updated Successfully')
-            // document.getElementById('close').click();
-            this.GetMyTeam()
-            // location.href = "#/MyTeamDashboard"
-        }
-        else if (this.languageid == 6) {
-            Swal.fire('Mis à jour avec Succés')
-            // document.getElementById('close').click();
-            this.GetMyTeam()
-            // location.href = "#/MyTeamDashboard"
-        }
+      if (this.languageid == 1) {
+        Swal.fire('Success', 'Updated Successfully')
+        // document.getElementById('close').click();
+        this.GetMyTeam()
+        // location.href = "#/MyTeamDashboard"
+      }
+      else if (this.languageid == 6) {
+        Swal.fire('Mis à jour avec Succés')
+        // document.getElementById('close').click();
+        this.GetMyTeam()
+        // location.href = "#/MyTeamDashboard"
+      }
     })
-}
+  }
 
 
-  public Delete(id:any) {
+  public Delete(id: any) {
     debugger;
     if (this.languageid == 1) {
       Swal.fire({
@@ -213,7 +213,7 @@ export class StaffdashboardComponent implements OnInit {
     else if (this.languageid == 6) {
       Swal.fire({
         title: 'Êtes-vous sûr ?',
-         text: "Désactiver",
+        text: "Désactiver",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -244,7 +244,7 @@ export class StaffdashboardComponent implements OnInit {
 
 
 
-  public Enable(id:any) {
+  public Enable(id: any) {
     if (this.languageid == 1) {
       Swal.fire({
         title: 'Are you sure?',
@@ -274,7 +274,7 @@ export class StaffdashboardComponent implements OnInit {
     else if (this.languageid == 6) {
       Swal.fire({
         title: 'Êtes-vous sûr ?',
-         text: "Activer",
+        text: "Activer",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -300,7 +300,7 @@ export class StaffdashboardComponent implements OnInit {
     }
 
   }
-
+ 
 
   public DisableStaff(id: any) {
     var eb = {
@@ -312,7 +312,7 @@ export class StaffdashboardComponent implements OnInit {
       data => {
         debugger
         Swal.fire('Updated successfully.');
-        location.reload();
+        this.ngOnInit();
       },
     )
 
