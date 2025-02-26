@@ -24,7 +24,7 @@
             <!-- <label style="margin-left: 60px;">Total Amount : 0</label> -->
         </div>
         <div class="col-lg-2">
-            <label style="margin-left: 60px;">Count : 0</label>
+            <h6 style="margin-left: 60px;">Count : {{packagelist.length}}</h6>
         </div>
     </div>
     <br>
@@ -38,17 +38,38 @@
                         <th id="imp">Package Name</th> -->
                         <th id="imp">Start Date</th>
                         <th id="imp">End Date</th>
+                        <th id="imp">Offer Percentage</th>
                         <th id="imp">Offer Description</th>
+
                         <th id="imp">Offer Image</th>
-                        <!-- <th id="imp">Amount</th> -->
+                        <th id="imp">Action</th>
                     </tr>
                     <tr *ngFor="let details of packagelist | filter:term">
                         <!-- <td>{{details.testname}}</td>
                         <td>-</td> -->
                         <td>{{details.startDate|date}}</td>
                         <td>{{details.endDate|date}}</td>
+                        <td>{{details.percentage}}</td>
                         <td>{{details.offer_Description}}</td>
                         <td><img src="{{details.imageurl}}" style=" height: 50px;width: 130px;" /></td>
+                        <td>
+
+                            <a>
+                                <img src="assets/Images/active.png" style="width: 46px;margin-left: 10px;"
+                                    *ngIf="details.enable_Disable==0" (click)="testoffersEnableDisable(details.id)">
+                            </a>&nbsp;
+
+
+                            <a>
+                                <img src="assets/Images/dactive.png" style="width: 48px;margin-left: 2px;"
+                                    *ngIf="details.enable_Disable==1" (click)="testoffersEnableDisable(details.id)">
+                            </a>&nbsp;
+                            <ng-template>Edit</ng-template>
+                            <a style="color:black">
+                                <img src="assets/Images/edit.png" style="width: 18px"
+                                    [routerLink]="['/TestOffers',details.id]"></a>
+
+                        </td>
                     </tr>
                 </thead>
             </table>

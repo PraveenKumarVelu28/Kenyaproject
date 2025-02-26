@@ -32,11 +32,14 @@ export class LoginComponent implements OnInit {
   public labels: any;
   public Showpass: any;
   public pinno: any;
+  CenterList: any;
+  DiagnosticId: any;
 
   ngOnInit(): void {
     this.Showpass = 1;
 
     this.LanguageID = 1;
+    this.DiagnosticId = 0;
     localStorage.setItem('LanguageID', '1');
     this.spinner.show();
     setTimeout(() => {
@@ -56,6 +59,14 @@ export class LoginComponent implements OnInit {
       }, error => {
       }
     )
+    this.MediTestService.GetDiagnosticForAdminByLanguageID(1).subscribe(
+      data => {
+
+        this.CenterList = data;
+      }, error => {
+      }
+    )
+
   }
   public GetLanguageID(even: any) {
 
@@ -106,14 +117,16 @@ export class LoginComponent implements OnInit {
 
       else {
         if (this.roleid == "2") {
+
           this.MediTestService.GetDiagnosticForAdminByLanguageID(1).subscribe(
             data => {
-              this.result = data.filter(x => x.username == this.uname && x.password == this.pwd);
-              if (this.result.length != '0') {
-                localStorage.setItem('user', this.result[0].contactPerson)
+              let temp: any = data.filter(x => x.id == this.DiagnosticId);
+              if (temp[0].username == this.uname && temp[0].password == this.pwd) {
+                localStorage.setItem('user', temp[0].contactPerson)
 
-                localStorage.setItem('DiagnosticId', this.result[0].id);
+                localStorage.setItem('DiagnosticId', this.DiagnosticId);
                 localStorage.setItem('temp', '1');
+                localStorage.setItem('roleid', '2')
                 this.router.navigate(["/Orders"])
                   .then(() => {
                     window.location.reload();
@@ -124,6 +137,24 @@ export class LoginComponent implements OnInit {
                 this.uname = "";
                 this.pwd = "";
               }
+
+              //   this.result = data.filter(x => x.username == this.uname && x.password == this.pwd);
+              // if (this.result.length != '0') {
+              //   localStorage.setItem('user', this.result[0].contactPerson)
+
+              //   localStorage.setItem('DiagnosticId', this.result[0].id);
+              //   localStorage.setItem('temp', '1');
+              //   localStorage.setItem('roleid', '2')
+              //   this.router.navigate(["/Orders"])
+              //     .then(() => {
+              //       window.location.reload();
+              //     });
+              // }
+              // else {
+              //   Swal.fire('Error', 'Username or Password is not valid!');
+              //   this.uname = "";
+              //   this.pwd = "";
+              // }
             }, error => {
             }
           )

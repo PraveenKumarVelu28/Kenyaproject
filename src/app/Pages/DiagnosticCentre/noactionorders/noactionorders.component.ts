@@ -10,18 +10,17 @@ const EXCEL_TYPE =
 const EXCEL_EXTENSION = '.xlsx';
 
 @Component({
-  selector: 'app-orders',
-  templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.css'],
+  selector: 'app-noactionorders',
+  templateUrl: './noactionorders.component.html',
+  styleUrls: ['./noactionorders.component.css'],
 })
-export class OrdersComponent implements OnInit {
+export class NoactionordersComponent implements OnInit {
   public labels: any;
   public labels1: any;
   startdate: any;
   labels4: any;
   enddate: any;
   SDate: any;
-  loader: any;
   EDate: any;
   diagnosticid: any;
   diagnosticlist: any;
@@ -39,6 +38,7 @@ export class OrdersComponent implements OnInit {
     this.showtable = 0;
     this.diagnosticid = localStorage.getItem('DiagnosticId');
     this.roleid = localStorage.getItem('roleid');
+
     // var kkk = this.SDate.setDate(this.SDate.getDate() - 0);
     // var lll = this.EDate.setDate(this.EDate.getDate() + 7);
 
@@ -75,7 +75,7 @@ export class OrdersComponent implements OnInit {
     );
   }
 
-  public getedate() {
+  public GetEDate() {
     if (this.roleid == 1) {
       this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(
         0,
@@ -89,8 +89,10 @@ export class OrdersComponent implements OnInit {
             (x) =>
               x.deliverPatnerAssigned == null &&
               x.diagReportURL == null &&
+              x.formatdate < this.todaydate &&
               x.formatdate >= this.todaydate &&
-              x.formatdate <= this.EDate
+              x.formatdate <= this.EDate &&
+              (x.acceptedBit == null || x.diagnosticCancelled == null)
           );
         },
         (_error) => {}
@@ -108,8 +110,10 @@ export class OrdersComponent implements OnInit {
             (x) =>
               x.deliverPatnerAssigned == null &&
               x.diagReportURL == null &&
+              x.formatdate < this.todaydate &&
               x.formatdate >= this.todaydate &&
-              x.formatdate <= this.EDate
+              x.formatdate <= this.EDate &&
+              (x.acceptedBit == null || x.diagnosticCancelled == null)
           );
         },
         (_error) => {}
@@ -132,7 +136,8 @@ export class OrdersComponent implements OnInit {
             (x) =>
               x.deliverPatnerAssigned == null &&
               x.diagReportURL == null &&
-              x.formatdate >= this.todaydate
+              x.formatdate < this.todaydate &&
+              (x.acceptedBit == null || x.diagnosticCancelled == null)
           );
         },
         (_error) => {}
@@ -150,7 +155,8 @@ export class OrdersComponent implements OnInit {
             (x) =>
               x.deliverPatnerAssigned == null &&
               x.diagReportURL == null &&
-              x.formatdate >= this.todaydate
+              x.formatdate < this.todaydate &&
+              (x.acceptedBit == null || x.diagnosticCancelled == null)
           );
         },
         (_error) => {}
@@ -183,9 +189,8 @@ export class OrdersComponent implements OnInit {
     debugger;
     this.orderid = details.id;
     this.useremail = details.emailID;
-    this.mobileNumber = details.mobileNumber;
   }
-  mobileNumber: any;
+
   staffid: any;
   Comments: any;
 
@@ -200,27 +205,6 @@ export class OrdersComponent implements OnInit {
     this.MediTestService.UpdateOrders(entity).subscribe((res) => {
       let test = res;
       Swal.fire(' Updated Successfully');
-      var entity1 = {
-        EmailId: this.useremail,
-        PhoneNo: this.mobileNumber,
-        OTP: 'Hi  , Phlebotomist has been Assigned for you Order.',
-      };
-      this.MediTestService.MediSMSNEW(entity1).subscribe((res) => {
-        let test = res;
-      });
-
-      var entity2 = {
-        'emailfrom ': 'donotreply.caa@gmail.com',
-        'emailto ': this.useremail,
-        emailsubject: 'Phlebotomist Assigned',
-        Attachmenturl: 'dd',
-        'emailbody ': 'Hi  , Phlebotomist has been Assigned for you Order.',
-      };
-      this.MediTestService.SendEmailNew(entity2).subscribe((res) => {
-        let test = res;
-        swal.fire('Assigned Successfully');
-        this.ngOnInit();
-      });
       this.Comments = '';
       this.sendAzureNotification2();
       this.ngOnInit();
@@ -228,13 +212,38 @@ export class OrdersComponent implements OnInit {
   }
 
   myteamlist: any;
-  PaymentApprovalNo: any;
   public GetMyTeam() {
     debugger;
     this.MediTestService.GetMyTeam(this.diagnosticid).subscribe((data) => {
       this.myteamlist = data;
     });
   }
+
+  Orderid: any;
+  loader: any;
+  mobileNumber: any;
+  emailID: any;
+  public AcceptOrder(details: any) {
+    debugger;
+
+    this.loader = true;
+    this.Orderid = details.id;
+    this.emailID = details.emailID;
+    this.mobileNumber = details.mobileNumber;
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.value == true) {
+        this.Cashcollected(details.totalPrice);
+      }
+    });
+  }
+  PaymentApprovalNo: any;
   public Cashcollected(TotalPrice: any) {
     debugger;
     var entity = {
@@ -255,90 +264,22 @@ export class OrdersComponent implements OnInit {
         var entity = {
           ID: this.Orderid,
         };
-        this.MediTestService.AcceptOrderandcllectcash(entity).subscribe(
-          (res) => {
+        this.MediTestService.AcceptOrder(entity).subscribe((res) => {
+          let test = res;
+          var entity1 = {
+            EmailId: this.emailID,
+            PhoneNo: this.mobileNumber,
+            OTP: 'Hi  , Your Order has been Accepted By MediTest.',
+          };
+          this.MediTestService.MediSMSNEW(entity1).subscribe((res) => {
             let test = res;
-            var entity1 = {
-              EmailId: this.emailID,
-              PhoneNo: this.mobileNumber,
-              OTP: 'Hi  , Your Order has been Accepted By MediTest.',
-            };
-            this.MediTestService.MediSMSNEW(entity1).subscribe((res) => {
-              let test = res;
-            });
-
-            var entity2 = {
-              'emailfrom ': 'donotreply.caa@gmail.com',
-              'emailto ': this.emailID,
-              emailsubject: 'Meditest Order Accepted',
-              Attachmenturl: 'dd',
-              'emailbody ':
-                'Hi  , <br>Your Order has been Accepted By MediTest.',
-            };
-            this.MediTestService.SendEmailNew(entity2).subscribe((res) => {
-              let test = res;
-              swal.fire('Accepted Successfully');
-              this.ngOnInit();
-            });
-          }
-        );
+            swal.fire('Accepted Successfully');
+            this.ngOnInit();
+          });
+        });
 
         this.loader = false;
       }
-    });
-  }
-  Orderid: any;
-  emailID: any;
-  public AcceptOrder(details: any) {
-    debugger;
-
-    this.Orderid = details.id;
-    this.emailID = details.emailID;
-    this.mobileNumber = details.mobileNumber;
-
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, Accept it!',
-    }).then((result) => {
-      if (result.value == true) {
-        this.loader = true;
-        this.Cashcollected(details.totalPrice);
-      }
-    });
-    // this.Cashcollected(details.totalPrice);
-  }
-  public AcceptOrderOnly(details: any) {
-    debugger;
-    var entity = {
-      ID: details.id,
-    };
-    this.MediTestService.AcceptOrder(entity).subscribe((res) => {
-      let test = res;
-      var entity1 = {
-        EmailId: details.emailID,
-        PhoneNo: details.mobileNumber,
-        OTP: 'Hi  , Your Order has been Accepted By MediTest.',
-      };
-      this.MediTestService.MediSMSNEW(entity1).subscribe((res) => {
-        let test = res;
-      });
-
-      var entity2 = {
-        'emailfrom ': 'donotreply.caa@gmail.com',
-        'emailto ': details.emailID,
-        emailsubject: 'Meditest Order Accepted',
-        Attachmenturl: 'dd',
-        'emailbody ': 'Hi  , <br>Your Order has been Accepted By MediTest.',
-      };
-      this.MediTestService.SendEmailNew(entity2).subscribe((res) => {
-        let test = res;
-        swal.fire('Accepted Successfully');
-        this.ngOnInit();
-      });
     });
   }
   useremail: any;
@@ -378,63 +319,47 @@ export class OrdersComponent implements OnInit {
     });
   }
 
-  public RejecttOrder(details: any) {
+  public RejecttOrder(id: any) {
     debugger;
     debugger;
     var entity = {
-      ID: details.id,
+      ID: id,
     };
     this.MediTestService.RejectOrder(entity).subscribe((res) => {
       let test = res;
-      swal.fire('Rejected Successfully');
-      var entity1 = {
-        EmailId: details.emailID,
-        PhoneNo: details.mobileNumber,
-        OTP: 'Hi  , Your Order has been Rejected By MediTest.',
-      };
-      this.MediTestService.MediSMSNEW(entity1).subscribe((res) => {
-        let test = res;
-      });
-      var entity2 = {
-        'emailfrom ': 'donotreply.caa@gmail.com',
-        'emailto ': details.emailID,
-        emailsubject: 'Meditest Order Rejected',
-        Attachmenturl: 'dd',
-        'emailbody ': 'Hi  , <br>Your Order has been Rejected By MediTest.',
-      };
-      this.MediTestService.SendEmailNew(entity2).subscribe((res) => {
-        let test = res;
-        swal.fire('Accepted Successfully');
-        this.ngOnInit();
-      });
-
-      // this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(this.diagnosticid, '2021-10-01', '2022-12-01', 1).subscribe(
-      //   data => {
-      //     debugger
-      //     let temp: any = data.filter(x => x.id == id);
-      //     let orderid = temp[0].mediOrderID;
-      //     this.useremail = temp[0].emailID;
-      //     this.MediTestService.GetMediTestOrderDetailsNewWeb().subscribe(data => {
-      //       let temp1: any = data.filter(x => x.orderid == orderid);
-      //       this.base64textString = temp1[0].reciept;
-      //       var entity1 = {
-      //         'ID': id,
-      //         'FileName': id,
-      //         'FileType': 'pdf',
-      //         'modifieddate': new Date(),
-      //         'Base64Data': this.base64textString,
-      //       }
-      //       this.MediTestService.UploadReciept(entity1).subscribe(res => {
-      //         let test = res;
-      //         swal.fire('Rejected Successfully');
-      //         this.sendAzureNotification1();
-      //         this.ngOnInit();
-      //       })
-      //     })
-
-      //   }, _error => {
-      //   }
-      // )
+      this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(
+        this.diagnosticid,
+        '2021-10-01',
+        '2022-12-01',
+        1
+      ).subscribe(
+        (data) => {
+          debugger;
+          let temp: any = data.filter((x) => x.id == id);
+          let orderid = temp[0].mediOrderID;
+          this.useremail = temp[0].emailID;
+          this.MediTestService.GetMediTestOrderDetailsNewWeb().subscribe(
+            (data) => {
+              let temp1: any = data.filter((x) => x.orderid == orderid);
+              this.base64textString = temp1[0].reciept;
+              var entity1 = {
+                ID: id,
+                FileName: id,
+                FileType: 'pdf',
+                modifieddate: new Date(),
+                Base64Data: this.base64textString,
+              };
+              this.MediTestService.UploadReciept(entity1).subscribe((res) => {
+                let test = res;
+                swal.fire('Rejected Successfully');
+                this.sendAzureNotification1();
+                this.ngOnInit();
+              });
+            }
+          );
+        },
+        (_error) => {}
+      );
     });
   }
   public dummshowsignatureurl: any = [];
@@ -476,7 +401,7 @@ export class OrdersComponent implements OnInit {
     };
     this.MediTestService.UploadReport(entity).subscribe((res) => {
       let test = res;
-      swal.fire('Updated Successfully Successfully');
+      swal.fire('Report Uploded Successfully');
       this.ngOnInit();
     });
   }

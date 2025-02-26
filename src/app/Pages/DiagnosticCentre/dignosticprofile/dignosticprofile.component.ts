@@ -35,6 +35,7 @@ export class DignosticprofileComponent implements OnInit {
         this.licenseNo = temp[0].licenseNo;
         this.address = temp[0].address;
         this.EmailID = temp[0].emailID;
+        this.zipcode = temp[0].zipcode;
         this.ContactPersonPhNo = temp[0].contactPersonPhNo;
       }, error => {
       }
@@ -42,11 +43,43 @@ export class DignosticprofileComponent implements OnInit {
 
 
   }
+  zipcode: any;
   Password: any
   public Update() {
     debugger
 
-    Swal1.fire('Profile Updated Successfully');
+    var entity = {
+      'LanguageID': 1,
+      'DiagnosticCenterID': localStorage.getItem('DiagnosticId'),
+      'PhoneNo': this.phoneNo,
+      'ContactPerson': this.ContactPerson,
+      'ContactPersonPhNo': this.ContactPersonPhNo,
+      'LicenseNo': this.licenseNo,
+      'LicenseValidTill': new Date,
+      'EmailID': this.EmailID,
+      'Address': this.address,
+      'CityID': 1,
+      'Zipcode': this.zipcode,
+      'Website': '',
+      'Timings': '',
+      'Description': '',
+      'AreaID': 1,
+      'Pincode': this.zipcode,
+      'CountryID': 1,
+      'DiagnosticAppointmentPerSlot': 1,
+      'HomeSampleOrdersPerSlot': 1,
+      'HomeSample': 1,
+      'EveningTimings': '',
+      'Username1': this.username, 
+      'Password': this.Password
+    }
+    this.MediTestService.UpdateDiagnosticCenterProfile(entity).subscribe(res => {
+      let test = res;
+      Swal1.fire('Profile Updated Successfully');
+
+    })
+
+
     // var entity = {
     //   'ID': Number(sessionStorage.getItem('userid')),
     //   'Name': this.Name,

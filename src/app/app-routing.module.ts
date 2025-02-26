@@ -33,6 +33,7 @@ import { TestoffersdashbaordComponent } from './Pages/Dignosticpackaeandtestmast
 import { DigDashboardComponent } from './Pages/DiagnosticCentre/dig-dashboard/dig-dashboard.component';
 import { BooktestbyadminComponent } from './Pages/DiagnosticCentre/booktestbyadmin/booktestbyadmin.component';
 import { LivetrackingComponent } from './Pages/DiagnosticCentre/livetracking/livetracking.component';
+import { NoactionordersComponent } from './Pages/DiagnosticCentre/noactionorders/noactionorders.component';
 
 
 const routes: Routes = [
@@ -69,13 +70,14 @@ const routes: Routes = [
   { path: 'Cancelledappoitments', component: CancelledappoitmentsComponent },
   { path: 'Revenue', component: RevenueComponent },
   { path: 'TestOffers', component: TestOffersComponent },
+  { path: 'TestOffers/:id', component: TestOffersComponent },
   { path: 'Testoffersdashbaord', component: TestoffersdashbaordComponent },
 
   { path: 'DigDashboard', component: DigDashboardComponent },
   { path: 'booktestbyadmin', component: BooktestbyadminComponent },
   { path: 'Livetracking', component: LivetrackingComponent },
+  { path: 'Noactionorders', component: NoactionordersComponent },
 
-  
 
 ];
 @NgModule({

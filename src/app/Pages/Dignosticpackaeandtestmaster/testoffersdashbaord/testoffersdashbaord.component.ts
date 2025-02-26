@@ -26,4 +26,21 @@ export class TestoffersdashbaordComponent implements OnInit {
     );
   }
 
+
+  public testoffersEnableDisable(id: any) {
+    var eb = {
+      'ID': id,
+      'Enable_Disable': 1
+    }
+    this.docservice.testoffersEnableDisable(eb).subscribe(
+      data => {
+        debugger
+        Swal.fire('Updated successfully.');
+        location.reload();
+      },
+    )
+
+  }
+
+
 }

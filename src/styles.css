@@ -272,3 +272,6 @@ button:disabled {
 .headerspace{
   text-transform:uppercase;
 }
+label {
+  font-size: 15px;
+}

@@ -53,6 +53,8 @@ import { DigDashboardComponent } from './Pages/DiagnosticCentre/dig-dashboard/di
 import { SpinnerComponent } from './Pages/Login/spinner/spinner.component';
 import { BooktestbyadminComponent } from './Pages/DiagnosticCentre/booktestbyadmin/booktestbyadmin.component';
 import { LivetrackingComponent } from './Pages/DiagnosticCentre/livetracking/livetracking.component';
+import { NoactionordersComponent } from './Pages/DiagnosticCentre/noactionorders/noactionorders.component';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -111,7 +113,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     DigDashboardComponent,
     SpinnerComponent,
     BooktestbyadminComponent,
-    LivetrackingComponent
+    LivetrackingComponent,
+    NoactionordersComponent
   ],
   imports: [
     BrowserModule,
@@ -140,7 +143,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     {
       provide: DROPZONE_CONFIG,
       useValue: DEFAULT_DROPZONE_CONFIG
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

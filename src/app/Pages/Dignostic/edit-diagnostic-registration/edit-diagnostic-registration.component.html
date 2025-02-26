@@ -224,6 +224,29 @@
                                     onkeypress='return(event.charCode>=65&&event.charCode<=90)||(event.charCode>=97&&event.charCode<=122)||event.charCode==32||event.charCode>=48 && event.charCode<=57'></textarea>
                             </div>
                         </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Username: </label>
+                                <span class="requird">*</span>
+                            </div>
+                            <div class="col-lg-6">
+                                <input class="form-control" required type="text" name="Username" [(ngModel)]="Username"
+                                    oncopy="return false" onpaste="return false" placeholder="Username">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Password : </label>
+                                <span class="requird">*</span>
+                            </div>
+                            <div class="col-lg-6">
+                                <input class="form-control" required type="text" name="Password" [(ngModel)]="Password"
+                                    oncopy="return false" onpaste="return false" placeholder="Password">
+                            </div>
+                        </div>
+                        <br>
                     </div>
                     <div class="col-lg-2">
                         <br>
@@ -241,12 +264,12 @@
                     <div class="col-lg-5">
                     </div>
                 </div><br><br>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-lg-12">
                         <button type="button" style="float: right" class="btn dashbtn btncolor"
                             awNextStep>{{labels[0].next}}</button><br>
                     </div>
-                </div>
+                </div> -->
                 <div class="row">
                     <div class="col-lg-2" *ngFor="let photo of photoslist">
                         <img src="{{photo.photoURL}}" style="height:80px;width:100px"><br><br>
@@ -271,7 +294,7 @@
 
 
     </aw-wizard-step>
-    <aw-wizard-step stepTitle="{{labels[0].subscriptions}}">
+    <!-- <aw-wizard-step stepTitle="{{labels[0].subscriptions}}">
         <div class="container-fluid">
             <div class="row">
                 <div class="container-fluid">
@@ -352,7 +375,7 @@
             awPreviousStep>{{labels[0].previous}}</button>
         <br>
         <br>
-    </aw-wizard-step><br>
+    </aw-wizard-step><br> -->
 </aw-wizard><br>
 
 

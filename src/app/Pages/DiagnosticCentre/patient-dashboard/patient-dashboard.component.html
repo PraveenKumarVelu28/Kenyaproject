@@ -1,3 +1,4 @@
+<app-spinner *ngIf="loader"></app-spinner>
 <div class="container-fluid card card:hover headerrspace">
   <div class="row headerspace" style="margin-top: 10px;">
     <div class="col-lg-3">
@@ -7,7 +8,7 @@
     </div>
 
     <div class="col-lg-2">
-      <h4>Count:{{registeredpatients.length}}</h4>
+
     </div>
 
   </div>
@@ -16,22 +17,25 @@
 <div class="container-fluid card card:hover">
   <div class="row" style="margin-top: 20px;">
     <div class="col-lg-3">
+      <p>Search</p>
       <input type="text" class="form-control" placeholder="Search" [(ngModel)]="term">
     </div>
     <div class="col-lg-3">
+      <p>Start Date</p>
       <input type="date" id="todaydate" class="form-control" placeholder="todaydate" [(ngModel)]="todaydate">
     </div>
     <div class="col-lg-3">
-
+      <p>End Date</p>
+      <input type="date" id="edate" class="form-control" placeholder="edate" [(ngModel)]="edate" (change)="Getedate()">
     </div>
     <div class="col-lg-3" style="text-align: end;">
       <h4 style="font-size: 20px;">Count : {{registeredpatients.length}}</h4>
     </div>
   </div><br>
   <div class="row">
-    <div class="col-lg-12" style="overflow-y: auto;height:200vh">
+    <div class="col-lg-12" style="overflow-y: auto;">
       <br>
-      <table>
+      <table *ngIf="(registeredpatients |paginate: { itemsPerPage: count1, currentPage: p}).length > 0;">
         <thead>
           <tr>
             <th>Registered Date</th>
@@ -42,7 +46,8 @@
             <th>Last Activity Date</th>
             <th>Actions</th>
           </tr>
-          <tr *ngFor="let details of registeredpatients|filter:term">
+          <tr
+            *ngFor="let details of registeredpatients |paginate: { itemsPerPage: count1, currentPage: p} |filter:term ">
             <td>{{details.modifiedDate | date}}</td>
             <td>{{details.patientName}}</td>
             <td>{{details.mobileNumber}}</td>
@@ -52,7 +57,7 @@
             <td>
 
               <a>
-                <img src="assets/Images/active.png" style="width: 46px;margin-left: 10px;"
+                <img src=" assets/Images/active.png" style="width: 46px;margin-left: 10px;"
                   *ngIf="details.enable_Disable==0" (click)="DisablePatient(details.id)">
               </a>&nbsp;
 
@@ -61,6 +66,8 @@
                 <img src="assets/Images/dactive.png" style="width: 48px;margin-left: 2px;"
                   *ngIf="details.enable_Disable==1" (click)="DisablePatient(details.id)">
               </a>&nbsp;
+              <button type="button" text_align="center" class="btn btn-block btn-md allbtns btncolor"
+                (click)="GetPatientID(details)" data-toggle="modal" data-target="#Order">Book Test</button>
 
 
               <!-- <ng-template>disable</ng-template>
@@ -71,9 +78,96 @@
           </tr>
         </thead>
       </table><br>
-    </div><br><br>
-  </div><br><br><br>
+    </div>
+  </div><br>
   <div class="col-lg-12" style="text-align: center">
     <br>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div><br><br>
+  <div id="Order" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Book Test </h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+              <label style="font-size: 16px;"> Test</label>
+            </div>
+            <div class="col-lg-6">
+              <ng-multiselect-dropdown [placeholder]="'Select Test'" [settings]="dropdownSettings1" [data]="servicelist"
+                [(ngModel)]="selectedItems1" (onDeSelect)="onItemDeselect1($event)" (onSelect)="onItemSelect1($event)">
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+              <label style="font-size: 16px;">Appointment Type :</label>
+              <span class="required">*</span>
+            </div>
+            <div class="col-lg-6">
+              <select class="dropdown form-control" [(ngModel)]="Type" id="Type" name="Type">
+                <option value="2">Select Type</option>
+                <option value="0">Home Sample Collection</option>
+                <option value="1">Visiting Center</option>
+              </select>
+            </div>
+          </div>
 
-  </div><br>
+          <br>
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+              <label style="font-size: 16px;">Appointment Date :</label>
+            </div>
+            <div class="col-lg-6">
+              <input type="date" required class="form-control" placeholder="Address" id="Date" [(ngModel)]="Date"
+                name="Date">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+
+              <label style="font-size: 16px;">Appointment Time :</label>
+            </div>
+            <div class="col-lg-6">
+              <input type="time" required class="form-control" placeholder="" id="SlotTime" [(ngModel)]="SlotTime"
+                name="SlotTime">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-lg-5">
+            </div>
+            <!-- <div class="col-lg-3">
+
+              <button *ngIf="showplacebutton!=1 && Type==1" type="submit" text_align="center"
+                class="btn btn-block btn-md allbtns btncolor" (click)="BookTest()">Cash Collected</button>
+            </div> -->
+            <div class="col-lg-2">
+              <button type="submit" text_align="center" class="btn btn-block btn-md allbtns btncolor"
+                (click)="HomeSampleCall()">Place Order</button>
+            </div>
+            <!-- <div class="col-lg-3">
+              <button type="submit" text_align="center" class="btn btn-block btn-md allbtns btncolor"
+                *ngIf="showplacebutton==1 && Type==1" (click)="InsertAppoitmnetInSamirAPI()">Place Order</button>
+            </div> -->
+            <div class="col-lg-3">
+            </div>
+          </div>
+          <br>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" data-dismiss="modal" class="btn btn-secondary" data-dixsiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

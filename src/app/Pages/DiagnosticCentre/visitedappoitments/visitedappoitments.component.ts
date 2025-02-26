@@ -30,11 +30,13 @@ export class VisitedappoitmentsComponent implements OnInit {
   Search: any;
   public languageid: any;
   public loader!: boolean;
+  roleid: any;
   constructor(public MediTestService: MediTestService, private activatedroute: ActivatedRoute, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     debugger
     this.loader = false;
+    this.roleid = localStorage.getItem('roleid');
     this.diagnosticid = localStorage.getItem('DiagnosticId');
     // var kkk = this.SDate.setDate(this.SDate.getDate() - 0);
     // var lll = this.EDate.setDate(this.EDate.getDate() + 7);
@@ -43,6 +45,7 @@ export class VisitedappoitmentsComponent implements OnInit {
     const myDate = new Date();
     const locale = 'en-US';
     this.todaydate = formatDate(myDate, format, locale);
+    this.EDate = formatDate(myDate, format, locale);
 
 
     // this.startdate = formatDate(kkk, format, locale);
@@ -71,6 +74,28 @@ export class VisitedappoitmentsComponent implements OnInit {
       }, error => {
       }
     )
+
+  }
+
+  public GetEDate() {
+    if (this.roleid == 1) {
+      this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(0, '2021-10-01', '2022-12-01', 1).subscribe(
+        data => {
+          debugger
+          this.diagnosticlist = data.filter(x => x.diagReportURL != null && (x.formatdate >= this.todaydate && x.formatdate <= this.EDate));
+        }, _error => {
+        }
+      )
+
+    } else {
+      this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(this.diagnosticid, '2021-10-01', '2022-12-01', 1).subscribe(
+        data => {
+          debugger
+          this.diagnosticlist = data.filter(x => x.diagReportURL != null && (x.formatdate >= this.todaydate && x.formatdate <= this.EDate));
+        }, _error => {
+        }
+      )
+    }
 
   }
   samplecollectionids: any = []
@@ -129,13 +154,26 @@ export class VisitedappoitmentsComponent implements OnInit {
 
   public getlanguage() {
     debugger;
-    this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(this.diagnosticid, '2021-10-01', '2022-12-01', 1).subscribe(
-      data => {
-        debugger
-        this.diagnosticlist = data.filter(x => x.diagReportURL != null);
-      }, _error => {
-      }
-    )
+
+    if (this.roleid == 1) {
+      this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(0, '2021-10-01', '2022-12-01', 1).subscribe(
+        data => {
+          debugger
+          this.diagnosticlist = data.filter(x => x.diagReportURL != null);
+        }, _error => {
+        }
+      )
+    }
+    else {
+      this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(this.diagnosticid, '2021-10-01', '2022-12-01', 1).subscribe(
+        data => {
+          debugger
+          this.diagnosticlist = data.filter(x => x.diagReportURL != null);
+        }, _error => {
+        }
+      )
+    }
+
     this.MediTestService.GetAdmin_DiagnosticLoginOrdersAndOrderReport_Label(1).subscribe(
 
       data => {

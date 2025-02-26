@@ -25,21 +25,24 @@ export class CancelledappoitmentsComponent implements OnInit {
   diagnosticlist: any;
   todaydate: any;
   public languageid: any;
+  roleid: any;
   Search: any;
   constructor(public MediTestService: MediTestService, private activatedroute: ActivatedRoute) { }
 
   ngOnInit() {
     debugger
     this.diagnosticid = localStorage.getItem('DiagnosticId');
+    this.roleid = localStorage.getItem('roleid');
+
     // var kkk = this.SDate.setDate(this.SDate.getDate() - 0);
     // var lll = this.EDate.setDate(this.EDate.getDate() + 7);
 
-    // const format = 'yyyy-MM-dd';
-    // const myDate = new Date();
-    // const locale = 'en-US';
-    // this.todaydate = formatDate(myDate, format, locale);
+    const format = 'yyyy-MM-dd';
+    const myDate = new Date();
+    const locale = 'en-US';
+    this.todaydate = formatDate(myDate, format, locale);
 
-
+    this.EDate = formatDate(myDate, format, locale);
     // this.startdate = formatDate(kkk, format, locale);
     // this.enddate = formatDate(lll, format, locale);
     this.staffid = 0;
@@ -69,18 +72,52 @@ export class CancelledappoitmentsComponent implements OnInit {
 
   }
 
+  public GetEDate() {
+    if (this.roleid == 1) {
+      this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(0, '2021-10-01', '2022-12-01', 1).subscribe(
+        data => {
+          debugger
+          this.diagnosticlist = data.filter(x => x.diagnosticCancelled == 1 || x.cancelled == 1 && (x.formatdate >= this.todaydate && x.formatdate <= this.EDate));
+        }, _error => {
+        }
+      )
+    } else {
+      this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(this.diagnosticid, '2021-10-01', '2022-12-01', 1).subscribe(
+        data => {
+          debugger
+          this.diagnosticlist = data.filter(x => x.diagnosticCancelled == 1 || x.cancelled == 1 && (x.formatdate >= this.todaydate && x.formatdate <= this.EDate));
+        }, _error => {
+        }
+      )
+    }
+
+
+  }
+
 
 
 
   public getlanguage() {
     debugger;
-    this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(this.diagnosticid, '2021-10-01', '2022-12-01', 1).subscribe(
-      data => {
-        debugger
-        this.diagnosticlist = data.filter(x => x.diagnosticCancelled == 1 || x.cancelled == 1);
-      }, _error => {
-      }
-    )
+
+    if (this.roleid == 1) {
+      this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(0, '2021-10-01', '2022-12-01', 1).subscribe(
+        data => {
+          debugger
+          this.diagnosticlist = data.filter(x => x.diagnosticCancelled == 1 || x.cancelled == 1);
+        }, _error => {
+        }
+      )
+    } else {
+      this.MediTestService.GetDiagnosticAppointmentsByDiagnosticIDMediTest(this.diagnosticid, '2021-10-01', '2022-12-01', 1).subscribe(
+        data => {
+          debugger
+          this.diagnosticlist = data.filter(x => x.diagnosticCancelled == 1 || x.cancelled == 1);
+        }, _error => {
+        }
+      )
+    }
+
     this.MediTestService.GetAdmin_DiagnosticLoginOrdersAndOrderReport_Label(1).subscribe(
 
       data => {

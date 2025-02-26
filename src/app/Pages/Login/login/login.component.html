@@ -36,6 +36,13 @@
                             <option value="2">Diagnostic centre</option>
                             <!-- <option *ngFor="let role of rolelist" value={{role.id}}>{{role.short}}</option> -->
                         </select>
+                        <br>
+                        <select *ngIf="roleid==2" class="form-control" style="height:40px;" id="DiagnosticId"
+                            name="DiagnosticId" [(ngModel)]="DiagnosticId">
+                            <option value="0" selected>Select Diagnostic centre</option>
+                            <option *ngFor="let lang of CenterList" value={{lang.id}}>{{lang.diagnosticCenterName}}
+                            </option>
+                        </select>
 
                         <!-- <input type="text" [(ngModel)]="pinno" style="height:40px;" name="pinno" required
                             placeholder="{{labels[0].pinno}}" class="form-control"

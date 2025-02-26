@@ -128,7 +128,7 @@
                         <select class="form-control" (change)="GetCountryID($event)">
                             <option value="0">Select Country</option>
                             <option *ngFor="let role of countrylist" value="{{role.id}}">
-                                {{role.short}}
+                                {{role.name}}
                             </option>
                         </select><br>
                         <!-- <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="countrylist" [settings]="countrydd"
@@ -146,7 +146,7 @@
                         <select class="form-control" (change)="GetCityID($event)">
                             <option value="0">Select Province</option>
                             <option *ngFor="let role of citylist" value="{{role.id}}">
-                                {{role.short}}
+                                {{role.name}}
                             </option>
                         </select><br>
                         <!-- <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="citylist" [settings]="citydd"
@@ -163,7 +163,7 @@
                     <div class="col-lg-4">
                         <select class="form-control" (change)="GetAreaID($event)">
                             <option value="" selected="selected">Select City</option>
-                            <option *ngFor="let area of arealist" value={{area.id}}>{{area.areaName}}</option>
+                            <option *ngFor="let area of arealist" value={{area.id}}>{{area.name}}</option>
                         </select>
                         <!-- <ng-multiselect-dropdown [placeholder]="SelectLabel" [data]="arealist" [settings]="areadd"
                             (onSelect)="GetAreaID($event)">
@@ -288,7 +288,7 @@
 
                 <div class="row">
                     <div class="col-lg-3">
-                        <label>Evening hours  : </label>
+                        <label>Evening hours : </label>
                         <span class="requird">*</span>
                     </div>
                     <div class="col-lg-2">

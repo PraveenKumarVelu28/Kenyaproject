@@ -21,6 +21,7 @@ export class DigDashboardComponent implements OnInit {
   accpetedaptnments: any;
   visitedaptnments: any;
   todaydate: any;
+  edate: any;
   ngOnInit(): void {
 
     debugger
@@ -29,7 +30,7 @@ export class DigDashboardComponent implements OnInit {
     const myDate = new Date();
     const locale = 'en-US';
     this.todaydate = formatDate(myDate, format, locale);
-
+    this.edate = formatDate(myDate, format, locale);
 
     this.docservice.GetDiagnosticAppointmentsByDiagnosticIDMediTest(localStorage.getItem('DiagnosticId'), '2021-10-01', '2022-12-01', 1).subscribe(
       data => {
@@ -84,10 +85,10 @@ export class DigDashboardComponent implements OnInit {
 
   public applydatefilter() {
     debugger
-    this.docservice.GetDiagnosticAppointmentsByDiagnosticIDMediTest(localStorage.getItem('DiagnosticId'), '2021-10-01', '2022-12-01', 1).subscribe(
+    this.docservice.GetDiagnosticAppointmentsByDiagnosticIDMediTest(localStorage.getItem('DiagnosticId'), '2021-10-01', '2029-12-01', 1).subscribe(
       data => {
         debugger
-        let tmp: any = data.filter(x => x.formatdate == this.todaydate);
+        let tmp: any = data.filter(x => (x.formatdate >= this.todaydate && x.formatdate <= this.edate));
         this.allaptnments = tmp.length;
         this.accpetedaptnments = tmp.filter((x: { acceptedBit: number; }) => x.acceptedBit == 1).length;
         this.visitedaptnments = tmp.filter((x: { labReportID: null; }) => x.labReportID != null).length;
@@ -99,7 +100,7 @@ export class DigDashboardComponent implements OnInit {
     this.docservice.GetPatient_WalletLog().subscribe(
       data => {
 
-        let temp: any = data.filter(x => x.diagnosticCenterID == localStorage.getItem('DiagnosticId') && x.formatdate == this.todaydate);
+        let temp: any = data.filter(x => x.diagnosticCenterID == localStorage.getItem('DiagnosticId') && (x.formatdate >= this.todaydate && x.formatdate <= this.edate));
         let total: any = 0;
         temp.forEach((element: { totalPrice: any; }) => {
           total += Number(element.totalPrice);

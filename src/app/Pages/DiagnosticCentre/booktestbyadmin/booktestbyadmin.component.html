@@ -108,8 +108,23 @@
                     </div>
                     <div class="col-lg-6">
                         <ng-multiselect-dropdown [placeholder]="'Select Test'" [settings]="dropdownSettings1"
-                            [data]="servicelist" [(ngModel)]="selectedItems1" (onSelect)="onItemSelect1($event)">
+                            [data]="servicelist" [(ngModel)]="selectedItems1" (onSelect)="onItemSelect1($event)"
+                            (onDeSelect)="onItemDeselect1($event)">
                         </ng-multiselect-dropdown>
+                    </div>
+                </div>
+                <br>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-lg-4">
+                        <label>Appointment Type :</label>
+                        <span class="required">*</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <select class="dropdown form-control" [(ngModel)]="Type" id="Type" name="Type">
+                            <option value="2">Select Type</option>
+                            <option value="0">Home Sample Collection</option>
+                            <option value="1">Visiting Center</option>
+                        </select>
                     </div>
                 </div>
                 <br>
@@ -138,14 +153,18 @@
                 <div class="row">
                     <div class="col-lg-5">
                     </div>
+                    <!-- <div class="col-lg-2" *ngIf="Type==1">
+                        <button type="submit" text_align="center" class="btn btn-block btn-md allbtns btncolor"
+                            (click)="HomeSampleCall()">Place Order</button>
+                    </div> -->
                     <div class="col-lg-2">
                         <button type="submit" text_align="center" class="btn btn-block btn-md allbtns btncolor"
-                            (click)="InsertDetailes()" [disabled]="myteam.form.invalid">Cash Collected</button>
+                            (click)="HomeSampleCall()">Place Order</button>
                     </div>
-                    <div class="col-lg-2">
+                    <!-- <div class="col-lg-2" *ngIf="Type==1">
                         <button type="submit" text_align="center" class="btn btn-block btn-md allbtns btncolor"
                             *ngIf="showplacebutton==1" (click)="InsertAppoitmnetInSamirAPI()">Place Order</button>
-                    </div>
+                    </div> -->
                     <div class="col-lg-3">
                     </div>
                 </div>

@@ -248,7 +248,7 @@ export class StaffdashboardComponent implements OnInit {
     if (this.languageid == 1) {
       Swal.fire({
         title: 'Are you sure?',
-        text: "You Want to Activer This!",
+        text: "You Want to Delete This!",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
